@@ -1,0 +1,83 @@
+<%= form_for([@entry, @entry.build_payment_summary]) do |f| %>
+    <div class="row">
+      <div class="small-10">
+        <div class="row">
+          <div class="large-10 columns">
+            <%= f.label :g_r_number, class: "right inline" %>
+            <%= f.text_field :g_r_number %>
+          </div>
+        </div>
+      </div>
+      <div class="small-10">
+        <div class="row">
+          <div class="large-10 columns">
+            <%= f.label :weight %>
+            <%= f.text_field :weight %>
+          </div>
+        </div>
+      </div>
+
+      <div class="small-10">
+        <div class="row">
+          <div class="large-10 columns">
+            <%= f.label :kanta %>
+            <%= f.text_field :kanta %>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="small-10">
+        <div class="row">
+          <div class="large-10 columns">
+            <%= f.label :freight1 %>
+            <%= f.text_field :freight1 %>
+          </div>
+        </div>
+      </div>
+
+      <div class="small-10">
+        <div class="row">
+          <div class="large-10 columns">
+            <%= f.label :shortage1 %>
+            <%= f.text_field :shortage1 %>
+          </div>
+        </div>
+      </div>
+
+      <div class="small-10">
+        <div class="row">
+          <div class="large-10 columns">
+            <%= f.label :shortage2 %>
+            <%= f.text_field :shortage2 %>
+          </div>
+        </div>
+      </div>
+
+      <div class="small-10">
+        <div class="row">
+          <div class="large-10 columns">
+            <%= f.label :payment_charges %>
+            <%= f.text_field :payment_charges %>
+          </div>
+        </div>
+      </div>
+
+      <div class="small-10">
+        <div class="row">
+          <div class="large-10 columns">
+            <%= f.label :sheet_number %>
+            <%= f.text_field :sheet_number %>
+          </div>
+        </div>
+      </div>
+
+      <div class="small-10">
+        <div class="row">
+          <div class="small-10 small-offset-2 columns">
+            <%= f.submit class: "button small radius payment-summary-submit"%>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

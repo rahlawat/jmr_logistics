@@ -1,0 +1,90 @@
+<div class="form">
+  <div class="heading-2">
+    <h6>Entry</h6>
+  </div>
+  <div class="show">
+    <table>
+      <tr>
+        <td class="row-right">
+          <strong>Date:</strong>
+        </td>
+        <td>
+          <%= @entry.date %>
+        </td>
+        <td class="row-right">
+          <strong>Firm:</strong>
+        </td>
+        <td>
+          <%= @entry.firm %>
+        </td>
+    </tr>
+
+      <tr>
+        <td class="row-right">
+          <strong>Truck Number:</strong>
+        </td>
+        <td>
+          <%= @entry.truck_number %>
+
+        </td>
+        <td class="row-right">
+          <strong>Advance:</strong>
+        </td>
+        <td>
+          Rs <%= @entry.advance %>
+        </td>
+      </tr>
+      <tr>
+        <td class="row-right">
+          <strong>Station:</strong>
+        </td>
+        <td>
+          <%= @entry.station %>
+        </td>
+        <td class="row-right">
+          <strong>Rate1:</strong>
+        </td>
+        <td>
+          Rs <%= @entry.rate1 %>
+        </td>
+      </tr>
+      <tr>
+        <td class="row-right">
+          <strong>Truck Owner:</strong>
+        </td>
+        <td>
+          <%= @entry.truck_owner %>
+        </td>
+        <td class="row-right">
+          <strong>Rate2:</strong>
+        </td>
+        <td>
+          Rs <%= @entry.rate2 %>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div>
+    <div class="heading-2">
+      <h6>Payment Summary</h6>
+    </div>
+    <% if @entry.payment_summary.nil? %>
+        <%= render 'payment_summaries/form' %>
+    <% else %>
+        <%= render 'payment_summaries/show' %>
+    <% end %>
+  </div>
+
+  <div>
+    <div class="heading-2">
+      <h6>Payment Summary</h6>
+    </div>
+    <% if @entry.payment_summary.present? %>
+        Please fill payment Summary first.
+    <% else %>
+        <%= render 'entries/details' %>
+    <% end %>
+  </div>
+
+  <%= link_to 'Back', entries_path, class: 'button small radius back' %>
+</div>

@@ -1,0 +1,76 @@
+// Place all the styles related to the Entry controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.form {
+  background-color: #e9ece5;
+  width: 800px;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  form {
+    margin-left: 15%;
+    margin-right: 20%;
+    width: 100%;
+    padding-bottom: 20px;
+    padding-top: 25px;
+  }
+
+  h3 {
+    color: #ffffff;
+    padding-top: 20px;
+    padding-left: 300px;
+  }
+  .submit {
+    margin-left: 200px;
+  }
+  .show {
+    margin-left: 20px;
+    padding-top: 30px;
+    background-color: #e9ece5;
+  }
+  table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: #ECECEA;
+    table-layout:fixed;
+  }
+  .back{
+    margin-top: 30px;
+    margin-left: 350px;
+  }
+  .accordion {
+    height: 40px;
+    background: #ffffff;
+    h6 {
+      padding-left: 10px;
+      padding-top: 10px;
+      color: #1779ba;
+    }
+  }
+  .heading {
+    height: 80px;
+    background-color: #b3c2bf;
+  }
+
+  .heading-2 {
+    height: 40px;
+    background-color: #b3c2bf;
+    h6 {
+      padding-left: 350px;
+      padding-top: 10px;
+      color: #FFFFFF;
+    }
+  }
+}
+
+.button {
+  background-color: #3b3a36;
+}
+.button:hover {
+  background-color: #b3c2bf;
+}

@@ -1,0 +1,76 @@
+<div class="show">
+  <table>
+    <tr>
+      <td class="row-right">
+        <strong>G.R. Number:</strong>
+      </td>
+      <td>
+        <%= @entry.payment_summary.g_r_number %>
+      </td>
+
+      <td class="row-right">
+        <strong>Shortage 1:</strong>
+      </td>
+      <td>
+        <%= @entry.payment_summary.shortage1 %>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="row-right">
+        <strong>Weight:</strong>
+      </td>
+      <td>
+        <%= @entry.payment_summary.weight %>
+      </td>
+
+      <td class="row-right">
+        <strong>Shortage 2:</strong>
+      </td>
+      <td>
+        <%= @entry.payment_summary.shortage2 %>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="row-right">
+        <strong>Rate 1:</strong>
+      </td>
+      <td>
+        <%= @entry.rate1 %>
+      </td>
+
+      <td class="row-right">
+        <strong>Payment Charges:</strong>
+      </td>
+      <td>
+        <%= @entry.payment_summary.payment_charges %>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="row-right">
+        <strong>Kanta:</strong>
+      </td>
+      <td>
+        <%= @entry.payment_summary.kanta %>
+      </td>
+
+      <td class="row-right">
+        <strong>Sheet Number:</strong>
+      </td>
+      <td>
+        <%= @entry.payment_summary.sheet_number %>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="row-right">
+        <strong>Freight 1</strong>
+      </td>
+      <td>
+        <%= @entry.payment_summary.freight1 %>
+      </td>
+    </tr>
+  </table>
+</div>

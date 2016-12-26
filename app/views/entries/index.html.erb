@@ -1,0 +1,25 @@
+<%= link_to 'New Entry', new_entry_path %>
+<h3>Listing Entries</h3>
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Truck Number</th>
+    <th>Station</th>
+    <th>Firm</th>
+    <th colspan="2"></th>
+  </tr>
+
+  <% @entries.each do |entry| %>
+      <tr>
+        <td><%= entry.date %></td>
+        <td><%= entry.truck_number %></td>
+        <td><%= entry.station %></td>
+        <td><%= entry.firm %></td>
+        <td align="center"><%= link_to 'Show', entry_path(entry), class: 'button small radius' %></td>
+        <td><%= link_to 'Edit', edit_entry_path(entry), class: 'button small radius' %></td>
+        <td><%= link_to 'Destroy', entry_path(entry),
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' }, class: 'button small radius'%></td>
+      </tr>
+  <% end %>
+</table>

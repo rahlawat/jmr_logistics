@@ -1,0 +1,92 @@
+<div class="form">
+  <div class="heading">
+    <h3>Edit Entry</h3>
+  </div>
+
+  <%= form_for :entry, url: entry_path(@entry), method: :patch do |f| %>
+    <div class="row shift">
+      <div class="small-10">
+        <div class="row">
+          <div class="large-10 columns">
+            <%= f.label :date %>
+            <%= f.date_field :date %>
+          </div>
+        </div>
+      </div>
+      <div class="small-10">
+        <div class="row">
+          <div class="large-10 columns">
+            <%= f.label :truck_number %>
+            <%= f.text_field :truck_number %>
+          </div>
+        </div>
+      </div>
+
+      <div class="small-10">
+        <div class="row">
+          <div class="large-10 columns">
+            <%= f.label :station %>
+            <%= f.text_field :station %>
+          </div>
+        </div>
+      </div>
+
+      <div class="small-10">
+        <div class="row">
+          <div class="large-10 columns">
+            <%= f.label :truck_owner %>
+            <%= f.text_field :truck_owner %>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="small-10">
+        <div class="row">
+          <div class="large-10 columns">
+            <%= f.label :firm %>
+            <%= f.text_field :firm %>
+          </div>
+        </div>
+      </div>
+
+      <div class="small-10">
+        <div class="row">
+          <div class="large-10 columns">
+            <%= f.label :advance %>
+            <%= f.text_field :advance %>
+          </div>
+        </div>
+      </div>
+
+      <div class="small-10">
+        <div class="row">
+          <div class="large-10 columns">
+            <%= f.label :rate1 %>
+            <%= f.text_field :rate1 %>
+          </div>
+        </div>
+      </div>
+
+      <div class="small-10">
+        <div class="row">
+          <div class="large-10 columns">
+            <%= f.label :rate2 %>
+            <%= f.text_field :rate2 %>
+          </div>
+        </div>
+      </div>
+
+      <div class="small-10">
+        <div class="row">
+          <div class="small-10 small-offset-2 columns">
+            <%= link_to 'Back', entries_path, class: 'button small radius' %>
+            <%= f.submit class: "button small radius submit"%>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  <% end %>
+</div>
