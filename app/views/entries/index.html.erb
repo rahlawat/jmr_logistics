@@ -1,25 +1,41 @@
-<%= link_to 'New Entry', new_entry_path %>
-<h3>Listing Entries</h3>
-<table>
-  <tr>
-    <th>Date</th>
-    <th>Truck Number</th>
-    <th>Station</th>
-    <th>Firm</th>
-    <th colspan="2"></th>
-  </tr>
-
-  <% @entries.each do |entry| %>
+<div class="jumbotron space">
+  <%= link_to 'New Entry', new_entry_path, class: "btn btn-lg btn-primary pull-right" %>
+  <h3>Listing Entries</h3>
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= entry.date %></td>
-        <td><%= entry.truck_number %></td>
-        <td><%= entry.station %></td>
-        <td><%= entry.firm %></td>
-        <td align="center"><%= link_to 'Show', entry_path(entry), class: 'button small radius' %></td>
-        <td><%= link_to 'Edit', edit_entry_path(entry), class: 'button small radius' %></td>
-        <td><%= link_to 'Destroy', entry_path(entry),
-                        method: :delete,
-                        data: { confirm: 'Are you sure?' }, class: 'button small radius'%></td>
+        <th>Date</th>
+        <th>Truck Number</th>
+        <th>Station</th>
+        <th>Firm</th>
+        <th colspan="2"></th>
       </tr>
-  <% end %>
-</table>
+    </thead>
+
+    <tbody>
+      <% @entries.each do |entry| %>
+          <tr>
+            <td><%= entry.date %></td>
+            <td><%= entry.truck_number %></td>
+            <td><%= entry.station %></td>
+            <td><%= entry.firm %></td>
+            <td align="center"><%= link_to 'Show', entry_path(entry), class: 'button small radius' %></td>
+            <td><%= link_to 'Edit', edit_entry_path(entry), class: 'button small radius' %></td>
+            <% if entry.payment_summary.nil? %>
+                <td><%= link_to 'Add Payment Summary', new_entry_payment_summary_path(entry.id), class: 'button small radius' %></td>
+            <% else %>
+                <td><%= link_to 'Edit Payment Summary', edit_entry_payment_summary_path(entry.id, entry.payment_summary.id), class: 'button small radius' %></td>
+            <% end %>
+            <% if entry.bill_entry.nil? %>
+                <td><%= link_to 'Add Bill Entry', new_entry_bill_entry_path(entry.id), class: 'button small radius' %></td>
+            <% else %>
+                <td><%= link_to 'Edit Bill Entry', edit_entry_bill_entry_path(entry.id, entry.bill_entry.id), class: 'button small radius' %></td>
+            <% end %>
+            <td><%= link_to 'Destroy', entry_path(entry),
+                            method: :delete,
+                            data: { confirm: 'Are you sure?' }, class: 'button small radius'%></td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

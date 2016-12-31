@@ -1,0 +1,64 @@
+<div class="jumbotron">
+  <div class="heading">
+    <h3>New G R Entry</h3>
+  </div>
+  <%= form_for([@entry, @payment_summary]) do |f| %>
+      <% if @payment_summary.errors.any? %>
+          <div id="error_explanation">
+            Please enter valid values
+            <ul>
+              <% @payment_summary.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <div class="row shift">
+        <%= f.label :g_r_number, class: "right inline" %>
+        <%= f.text_field :g_r_number, class: "form-control" %>
+      </div>
+      <div class="row shift">
+        <%= f.label :weight %>
+        <%= f.text_field :weight, class: "form-control weight" %>
+      </div>
+
+      <div class="row shift">
+        <%= f.label :kanta %>
+        <%= f.text_field :kanta, class: "form-control kanta" %>
+      </div>
+
+      <div class="row shift">
+        <%= f.label :rate1 %>
+        <%= f.text_field :rate1, class: "form-control rate1", value: @entry.rate1, readonly: true %>
+      </div>
+
+      <div class="row shift">
+        <%= f.label :freight1 %>
+        <%= f.text_field :freight1, class: "form-control freight1",value: "",readonly: true %>
+      </div>
+
+      <div class="row shift">
+        <%= f.label :shortage1 %>
+        <%= f.text_field :shortage1, class: "form-control" %>
+      </div>
+
+      <div class="row shift">
+        <%= f.label :shortage2 %>
+        <%= f.text_field :shortage2, class: "form-control" %>
+      </div>
+
+      <div class="row shift">
+        <%= f.label :payment_charges %>
+        <%= f.text_field :payment_charges, class: "form-control" %>
+      </div>
+
+      <div class="row shift">
+        <%= f.label :sheet_number %>
+        <%= f.text_field :sheet_number, class: "form-control" %>
+      </div>
+
+      <%= link_to 'Back', entries_path, class: "btn btn-lg btn-primary" %>
+      <%= f.submit  class: "btn btn-lg btn-primary"%>
+  <% end %>
+
+</div>

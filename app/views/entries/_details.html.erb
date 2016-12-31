@@ -1,0 +1,80 @@
+<div class="show">
+  <table class="table table-striped">
+    <tr>
+      <td class="row-right">
+        <strong>Freight 2:</strong>
+      </td>
+      <td>
+        <%= @entry.freight2 %>
+      </td>
+
+      <td class="row-right">
+        <strong>Cash to Driver:</strong>
+      </td>
+      <td>
+        <%= @entry.cash_to_driver %>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="row-right">
+        <strong>Paid to Truck Owner:</strong>
+      </td>
+      <td>
+        <%= @entry.paid_to_truck_owner %>
+      </td>
+
+      <td class="row-right">
+        <strong>TDS:</strong>
+      </td>
+      <td>
+        <%= @entry.tds %>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="row-right">
+        <strong>Bill Payment:</strong>
+      </td>
+      <td>
+        <%= @entry.bill_payment %>
+      </td>
+      <% if !@entry.loss_or_profit %>
+          <td class="row-right">
+            <strong>Profit:</strong>
+          </td>
+          <td>
+            0
+          </td>
+      <% elsif @entry.loss_or_profit && @entry.loss_or_profit >= 0 %>
+
+        <td class="row-right">
+          <strong>Profit:</strong>
+        </td>
+        <td>
+          <%= @entry.loss_or_profit %>
+        </td>
+      <% else %>
+        <td class="row-right">
+          <strong>Loss:</strong>
+        </td>
+        <td>
+          <%= -@entry.loss_or_profit %>
+        </td>
+      <% end %>
+
+    </tr>
+
+    <tr>
+      <td class="row-right">
+        <strong>Freight 1:</strong>
+      </td>
+      <td>
+        <%= @entry.freight1 %>
+      </td>
+    </tr>
+
+    <tr>
+
+  </table>
+</div>

@@ -1,92 +1,61 @@
-<div class="form">
+<div class="jumbotron">
   <div class="heading">
     <h3>Edit Entry</h3>
   </div>
 
   <%= form_for :entry, url: entry_path(@entry), method: :patch do |f| %>
-    <div class="row shift">
-      <div class="small-10">
-        <div class="row">
-          <div class="large-10 columns">
-            <%= f.label :date %>
-            <%= f.date_field :date %>
-          </div>
-        </div>
+      <div class="row shift">
+        <%= f.label :date %>
+        <%= f.date_field :date, min: Date.today, class: "form-control" %>
       </div>
-      <div class="small-10">
-        <div class="row">
-          <div class="large-10 columns">
-            <%= f.label :truck_number %>
-            <%= f.text_field :truck_number %>
-          </div>
-        </div>
+      <div class="row shift">
+        <%= f.label :truck_number %>
+        <%= f.text_field :truck_number, class: "form-control" %>
       </div>
 
-      <div class="small-10">
-        <div class="row">
-          <div class="large-10 columns">
-            <%= f.label :station %>
-            <%= f.text_field :station %>
-          </div>
-        </div>
+      <div class="row shift">
+        <%= f.label :station %>
+        <%= f.text_field :station, class: "form-control" %>
       </div>
 
-      <div class="small-10">
-        <div class="row">
-          <div class="large-10 columns">
-            <%= f.label :truck_owner %>
-            <%= f.text_field :truck_owner %>
-          </div>
-        </div>
+      <div class="row shift">
+        <%= f.label :truck_owner %>
+        <%= f.text_field :truck_owner, class: "form-control" %>
       </div>
 
 
-      <div class="small-10">
-        <div class="row">
-          <div class="large-10 columns">
-            <%= f.label :firm %>
-            <%= f.text_field :firm %>
-          </div>
-        </div>
+      <div class="row shift">
+        <%= f.label :firm %>
+        <%= f.text_field :firm, class: "form-control" %>
       </div>
 
-      <div class="small-10">
-        <div class="row">
-          <div class="large-10 columns">
-            <%= f.label :advance %>
-            <%= f.text_field :advance %>
-          </div>
-        </div>
+      <div class="row shift">
+        <%= f.label :self_advance_1 %>
+        <%= f.text_field :self_advance_1, class: "form-control" %>
       </div>
 
-      <div class="small-10">
-        <div class="row">
-          <div class="large-10 columns">
-            <%= f.label :rate1 %>
-            <%= f.text_field :rate1 %>
-          </div>
-        </div>
+      <div class="row shift">
+        <%= f.label :party_advance_2 %>
+        <%= f.text_field :party_advance_2, class: "form-control" %>
       </div>
 
-      <div class="small-10">
-        <div class="row">
-          <div class="large-10 columns">
-            <%= f.label :rate2 %>
-            <%= f.text_field :rate2 %>
-          </div>
-        </div>
+      <div class="row shift">
+        <%= f.label :rate1 %>
+        <%= f.text_field :rate1, class: "form-control" %>
       </div>
 
-      <div class="small-10">
-        <div class="row">
-          <div class="small-10 small-offset-2 columns">
-            <%= link_to 'Back', entries_path, class: 'button small radius' %>
-            <%= f.submit class: "button small radius submit"%>
-          </div>
-        </div>
+      <div class="row shift">
+        <%= f.label :rate2 %>
+        <%= f.text_field :rate2, class: "form-control" %>
       </div>
-    </div>
 
+      <div class="row shift">
+        <%= f.label :commission %>
+        <%= f.text_field :commission, class: "form-control" %>
+      </div>
+
+      <%= link_to 'Back', entries_path, class: "btn btn-lg btn-primary" %>
+      <%= f.submit class: "btn btn-lg btn-primary"%>
 
   <% end %>
 </div>

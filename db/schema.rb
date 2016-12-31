@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161225073200) do
+ActiveRecord::Schema.define(version: 20161230112653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bill_entries", force: :cascade do |t|
+    t.string   "bill_no"
+    t.date     "payment_received_at"
+    t.integer  "tds_percentage"
+    t.integer  "entry_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.index ["entry_id"], name: "index_bill_entries_on_entry_id", using: :btree
+  end
 
   create_table "entries", force: :cascade do |t|
     t.string   "truck_number"
@@ -21,18 +31,19 @@ ActiveRecord::Schema.define(version: 20161225073200) do
     t.string   "station"
     t.string   "truck_owner"
     t.string   "firm"
-    t.decimal  "advance"
     t.decimal  "rate1"
     t.decimal  "rate2"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.decimal  "commission"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.decimal  "self_advance_1"
+    t.decimal  "party_advance_2"
   end
 
   create_table "payment_summaries", force: :cascade do |t|
     t.integer  "g_r_number"
     t.decimal  "weight"
     t.decimal  "kanta"
-    t.decimal  "freight1"
     t.decimal  "shortage1"
     t.decimal  "shortage2"
     t.decimal  "payment_charges"
@@ -43,5 +54,23 @@ ActiveRecord::Schema.define(version: 20161225073200) do
     t.index ["entry_id"], name: "index_payment_summaries_on_entry_id", using: :btree
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  end
+
+  add_foreign_key "bill_entries", "entries"
   add_foreign_key "payment_summaries", "entries"
 end

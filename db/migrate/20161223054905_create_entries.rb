@@ -9,6 +9,7 @@ class CreateEntries < ActiveRecord::Migration[5.0]
       t.decimal :advance
       t.decimal :rate1
       t.decimal :rate2
+      t.decimal :commission
       t.timestamps
       t.timestamps
     end

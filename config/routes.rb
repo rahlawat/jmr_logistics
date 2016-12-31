@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  resources :entries
-
+  devise_for :users
+  root to: "entries#index"
   resources :entries do
     resources :payment_summaries
+    resources :bill_entries
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

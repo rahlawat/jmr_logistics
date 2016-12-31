@@ -1,9 +1,9 @@
-<div class="form">
+<div class="jumbotron">
   <div class="heading-2">
-    <h6>Entry</h6>
+    <h4>Entry</h4>
   </div>
   <div class="show">
-    <table>
+    <table class="table table-striped">
       <tr>
         <td class="row-right">
           <strong>Date:</strong>
@@ -12,10 +12,10 @@
           <%= @entry.date %>
         </td>
         <td class="row-right">
-          <strong>Firm:</strong>
+          <strong>Commission:</strong>
         </td>
         <td>
-          <%= @entry.firm %>
+          <%= @entry.commission %>
         </td>
     </tr>
 
@@ -28,10 +28,10 @@
 
         </td>
         <td class="row-right">
-          <strong>Advance:</strong>
+          <strong>Self Advance:</strong>
         </td>
         <td>
-          Rs <%= @entry.advance %>
+          Rs <%= @entry.self_advance_1 %>
         </td>
       </tr>
       <tr>
@@ -42,10 +42,10 @@
           <%= @entry.station %>
         </td>
         <td class="row-right">
-          <strong>Rate1:</strong>
+          <strong>Party Advance:</strong>
         </td>
         <td>
-          Rs <%= @entry.rate1 %>
+          Rs <%= @entry.party_advance_2 %>
         </td>
       </tr>
       <tr>
@@ -56,6 +56,21 @@
           <%= @entry.truck_owner %>
         </td>
         <td class="row-right">
+          <strong>Rate1:</strong>
+        </td>
+        <td>
+          Rs <%= @entry.rate1 %>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="row-right">
+          <strong>Firm:</strong>
+        </td>
+        <td>
+          <%= @entry.firm %>
+        </td>
+        <td class="row-right">
           <strong>Rate2:</strong>
         </td>
         <td>
@@ -64,27 +79,56 @@
       </tr>
     </table>
   </div>
-  <div>
-    <div class="heading-2">
-      <h6>Payment Summary</h6>
+  <% if @entry.payment_summary.nil? %>
+    <div>
+      <div class="heading-2">
+        <h4>G R Entry</h4>
+      </div>
+      <div class="align-center">
+        <%= link_to 'Add Payment Summary', new_entry_payment_summary_path(@entry.id) %>
+      </div>
     </div>
-    <% if @entry.payment_summary.nil? %>
-        <%= render 'payment_summaries/form' %>
-    <% else %>
-        <%= render 'payment_summaries/show' %>
-    <% end %>
-  </div>
 
-  <div>
-    <div class="heading-2">
-      <h6>Payment Summary</h6>
+    <div>
+      <div class="heading-2">
+        <h4>G R Entry</h4>
+      </div>
+      Please fill payment Summary first.
     </div>
-    <% if @entry.payment_summary.present? %>
-        Please fill payment Summary first.
-    <% else %>
-        <%= render 'entries/details' %>
-    <% end %>
-  </div>
+  <% else %>
+    <div>
+      <div class="heading-2">
+        <h4>G R Entry</h4>
+      </div>
+      <%= render 'payment_summaries/show' %>
+    </div>
 
-  <%= link_to 'Back', entries_path, class: 'button small radius back' %>
+    <div>
+      <div class="heading-2">
+        <h4>Payments</h4>
+      </div>
+      <%= render 'entries/details' %>
+    </div>
+  <% end %>
+  <% if @entry.bill_entry.nil? %>
+    <div>
+      <div class="heading-2">
+        <h4>Bill Entry</h4>
+      </div>
+      <div class="align-center">
+        Add Bill Entry
+      </div>
+    </div>
+  <% else %>
+    <div>
+      <div class="heading-2">
+        <h4>Bill Entry</h4>
+      </div>
+      <%= render 'bill_entries/show' %>
+    </div>
+  <% end %>
+
+
+
+  <%= link_to 'Back', entries_path, class: "btn btn-lg btn-primary" %>
 </div>
