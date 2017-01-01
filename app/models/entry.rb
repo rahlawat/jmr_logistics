@@ -33,7 +33,7 @@ class Entry < ApplicationRecord
 
   def tds
     if(bill_entry)
-      freight2 * bill_entry.tds_percentage
+      (freight2 * bill_entry.tds_percentage) / 100
     end
   end
 
