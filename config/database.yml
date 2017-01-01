@@ -12,6 +12,7 @@ default: &default
 development:
   <<: *default
   database: db/development
+  username: postgres
   password: "abcd"
 
 # Warning: The database defined as "test" will be erased and
@@ -24,4 +25,5 @@ test:
 production:
   <<: *default
   database: db/production
+  username: postgres
   password: "abcd"
