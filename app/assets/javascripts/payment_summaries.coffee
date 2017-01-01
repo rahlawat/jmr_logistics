@@ -8,6 +8,7 @@ update_freight1 = ->
   rate1 = $('.rate1').val()
   if !!kanta and !!weight
     total = (weight * rate1) + kanta
+    $('.freight1').val ""
     $('.freight1').val total
   return
 $(document).ready ->
