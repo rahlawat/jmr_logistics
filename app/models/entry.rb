@@ -28,7 +28,7 @@ class Entry < ApplicationRecord
   end
 
   def paid_to_truck_owner
-    freight1 - self_advance_1 - cash_to_driver - commission - payment_summary.shortage1 - payment_summary.payment_charges - self_advance_1
+    freight1 - self_advance_1 - cash_to_driver - commission - payment_summary.shortage2 - payment_summary.payment_charges
   end
 
   def tds
