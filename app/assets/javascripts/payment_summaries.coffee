@@ -7,9 +7,8 @@ update_freight1 = ->
   weight = $('.weight').val()
   rate1 = $('.rate1').val()
   if !!kanta and !!weight
-    total = (weight * rate1) + kanta
-    $('.freight1').val ""
-    $('.freight1').val total
+    total = (parseInt(weight) * parseInt(rate1)) + parseInt(kanta)
+    $('.freight1').val total.toString()
   return
 $(document).ready ->
   $('.kanta').on 'change', ->
