@@ -49,4 +49,13 @@ class Entry < ApplicationRecord
     end
   end
 
+  def self.search(truck_number, date)
+    if truck_number and date
+      where('truck_number LIKE ? and date::text LIKE ?', "%#{truck_number}%", "%#{date}%")
+    else
+      all
+    end
+  end
+
+
 end

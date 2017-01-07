@@ -1,5 +1,14 @@
 <div class="jumbotron space">
   <%= link_to 'New Entry', new_entry_path, class: "btn btn-lg btn-primary pull-right" %>
+  <%= form_tag entries_path, method: :get, class: "form-inline" do %>
+    <div class="form-group">
+      <%= text_field_tag :truck_number, params[:truck_number], class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= date_field_tag :date, params[:date], class: "form-control" %>
+    </div>
+    <%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
+  <% end %>
   <h3>Listing Entries</h3>
   <table class="table table-striped">
     <thead>
