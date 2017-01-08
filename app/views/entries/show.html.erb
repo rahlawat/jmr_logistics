@@ -127,8 +127,12 @@
       <%= render 'bill_entries/show' %>
     </div>
   <% end %>
-
-
+  <% if !@entry.bill_entry.nil? & !@entry.payment_summary.nil? %>
+    <%= link_to "Download PDF",
+              entry_download_path(@entry, format: "pdf"),
+              target: "_blank",
+              class: "btn btn-lg btn-primary" %>
+  <% end %>
 
   <%= link_to 'Back', entries_path, class: "btn btn-lg btn-primary" %>
 </div>

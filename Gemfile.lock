@@ -94,6 +94,7 @@ GEM
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
     orm_adapter (0.5.0)
+    pdfkit (0.8.2)
     pg (0.19.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -130,6 +131,8 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    render_anywhere (0.0.12)
+      rails (>= 3.0.7)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     sass (3.4.23)
@@ -165,6 +168,7 @@ GEM
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    wkhtmltopdf-binary (0.9.9.3)
 
 PLATFORMS
   ruby
@@ -177,16 +181,19 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
+  pdfkit
   pg
   pry
   puma (~> 3.0)
   rails (~> 5.0.1)
+  render_anywhere
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
+  wkhtmltopdf-binary (~> 0.9.9.3)
 
 BUNDLED WITH
    1.13.7

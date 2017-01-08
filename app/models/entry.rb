@@ -15,6 +15,8 @@ class Entry < ApplicationRecord
   has_one :payment_summary, dependent: :destroy
   has_one :bill_entry, dependent: :destroy
 
+  # , format: {with: ''}
+
   def freight2
     (payment_summary.weight * rate2) + payment_summary.kanta
   end
