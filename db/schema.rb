@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161230112653) do
+ActiveRecord::Schema.define(version: 20170108151906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20161230112653) do
     t.integer  "g_r_number"
     t.decimal  "weight"
     t.decimal  "kanta"
-    t.decimal  "shortage1"
+    t.string   "shortage1"
     t.decimal  "shortage2"
     t.decimal  "payment_charges"
     t.integer  "sheet_number"

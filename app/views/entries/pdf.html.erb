@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <p class="space">Paid to Mr _______________________ Truck No ______________________ Loading Date _____________________</p>
+    <p class="space">Paid to Mr _______________________ Truck No <%= entry.truck_number %> Loading Date<%= entry.date %></p>
 
     <div class="space">
       Payment Mode:&nbsp;&nbsp;&nbsp;&nbsp;<img src="checkbox_unchecked" height="25" width="25">&nbsp;&nbsp;Cash
@@ -22,7 +22,7 @@
       <table class="table">
         <tbody>
           <tr class="table-space">
-            <td>Total Freight ( Weight * Rate + Kanta )</td>
+            <td>Total Freight ( <%= entry.payment_summary.weight %> * <%= entry.rate1 %> + <%= entry.payment_summary.kanta %> )</td>
             <td class="text-center"><%= entry.freight1 %></td>
           </tr>
           <tr class="table-space">
@@ -72,18 +72,18 @@
       </div>
     </div>
 
-    <p class="space">Paid to Mr _______________________ Truck No ______________________ Loading Date _____________________</p>
+    <p class="space">Paid to Mr _______________________ Truck No <%= entry.truck_number %> Loading Date<%= entry.date %></p>
 
     <div class="space">
-      Payment Mode: <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Cash
-      <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> NEFT
-      <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Cheque (CH.No. ______________________)
+      Payment Mode:&nbsp;&nbsp;&nbsp;&nbsp;<img src="checkbox_unchecked" height="25" width="25">&nbsp;&nbsp;Cash
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="checkbox_unchecked" height="25" width="25">&nbsp;&nbsp;NEFT
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="checkbox_unchecked" height="25" width="25">&nbsp;&nbsp;Cheque (CH.No. ______________________)
     </div>
     <div class="space-mx">
       <table class="table">
         <tbody>
         <tr class="table-space">
-          <td>Total Freight ( Weight * Rate + Kanta )</td>
+          <td>Total Freight ( <%= entry.payment_summary.weight %> * <%= entry.rate1 %> + <%= entry.payment_summary.kanta %> )</td>
           <td class="text-center"><%= entry.freight1 %></td>
         </tr>
         <tr class="table-space">
