@@ -7,11 +7,11 @@
         <p>Voucher No: ___________________</p>
       </div>
       <div class="col-xs-6">
-        <p class="text-right">Date: ___________________</p>
+        <p class="text-right">Date: <%= Date.today.to_s %></p>
       </div>
     </div>
 
-    <p class="space">Paid to Mr _______________________ Truck No <%= entry.truck_number %> Loading Date<%= entry.date %></p>
+    <p class="space">Paid to Mr _______________________ Truck No  <%= entry.truck_number %> Loading Date <%= entry.date %></p>
 
     <div class="space">
       Payment Mode:&nbsp;&nbsp;&nbsp;&nbsp;<img src="checkbox_unchecked" height="25" width="25">&nbsp;&nbsp;Cash
@@ -68,11 +68,11 @@
         <p>Voucher No: ___________________</p>
       </div>
       <div class="col-xs-6">
-        <p class="text-right">Date: ___________________</p>
+        <p class="text-right">Date: <%= Date.today.to_s %></p>
       </div>
     </div>
 
-    <p class="space">Paid to Mr _______________________ Truck No <%= entry.truck_number %> Loading Date<%= entry.date %></p>
+    <p class="space">Paid to Mr _______________________ Truck No  <%= entry.truck_number %> Loading Date  <%= entry.date %></p>
 
     <div class="space">
       Payment Mode:&nbsp;&nbsp;&nbsp;&nbsp;<img src="checkbox_unchecked" height="25" width="25">&nbsp;&nbsp;Cash
