@@ -88,13 +88,6 @@
         <%= link_to 'Add Payment Summary', new_entry_payment_summary_path(@entry.id) %>
       </div>
     </div>
-
-    <div>
-      <div class="heading-2">
-        <h4>G R Entry</h4>
-      </div>
-      Please fill payment Summary first.
-    </div>
   <% else %>
     <div>
       <div class="heading-2">
@@ -116,7 +109,7 @@
         <h4>Bill Entry</h4>
       </div>
       <div class="align-center">
-        Add Bill Entry
+        <%= link_to 'Add Bill Entry', new_entry_bill_entry_path(@entry.id) %>
       </div>
     </div>
   <% else %>
