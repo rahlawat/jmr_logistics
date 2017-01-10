@@ -60,7 +60,6 @@ class Entry < ApplicationRecord
   end
 
   def set_invoice_number
-    binding.pry
     if self.invoice_number.nil?
       if Entry.maximum(:invoice_number).nil?
         self.invoice_number = 1
