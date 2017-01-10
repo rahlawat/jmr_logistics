@@ -17,6 +17,7 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@embed "bootstrap-datepicker";
 @import "entries";
 @import "payment_summaries";
 
