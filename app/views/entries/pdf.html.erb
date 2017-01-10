@@ -14,36 +14,40 @@
     <p class="space">Paid to Mr ____________________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Truck No&nbsp;&nbsp;&nbsp;<%= entry.truck_number %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Loading Date&nbsp;&nbsp;&nbsp;<%= entry.date %></p>
 
     <div class="space">
-      Payment Mode:&nbsp;&nbsp;&nbsp;&nbsp;<img src="checkbox_unchecked" height="25" width="25">&nbsp;&nbsp;Cash
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="checkbox_unchecked" height="25" width="25">&nbsp;&nbsp;NEFT
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="checkbox_unchecked" height="25" width="25">&nbsp;&nbsp;Cheque (CH.No. ______________________)
+      Payment Mode:&nbsp;&nbsp;&nbsp;&nbsp;<img src="..." height="25" width="25" class="squared">&nbsp;&nbsp;Cash
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="..." height="25" width="25" class="squared">&nbsp;&nbsp;NEFT
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="..." height="25" width="25" class="squared">&nbsp;&nbsp;Cheque (CH.No. ______________________)
     </div>
     <div class="space-mx">
-      <table class="table">
+      <table class="table table-condensed">
         <tbody>
           <tr class="table-space">
             <td>Total Freight ( <%= entry.payment_summary.weight %> * <%= entry.rate1 %> + <%= entry.payment_summary.kanta %> )</td>
-            <td class="text-center"><%= entry.freight1 %></td>
+            <td class="text-right"><%= entry.freight1 %></td>
           </tr>
           <tr class="table-space">
             <td>Advance</td>
-            <td class="text-center">- <%= entry.self_advance_1 %></td>
+            <td class="text-right">- <%= entry.self_advance_1 %></td>
           </tr>
           <tr class="table-space">
             <td>CD</td>
-            <td class="text-center">- <%= entry.cash_to_driver %></td>
+            <td class="text-right">- <%= entry.cash_to_driver %></td>
           </tr>
           <tr class="table-space">
             <td>Commission</td>
-            <td class="text-center">- <%= entry.commission %></td>
+            <td class="text-right">- <%= entry.commission %></td>
           </tr>
           <tr class="table-space">
             <td>Payment Charges</td>
-            <td class="text-center">- <%= entry.payment_summary.payment_charges %></td>
+            <td class="text-right">- <%= entry.payment_summary.payment_charges %></td>
+          </tr>
+          <tr class="table-space">
+            <td>Shortage</td>
+            <td class="text-right">- <%= entry.payment_summary.shortage2 %></td>
           </tr>
           <tr class="table-space">
             <td>Balance Amount Paid (Rupees)</td>
-            <td class="border text-center"> <%= entry.paid_to_truck_owner %></td>
+            <td class="border text-right"> <%= entry.paid_to_truck_owner %></td>
           </tr>
         </tbody>
       </table>
@@ -75,36 +79,40 @@
     <p class="space">Paid to Mr ____________________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Truck No&nbsp;&nbsp;&nbsp;<%= entry.truck_number %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Loading Date&nbsp;&nbsp;&nbsp;<%= entry.date %></p>
 
     <div class="space">
-      Payment Mode:&nbsp;&nbsp;&nbsp;&nbsp;<img src="checkbox_unchecked" height="25" width="25">&nbsp;&nbsp;Cash
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="checkbox_unchecked" height="25" width="25">&nbsp;&nbsp;NEFT
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="checkbox_unchecked" height="25" width="25">&nbsp;&nbsp;Cheque (CH.No. ______________________)
+      Payment Mode:&nbsp;&nbsp;&nbsp;&nbsp;<img src="..." height="25" width="25" class="squared">&nbsp;&nbsp;Cash
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="..." height="25" width="25" class="squared">&nbsp;&nbsp;NEFT
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="..." height="25" width="25" class="squared">&nbsp;&nbsp;Cheque (CH.No. ______________________)
     </div>
     <div class="space-mx">
       <table class="table">
         <tbody>
         <tr class="table-space">
           <td>Total Freight ( <%= entry.payment_summary.weight %> * <%= entry.rate1 %> + <%= entry.payment_summary.kanta %> )</td>
-          <td class="text-center"><%= entry.freight1 %></td>
+          <td class="text-right"><%= entry.freight1 %></td>
         </tr>
         <tr class="table-space">
           <td>Advance</td>
-          <td class="text-center">- <%= entry.self_advance_1 %></td>
+          <td class="text-right">- <%= entry.self_advance_1 %></td>
         </tr>
         <tr class="table-space">
           <td>CD</td>
-          <td class="text-center">- <%= entry.cash_to_driver %></td>
+          <td class="text-right">- <%= entry.cash_to_driver %></td>
         </tr>
         <tr class="table-space">
           <td>Commission</td>
-          <td class="text-center">- <%= entry.commission %></td>
+          <td class="text-right">- <%= entry.commission %></td>
         </tr>
         <tr class="table-space">
           <td>Payment Charges</td>
-          <td class="text-center">- <%= entry.payment_summary.payment_charges %></td>
+          <td class="text-right">- <%= entry.payment_summary.payment_charges %></td>
+        </tr>
+        <tr class="table-space">
+          <td>Shortage</td>
+          <td class="text-right">- <%= entry.payment_summary.shortage2 %></td>
         </tr>
         <tr class="table-space">
           <td>Balance Amount Paid (Rupees)</td>
-          <td class="border text-center"> <%= entry.paid_to_truck_owner %></td>
+          <td class="border text-right"> <%= entry.paid_to_truck_owner %></td>
         </tr>
         </tbody>
       </table>

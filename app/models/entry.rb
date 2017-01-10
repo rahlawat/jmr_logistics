@@ -18,11 +18,11 @@ class Entry < ApplicationRecord
   # , format: {with: ''}
 
   def freight2
-    (payment_summary.weight * rate2) + payment_summary.kanta
+    ((payment_summary.weight * rate2) + payment_summary.kanta).to_i
   end
 
   def freight1
-    (payment_summary.weight * rate1) + payment_summary.kanta
+    ((payment_summary.weight * rate1) + payment_summary.kanta).to_i
   end
 
   def cash_to_driver

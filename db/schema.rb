@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170110040753) do
+ActiveRecord::Schema.define(version: 20170110061826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,23 +31,23 @@ ActiveRecord::Schema.define(version: 20170110040753) do
     t.string   "station"
     t.string   "truck_owner"
     t.string   "firm"
-    t.decimal  "rate1"
-    t.decimal  "rate2"
-    t.decimal  "commission"
+    t.integer  "rate1"
+    t.integer  "rate2"
+    t.integer  "commission"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.decimal  "self_advance_1"
-    t.decimal  "party_advance_2"
+    t.integer  "self_advance_1"
+    t.integer  "party_advance_2"
     t.integer  "invoice_number"
   end
 
   create_table "payment_summaries", force: :cascade do |t|
     t.integer  "g_r_number"
     t.decimal  "weight"
-    t.decimal  "kanta"
+    t.integer  "kanta"
     t.string   "shortage1"
-    t.decimal  "shortage2"
-    t.decimal  "payment_charges"
+    t.integer  "shortage2"
+    t.integer  "payment_charges"
     t.integer  "sheet_number"
     t.integer  "entry_id"
     t.datetime "created_at",      null: false
