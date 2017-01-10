@@ -15,7 +15,7 @@
       <% end %>
       <div class="row shift">
         <%= f.label :date %>
-        <%= f.date_field :date, class: "form-control" %>
+        <%= f.text_field :date, "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
       </div>
       <div class="row shift">
         <%= f.label :truck_number %>
