@@ -53,7 +53,7 @@ class Entry < ApplicationRecord
 
   def self.search(truck_number, date)
     if truck_number and date
-      where('truck_number LIKE ? and date::text LIKE ?', "%#{truck_number}%", "%#{date}%")
+      where('truck_number LIKE ? and entry_date = ?', "%#{truck_number}%", date.to_date)
     else
       all
     end

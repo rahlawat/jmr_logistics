@@ -4,7 +4,8 @@
       <%= text_field_tag :truck_number, params[:truck_number], class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= date_field_tag :date, params[:date], class: "form-control" %>
+      <%= text_field_tag :entry_date, params[:entry_date], "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
+      <!--<%= date_field_tag :date, params[:date], class: "form-control" %>-->
     </div>
     <%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
   <% end %>
@@ -23,7 +24,7 @@
     <tbody>
       <% @entries.each do |entry| %>
           <tr>
-            <td><%= entry.date %></td>
+            <td><%= entry.entry_date %></td>
             <td><%= entry.truck_number %></td>
             <td><%= entry.station %></td>
             <td><%= entry.firm %></td>

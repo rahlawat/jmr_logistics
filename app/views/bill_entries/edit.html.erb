@@ -12,7 +12,7 @@
     <div class="col-xs-6">
       <dl class="dl-horizontal">
         <dt>Date:</dt>
-        <dd><%= @entry.date %></dd>
+        <dd><%= @entry.entry_date %></dd>
       </dl>
     </div>
   </div>
@@ -43,7 +43,7 @@
 
       <div class="row shift">
         <%= f.label :payment_received_at %>
-        <%= f.date_field :payment_received_at, class: "form-control" %>
+        <%= f.text_field :payment_received_at, "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
       </div>
 
       <%= link_to 'Back', entries_path, class: "btn btn-lg btn-primary" %>

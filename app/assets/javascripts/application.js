@@ -17,6 +17,6 @@
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
 
-$(document).ready(function(){
+$(document).on('turbolinks:load',function(){
     $('.datepicker').datepicker();
 });
