@@ -52,7 +52,10 @@ class Entry < ApplicationRecord
   end
 
   def self.search(truck_number, date)
-    if truck_number and date
+    binding.pry
+    if truck_number and !date.present?
+      where('truck_number LIKE ?', "%#{truck_number}%")
+    elsif truck_number and date
       where('truck_number LIKE ? and entry_date = ?', "%#{truck_number}%", date.to_date)
     else
       all
