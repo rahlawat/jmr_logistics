@@ -1,14 +1,35 @@
 <div class="jumbotron space">
-  <%= form_tag entries_path, method: :get, class: "form-inline form-right" do %>
-    <div class="form-group">
-      <%= text_field_tag :truck_number, params[:truck_number], class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= text_field_tag :entry_date, params[:entry_date], "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
-      <!--<%= date_field_tag :date, params[:date], class: "form-control" %>-->
-    </div>
-    <%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
-  <% end %>
+  <ul class="dropdown-menu search_by" aria-labelledby="dropdownMenu3">
+    <li class="dropdown-header">Dropdown header</li>
+  </ul>
+  <select id="search_by" name="search_by" class="input-md selectpicker pull-right btn btn-primary">
+    <option selected="">Search By</option>
+    <option value="Truck Number">Truck Number</option>
+    <option  value="G R Entry">G R Entry</option>
+  </select>
+  <div class="well hidden truck-number">
+    <%= form_tag entries_path, method: :get, class: "form-inline form-right" do %>
+      <div class="form-group">
+        <%= text_field_tag :truck_number, params[:truck_number], class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= text_field_tag :entry_date, params[:entry_date], "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
+      </div>
+      <%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+  <div class="well hidden search-by-range">
+    <%= form_tag search_entries_path, method: :get, class: "form-inline form-right" do %>
+        <div class="form-group">
+          <%= text_field_tag :start_date, params[:start_date], "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
+        </div>
+        <div class="form-group">
+          <%= text_field_tag :end_date, params[:end_date], "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
+        </div>
+        <%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
+    <% end %>
+  </div>
   <h3>Listing Entries</h3>
   <table class="table table-striped">
     <thead>

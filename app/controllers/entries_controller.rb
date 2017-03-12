@@ -26,6 +26,12 @@ class EntriesController < ApplicationController
     end
   end
 
+  def search
+
+    @entries = Entry.entries_witout_gr_entry_between(params[:start_date], params[:end_date])
+    render :index, entries: @entries
+  end
+
   def create
     @entry = Entry.new(entry_params)
 

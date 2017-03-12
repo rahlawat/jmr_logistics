@@ -52,7 +52,6 @@ class Entry < ApplicationRecord
   end
 
   def self.search(truck_number, date)
-    binding.pry
     if truck_number and !date.present?
       where('truck_number LIKE ?', "%#{truck_number}%")
     elsif truck_number and date
@@ -74,5 +73,13 @@ class Entry < ApplicationRecord
 
   end
 
+  def self.entries_witout_gr_entry_between(start_date, end_date)
+    entries_witout_gr_entry = Array.new
+    entries = where(entry_date: start_date.to_date..end_date.to_date)
+    entries.each do |entry|
+      entries_witout_gr_entry.push(entry) if !entry.payment_summary.present?
+    end
+    entries_witout_gr_entry
+  end
 
 end
