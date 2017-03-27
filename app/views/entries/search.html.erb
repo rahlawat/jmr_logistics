@@ -1,1 +1,33 @@
-<%= render :partial=>'partials/profile/show/experience_details', :locals=>{:profile=>@user_profile}%>
+<ul class="nav nav-tabs nav-justified">
+  <li class="active"><a data-toggle="tab" href="#truck-number">By Truck Number</a></li>
+  <li><a data-toggle="tab" href="#search-by-range">By G R Entry</a></li>
+</ul>
+<div class="tab-content tab-content-padding-top">
+
+  <div id="truck-number" class="tab-pane fade in active">
+    <%= form_tag search_entries_path, method: :get, class: "form-inline" do %>
+        <div class="form-group">
+          <%= text_field_tag :truck_number, params[:truck_number], class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= text_field_tag :entry_date, params[:entry_date], "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
+        </div>
+        <%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+  <div id="search-by-range" class="tab-pane fade">
+    <%= form_tag search_entries_path, method: :get, class: "form-inline" do %>
+        <div class="form-group mx-sm-3">
+          <%= text_field_tag :start_date, params[:start_date], "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
+        </div>
+        <div class="form-group mx-sm-3">
+          <%= text_field_tag :end_date, params[:end_date], "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
+        </div>
+        <%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<h3>Search Results</h3>
+<%= render 'entries/list' %>

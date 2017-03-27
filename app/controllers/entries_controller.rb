@@ -1,7 +1,7 @@
 class EntriesController < ApplicationController
   before_action :authenticate_user!
   def index
-    @entries = Entry.search(params[:truck_number], params[:entry_date])
+    @entries = Entry.all
   end
 
   def new
@@ -27,9 +27,11 @@ class EntriesController < ApplicationController
   end
 
   def search
-
-    @entries = Entry.entries_witout_gr_entry_between(params[:start_date], params[:end_date])
-    render :index, entries: @entries
+    if(params[:truck_number])
+      @entries = Entry.search(params[:truck_number], params[:entry_date])
+    elsif(params[:start_date] and params[:end_date])
+      @entries = Entry.entries_witout_gr_entry_between(params[:start_date], params[:end_date])
+    end
   end
 
   def create

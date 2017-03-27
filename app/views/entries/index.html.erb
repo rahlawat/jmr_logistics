@@ -2,70 +2,34 @@
   <ul class="dropdown-menu search_by" aria-labelledby="dropdownMenu3">
     <li class="dropdown-header">Dropdown header</li>
   </ul>
-  <select id="search_by" name="search_by" class="input-md selectpicker pull-right btn btn-primary">
-    <option selected="">Search By</option>
-    <option value="Truck Number">Truck Number</option>
-    <option  value="G R Entry">G R Entry</option>
-  </select>
-  <div class="well hidden truck-number">
-    <%= form_tag entries_path, method: :get, class: "form-inline form-right" do %>
-      <div class="form-group">
-        <%= text_field_tag :truck_number, params[:truck_number], class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <%= text_field_tag :entry_date, params[:entry_date], "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
-      </div>
-      <%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
-    <% end %>
-  </div>
+  <!--<select id="search_by" name="search_by" class="input-md selectpicker pull-right btn btn-primary">-->
+    <!--<option selected="">Search By</option>-->
+    <!--<option value="Truck Number">Truck Number</option>-->
+    <!--<option  value="G R Entry">G R Entry</option>-->
+  <!--</select>-->
+  <!--<div class="well hidden truck-number">-->
+    <!--<%= form_tag entries_path, method: :get, class: "form-inline form-right" do %>-->
+      <!--<div class="form-group">-->
+        <!--<%= text_field_tag :truck_number, params[:truck_number], class: "form-control" %>-->
+      <!--</div>-->
+      <!--<div class="form-group">-->
+        <!--<%= text_field_tag :entry_date, params[:entry_date], "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>-->
+      <!--</div>-->
+      <!--<%= submit_tag "Search", name: nil, class: "btn btn-primary" %>-->
+    <!--<% end %>-->
+  <!--</div>-->
 
-  <div class="well hidden search-by-range">
-    <%= form_tag search_entries_path, method: :get, class: "form-inline form-right" do %>
-        <div class="form-group">
-          <%= text_field_tag :start_date, params[:start_date], "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
-        </div>
-        <div class="form-group">
-          <%= text_field_tag :end_date, params[:end_date], "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
-        </div>
-        <%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
-    <% end %>
-  </div>
+  <!--<div class="well hidden search-by-range">-->
+    <!--<%= form_tag search_entries_path, method: :get, class: "form-inline form-right" do %>-->
+        <!--<div class="form-group">-->
+          <!--<%= text_field_tag :start_date, params[:start_date], "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+          <!--<%= text_field_tag :end_date, params[:end_date], "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>-->
+        <!--</div>-->
+        <!--<%= submit_tag "Search", name: nil, class: "btn btn-primary" %>-->
+    <!--<% end %>-->
+  <!--</div>-->
   <h3>Listing Entries</h3>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Truck Number</th>
-        <th>Station</th>
-        <th>Firm</th>
-        <th colspan="2"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @entries.each do |entry| %>
-          <tr>
-            <td><%= entry.entry_date %></td>
-            <td><%= entry.truck_number %></td>
-            <td><%= entry.station %></td>
-            <td><%= entry.firm %></td>
-            <td align="center"><%= link_to 'Show', entry_path(entry), class: 'button small radius' %></td>
-            <td><%= link_to 'Edit', edit_entry_path(entry), class: 'button small radius' %></td>
-            <% if entry.payment_summary.nil? %>
-                <td><%= link_to 'Add Payment Summary', new_entry_payment_summary_path(entry.id), class: 'button small radius' %></td>
-            <% else %>
-                <td><%= link_to 'Edit Payment Summary', edit_entry_payment_summary_path(entry.id, entry.payment_summary.id), class: 'button small radius' %></td>
-            <% end %>
-            <% if entry.bill_entry.nil? %>
-                <td><%= link_to 'Add Bill Entry', new_entry_bill_entry_path(entry.id), class: 'button small radius' %></td>
-            <% else %>
-                <td><%= link_to 'Edit Bill Entry', edit_entry_bill_entry_path(entry.id, entry.bill_entry.id), class: 'button small radius' %></td>
-            <% end %>
-            <td><%= link_to 'Destroy', entry_path(entry),
-                            method: :delete,
-                            data: { confirm: 'Are you sure?' }, class: 'button small radius'%></td>
-          </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render 'entries/list' %>
 </div>
