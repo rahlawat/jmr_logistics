@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "entries#index"
-  resources :entries do
+  concern :paginatable do
+    get '(page/:page)', action: :index, on: :collection, as: ''
+  end
+  resources :entries, concerns: :paginatable do
     resource :download, only: [:show]
     resources :payment_summaries
     resources :bill_entries
