@@ -73,13 +73,22 @@ class Entry < ApplicationRecord
 
   end
 
-  def self.entries_witout_gr_entry_between(start_date, end_date)
+  def self.entries_without_gr_entry_between(start_date, end_date)
     entries_witout_gr_entry = Array.new
     entries = where(entry_date: start_date.to_date..end_date.to_date)
     entries.each do |entry|
       entries_witout_gr_entry.push(entry) if !entry.payment_summary.present?
     end
     entries_witout_gr_entry
+  end
+
+  def self.entries_without_bill_entry_between(start_date, end_date)
+    entries_without_bill_entry = Array.new
+    entries = where(entry_date: start_date.to_date..end_date.to_date)
+    entries.each do |entry|
+      entries_without_bill_entry.push(entry) if !entry.bill_entry.present?
+    end
+    entries_without_bill_entry
   end
 
 end

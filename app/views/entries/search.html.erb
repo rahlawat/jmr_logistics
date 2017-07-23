@@ -1,6 +1,7 @@
 <ul class="nav nav-tabs nav-justified">
   <li class="active"><a data-toggle="tab" href="#truck-number">By Truck Number</a></li>
   <li><a data-toggle="tab" href="#search-by-range">By G R Entry</a></li>
+  <li><a data-toggle="tab" href="#search-by-bill">By Bill Entry</a></li>
 </ul>
 <div class="tab-content tab-content-padding-top">
 
@@ -23,6 +24,18 @@
         </div>
         <div class="form-group mx-sm-3">
           <%= text_field_tag :end_date, params[:end_date], "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
+        </div>
+        <%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+  <div id="search-by-bill" class="tab-pane fade">
+    <%= form_tag search_entries_path, method: :get, class: "form-inline" do %>
+        <div class="form-group mx-sm-3">
+          <%= text_field_tag :entry_start_date, params[:entry_start_date], "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
+        </div>
+        <div class="form-group mx-sm-3">
+          <%= text_field_tag :entry_end_date, params[:entry_end_date], "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
         </div>
         <%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
     <% end %>
