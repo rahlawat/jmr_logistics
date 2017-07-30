@@ -98,4 +98,10 @@ class Entry < ApplicationRecord
     entries_without_bill_entry
   end
 
+  def self.entries_with_invoice_number(invoice_number)
+    if invoice_number
+      where(invoice_number: invoice_number)
+    end
+  end
+
 end
