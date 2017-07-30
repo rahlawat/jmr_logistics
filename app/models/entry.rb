@@ -73,6 +73,13 @@ class Entry < ApplicationRecord
 
   end
 
+  def set_invoice_date
+    if self.invoice_date.nil?
+        self.invoice_date = Date.today
+      save
+    end
+  end
+
   def self.entries_without_gr_entry_between(start_date, end_date)
     entries_witout_gr_entry = Array.new
     entries = where(entry_date: start_date.to_date..end_date.to_date)

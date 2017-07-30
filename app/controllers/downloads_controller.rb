@@ -14,6 +14,7 @@ class DownloadsController < ApplicationController
   def entry_pdf
     entry = Entry.find(params[:entry_id])
     entry.set_invoice_number
+    entry.set_invoice_date
     EntryPdf.new(entry)
   end
 
