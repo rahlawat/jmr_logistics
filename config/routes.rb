@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     collection do
       get 'search'
     end
+    get 'download', on: :member
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

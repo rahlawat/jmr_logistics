@@ -80,6 +80,13 @@ class Entry < ApplicationRecord
     end
   end
 
+  def set_company(company)
+    if self.company.nil?
+      self.company = company
+      save
+    end
+  end
+
   def self.entries_without_gr_entry_between(start_date, end_date)
     entries_witout_gr_entry = Array.new
     entries = where(entry_date: start_date.to_date..end_date.to_date)
