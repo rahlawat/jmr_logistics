@@ -63,10 +63,11 @@ class Entry < ApplicationRecord
 
   def set_invoice_number
     if self.invoice_number.nil?
-      if Entry.maximum(:invoice_number).nil?
+      entries = Entry.where(company: self.company)
+      if entries.maximum(:invoice_number).nil?
         self.invoice_number = 1
       else
-        self.invoice_number = Entry.maximum(:invoice_number) + 1
+        self.invoice_number = entries.maximum(:invoice_number) + 1
       end
       save
     end
