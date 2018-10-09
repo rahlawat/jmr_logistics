@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "entries#index"
+  resources :truck_details
   resources :entries do
     resource :download, only: [:show]
     resources :payment_summaries

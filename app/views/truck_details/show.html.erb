@@ -1,0 +1,25 @@
+<div class="jumbotron">
+  <div class="heading-2">
+    <h4>Truck Detail</h4>
+  </div>
+  <div class="show">
+    <table class="table table-striped">
+      <tr>
+        <td class="row-right">
+          <strong>Truck Number:</strong>
+        </td>
+        <td>
+          <%= @truck_detail.truck_number %>
+
+        </td>
+        <td class="row-right">
+          <strong>Truck Owner:</strong>
+        </td>
+        <td>
+          <%= @truck_detail.truck_owner %>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <%= link_to 'Back', entries_path, class: "btn btn-lg btn-primary" %>
+</div>
