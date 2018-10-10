@@ -1,13 +1,18 @@
 <div class="invoice">
-  <h1 class="text-center">JMR Logistics</h1>
-  <h3 class="text-center">Shop No 15, Palla More, Alipur, Delhi-110036</h3>
+  <% if entry.company.eql?("jmr") %>
+    <h1 class="text-center">JMR Logistics</h1>
+    <h3 class="text-center">Shop No 15, Palla More, Alipur, Delhi-110036</h3>
+  <% else %>
+      <h1 class="text-center">R.K. Gujarat Road Carrier</h1>
+      <h3 class="text-center">Narela Road Shop No. 84, Vill. Sanoth, Delhi-110040</h3>
+  <% end %>
   <div class="big-font space-mx">
     <div class="row">
       <div class="col-xs-6">
         <p>Invoice No: <%= entry.invoice_number %></p>
       </div>
       <div class="col-xs-6">
-        <p class="text-right">Date: <%= Date.today.to_s %></p>
+        <p class="text-right">Date: <%= entry.invoice_date %></p>
       </div>
     </div>
 
@@ -64,8 +69,13 @@
 </div>
 <div class="bill-split"></div>
 <div class="invoice">
-  <h1 class="text-center">JMR Logistics</h1>
-  <h3 class="text-center">Shop No 15, Palla More, Alipur, Delhi-110036</h3>
+  <% if entry.company.eql?("jmr") %>
+      <h1 class="text-center">JMR Logistics</h1>
+      <h3 class="text-center">Shop No 15, Palla More, Alipur, Delhi-110036</h3>
+  <% else %>
+      <h1 class="text-center">R.K. Gujarat Road Carrier</h1>
+      <h3 class="text-center">Narela Road Shop No. 84, Vill. Sanoth, Delhi-110040</h3>
+  <% end %>
   <div class="big-font space-mx">
     <div class="row">
       <div class="col-xs-6">

@@ -13,7 +13,11 @@ class DownloadsController < ApplicationController
 
   def entry_pdf
     entry = Entry.find(params[:entry_id])
+    if(params[:company].present?)
+      entry.set_company params[:company]
+    end
     entry.set_invoice_number
+    entry.set_invoice_date
     EntryPdf.new(entry)
   end
 
@@ -25,6 +29,6 @@ class DownloadsController < ApplicationController
   end
 
   def render_sample_html
-    render template: "entries/pdf", layout: "bill_pdf", locals: { entry: @entry }
+    render template: "entries/pdf", layout: "bill_pdf", locals: { entry: @entry}
   end
 end

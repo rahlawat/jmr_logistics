@@ -31,8 +31,9 @@ gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'pdfkit'
 gem 'render_anywhere'
-gem 'wkhtmltopdf-binary', '~> 0.9.9.3'
+gem 'wkhtmltopdf-binary', '~> 0.12.3'
 gem 'bootstrap-datepicker-rails'
+gem 'kaminari'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

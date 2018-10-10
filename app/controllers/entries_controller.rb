@@ -1,7 +1,7 @@
 class EntriesController < ApplicationController
   before_action :authenticate_user!
   def index
-    @entries = Entry.all
+    @entries = Entry.all.page params[:page]
   end
 
   def new
@@ -30,7 +30,11 @@ class EntriesController < ApplicationController
     if(params[:truck_number])
       @entries = Entry.search(params[:truck_number], params[:entry_date])
     elsif(params[:start_date] and params[:end_date])
-      @entries = Entry.entries_witout_gr_entry_between(params[:start_date], params[:end_date])
+      @entries = Entry.entries_without_gr_entry_between(params[:start_date], params[:end_date])
+    elsif(params[:entry_start_date] and params[:entry_end_date])
+      @entries = Entry.entries_without_bill_entry_between(params[:entry_start_date], params[:entry_end_date])
+    elsif(params[:invoice_number])
+      @entries = Entry.entries_with_invoice_number(params[:invoice_number])
     end
   end
 

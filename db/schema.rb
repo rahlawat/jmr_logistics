@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20181009160053) do
     t.integer  "self_advance_1"
     t.integer  "party_advance_2"
     t.integer  "invoice_number"
+    t.date     "invoice_date"
+    t.string   "company"
   end
 
   create_table "payment_summaries", force: :cascade do |t|

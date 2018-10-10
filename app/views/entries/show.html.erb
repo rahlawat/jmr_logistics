@@ -121,11 +121,41 @@
     </div>
   <% end %>
   <% if !@entry.payment_summary.nil? %>
-    <%= link_to "Download PDF",
-              entry_download_path(@entry, format: "pdf"),
-              target: "_blank",
-              class: "btn btn-lg btn-primary" %>
-  <% end %>
+    <% if @entry.company.nil? %>
+      <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal">Download PDF</button>
+    <% else %>
+      <%= link_to "Download PDF",
+        entry_download_path(@entry, format: "pdf"),
+        target: "_blank",
+        class: "btn btn-lg btn-primary" %>
+    <% end %>
+
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+          <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Select Company</h4>
+          </div>
+          <div class="modal-body">
+            <%= form_for :entry, url: entry_download_path(@entry, format: "pdf"), formtarget: :_blank, method: :get do |f| %>
+                <%= radio_button_tag(:company, "jmr", true) %>
+                <%= label_tag(:jmr, "JMR Logistics") %>
+                <br>
+                <%= radio_button_tag(:company, "gujarat", false) %>
+                <%= label_tag(:gujarat, "R.K. Gujarat Road Carrier") %>
+                <br>
+                <td><%= f.submit 'Download', class: "btn btn-lg btn-primary",  input_html: {"data-dismiss": "modal", "aria-hidden": "true" } %></td>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+<% end %>
 
   <%= link_to 'Back', entries_path, class: "btn btn-lg btn-primary" %>
 </div>

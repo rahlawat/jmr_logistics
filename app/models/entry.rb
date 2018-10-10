@@ -63,23 +63,53 @@ class Entry < ApplicationRecord
 
   def set_invoice_number
     if self.invoice_number.nil?
-      if Entry.maximum(:invoice_number).nil?
+      entries = Entry.where(company: self.company)
+      if entries.maximum(:invoice_number).nil?
         self.invoice_number = 1
       else
-        self.invoice_number = Entry.maximum(:invoice_number) + 1
+        self.invoice_number = entries.maximum(:invoice_number) + 1
       end
       save
     end
 
   end
 
-  def self.entries_witout_gr_entry_between(start_date, end_date)
+  def set_invoice_date
+    if self.invoice_date.nil?
+        self.invoice_date = Date.today
+      save
+    end
+  end
+
+  def set_company(company)
+    if self.company.nil?
+      self.company = company
+      save
+    end
+  end
+
+  def self.entries_without_gr_entry_between(start_date, end_date)
     entries_witout_gr_entry = Array.new
     entries = where(entry_date: start_date.to_date..end_date.to_date)
     entries.each do |entry|
       entries_witout_gr_entry.push(entry) if !entry.payment_summary.present?
     end
     entries_witout_gr_entry
+  end
+
+  def self.entries_without_bill_entry_between(start_date, end_date)
+    entries_without_bill_entry = Array.new
+    entries = where(entry_date: start_date.to_date..end_date.to_date)
+    entries.each do |entry|
+      entries_without_bill_entry.push(entry) if !entry.bill_entry.present?
+    end
+    entries_without_bill_entry
+  end
+
+  def self.entries_with_invoice_number(invoice_number)
+    if invoice_number
+      where(invoice_number: invoice_number)
+    end
   end
 
 end

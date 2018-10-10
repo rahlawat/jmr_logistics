@@ -32,4 +32,8 @@
   <!--</div>-->
   <h3>Listing Entries</h3>
   <%= render 'entries/list' %>
+  <%= paginate @entries %>
+  <div>
+    <%= page_entries_info @entries %>
+  </div>
 </div>
