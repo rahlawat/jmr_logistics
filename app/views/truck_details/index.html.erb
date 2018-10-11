@@ -2,10 +2,10 @@
   <ul class="dropdown-menu search_by" aria-labelledby="dropdownMenu3">
     <li class="dropdown-header">Dropdown header</li>
   </ul>
-  <h3>Listing Entries</h3>
-  <%= render 'entries/list' %>
-  <%= paginate @entries %>
+  <h3>Truck details</h3>
+  <%= render 'truck_details/list' %>
+  <%= paginate @truck_details %>
   <div>
-    <%= page_entries_info @entries %>
+    <%= page_entries_info @truck_details %>
   </div>
 </div>

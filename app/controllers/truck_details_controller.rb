@@ -1,7 +1,7 @@
 class TruckDetailsController < ApplicationController
 
   def index
-    @truck_detail = TruckDetails.all
+    @truck_details = TruckDetails.all.page params[:page]
   end
 
   def new
@@ -21,6 +21,27 @@ class TruckDetailsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def edit
+    @truck_detail = TruckDetails.find(params[:id])
+  end
+
+  def update
+    @truck_detail = TruckDetails.find(params[:id])
+
+    if @truck_detail.update(truck_detail_params)
+      redirect_to @truck_detail
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @truck_detail = TruckDetails.find(params[:id])
+    @truck_detail.destroy
+
+    redirect_to truck_details_path
   end
 
   private

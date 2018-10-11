@@ -1,0 +1,26 @@
+<% if !@truck_details.nil? and !@truck_details.empty? %>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Truck Number</th>
+      <th>Truck Owner</th>
+      <th colspan="2"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @truck_details.each do |truck_detail| %>
+        <tr>
+          <td><%= truck_detail.truck_number %></td>
+          <td><%= truck_detail.truck_owner %></td>
+          <td><%= link_to 'Edit', edit_truck_detail_path(truck_detail), class: 'button small radius' %></td>
+          <td><%= link_to 'Destroy', truck_detail_path(truck_detail),
+                          method: :delete,
+                          data: { confirm: 'Are you sure?' }, class: 'button small radius'%></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No Truck Details to Display</p>
+<% end %>

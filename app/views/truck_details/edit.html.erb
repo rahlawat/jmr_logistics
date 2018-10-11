@@ -1,0 +1,21 @@
+<div class="jumbotron">
+  <div class="heading">
+    <h3>Edit Truck Detail</h3>
+  </div>
+
+  <%= form_for :truck_detail, url: truck_detail_path(@truck_detail), method: :patch do |f| %>
+      <div class="row shift">
+        <%= f.label :truck_number %>
+        <%= f.text_field :truck_number, class: "form-control" %>
+      </div>
+
+      <div class="row shift">
+        <%= f.label :truck_owner %>
+        <%= f.text_field :truck_owner, class: "form-control" %>
+      </div>
+
+      <%= link_to 'Back', truck_details_path, class: "btn btn-lg btn-primary" %>
+      <%= f.submit class: "btn btn-lg btn-primary"%>
+
+  <% end %>
+</div>
