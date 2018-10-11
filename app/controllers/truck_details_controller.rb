@@ -15,7 +15,6 @@ class TruckDetailsController < ApplicationController
   def create
     @truck_detail = TruckDetails.new(truck_detail_params)
 
-    @truck_detail.save
     if @truck_detail.save
       redirect_to @truck_detail
     else

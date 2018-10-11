@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181009160053) do
+ActiveRecord::Schema.define(version: 20181011124341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20181009160053) do
   create_table "truck_details", force: :cascade do |t|
     t.string "truck_owner"
     t.string "truck_number"
+    t.index ["truck_number"], name: "index_truck_details_on_truck_number", unique: true, using: :btree
   end
 
   create_table "users", force: :cascade do |t|
