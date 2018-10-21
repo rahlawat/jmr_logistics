@@ -1,0 +1,31 @@
+<div class="jumbotron">
+  <div class="heading">
+    <h3>Add Party</h3>
+  </div>
+  <%= form_for :party, url: parties_path do |f| %>
+      <% if @party.errors.any? %>
+          <div id="error_explanation">
+            Please enter valid values
+            <ul>
+              <% @party.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <div class="row shift">
+        <%= f.label :party_name %>
+        <%= f.text_field :party_name, class: "form-control" %>
+      </div>
+
+      <div class="row shift">
+        <%= f.label :party_code %>
+        <%= f.text_field :party_code, class: "form-control" %>
+      </div>
+
+      <%= link_to 'Back', parties_path, class: 'btn btn-lg btn-primary' %>
+      <%= f.submit class: "btn btn-lg btn-primary"%>
+  <% end %>
+
+</div>
+

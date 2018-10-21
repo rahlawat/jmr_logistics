@@ -1,0 +1,25 @@
+<div class="jumbotron">
+  <div class="heading-2">
+    <h4>Party</h4>
+  </div>
+  <div class="show">
+    <table class="table table-striped">
+      <tr>
+        <td class="row-right">
+          <strong>Party Name:</strong>
+        </td>
+        <td>
+          <%= @party.party_name%>
+
+        </td>
+        <td class="row-right">
+          <strong>Party Code:</strong>
+        </td>
+        <td>
+          <%= @party.party_code %>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <%= link_to 'Back', parties_path, class: "btn btn-lg btn-primary" %>
+</div>

@@ -1,0 +1,21 @@
+<div class="jumbotron">
+  <div class="heading">
+    <h3>Edit Party</h3>
+  </div>
+
+  <%= form_for :party, url: party_path(@party), method: :patch do |f| %>
+      <div class="row shift">
+        <%= f.label :party_name %>
+        <%= f.text_field :party_name, class: "form-control" %>
+      </div>
+
+      <div class="row shift">
+        <%= f.label :party_code %>
+        <%= f.text_field :party_code, class: "form-control" %>
+      </div>
+
+      <%= link_to 'Back', parties_path, class: "btn btn-lg btn-primary" %>
+      <%= f.submit class: "btn btn-lg btn-primary"%>
+
+  <% end %>
+</div>

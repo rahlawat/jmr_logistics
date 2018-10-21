@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "entries#index"
   resources :truck_details
+  resources :parties
   concern :paginatable do
     get '(page/:page)', action: :index, on: :collection, as: ''
   end

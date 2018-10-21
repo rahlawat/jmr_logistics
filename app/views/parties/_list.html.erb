@@ -1,0 +1,26 @@
+<% if !@parties.nil? and !@parties.empty? %>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Party Name</th>
+      <th>Party Code</th>
+      <th colspan="2"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @parties.each do |party| %>
+        <tr>
+          <td><%= party.party_name %></td>
+          <td><%= party.party_code %></td>
+          <td><%= link_to 'Edit', edit_party_path(party), class: 'button small radius' %></td>
+          <td><%= link_to 'Destroy', party_path(party),
+                          method: :delete,
+                          data: { confirm: 'Are you sure?' }, class: 'button small radius'%></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No Parties to Display</p>
+<% end %>
