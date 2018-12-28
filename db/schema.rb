@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181021100213) do
+ActiveRecord::Schema.define(version: 20181228142206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20181021100213) do
   create_table "parties", force: :cascade do |t|
     t.string "party_name"
     t.string "party_code"
+    t.string "gst_in"
     t.index ["party_name", "party_code"], name: "index_parties_on_party_name_and_party_code", unique: true, using: :btree
   end
 

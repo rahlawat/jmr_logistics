@@ -4,6 +4,7 @@
     <tr>
       <th>Party Name</th>
       <th>Party Code</th>
+      <th>GSTIN</th>
       <th colspan="2"></th>
     </tr>
     </thead>
@@ -13,6 +14,7 @@
         <tr>
           <td><%= party.party_name %></td>
           <td><%= party.party_code %></td>
+          <td><%= party.gst_in %></td>
           <td><%= link_to 'Edit', edit_party_path(party), class: 'button small radius' %></td>
           <td><%= link_to 'Destroy', party_path(party),
                           method: :delete,
