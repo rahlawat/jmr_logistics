@@ -12,6 +12,7 @@ class Entry < ApplicationRecord
   validates :self_advance_1, presence: true, numericality: true
   validates :party_advance_2, presence: true, numericality: true
   validates :commission, presence: true, numericality: true
+  validate :check_truck_number_is_present
   has_one :payment_summary, dependent: :destroy
   has_one :bill_entry, dependent: :destroy
 
@@ -109,6 +110,13 @@ class Entry < ApplicationRecord
   def self.entries_with_invoice_number(invoice_number)
     if invoice_number
       where(invoice_number: invoice_number)
+    end
+  end
+
+  def check_truck_number_is_present
+    truck_details = TruckDetails.find_by_truck_number(self.truck_number)
+    if(truck_details.blank?)
+      self.errors.add(:truck_number, "add truck details for this truck number first")
     end
   end
 
