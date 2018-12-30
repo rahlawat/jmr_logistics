@@ -1,6 +1,6 @@
 class PartiesController < ApplicationController
   def index
-    @parties = Party.all.page params[:page]
+    @parties = Party.order(:party_code).page params[:page]
   end
 
   def new

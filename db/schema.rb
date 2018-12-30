@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181229155747) do
+ActiveRecord::Schema.define(version: 20181230160706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,18 @@ ActiveRecord::Schema.define(version: 20181229155747) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.index ["entry_id"], name: "index_bill_entries_on_entry_id", using: :btree
+  end
+
+  create_table "bill_payments", force: :cascade do |t|
+    t.date     "date"
+    t.string   "payment_mode"
+    t.decimal  "amount"
+    t.decimal  "others"
+    t.string   "remarks"
+    t.integer  "bill_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["bill_id"], name: "index_bill_payments_on_bill_id", using: :btree
   end
 
   create_table "bills", force: :cascade do |t|
@@ -60,6 +72,7 @@ ActiveRecord::Schema.define(version: 20181229155747) do
     t.string "party_name"
     t.string "party_code"
     t.string "gst_in"
+    t.string "address"
     t.index ["party_name", "party_code"], name: "index_parties_on_party_name_and_party_code", unique: true, using: :btree
   end
 
@@ -101,6 +114,7 @@ ActiveRecord::Schema.define(version: 20181229155747) do
   end
 
   add_foreign_key "bill_entries", "entries"
+  add_foreign_key "bill_payments", "bills"
   add_foreign_key "bills", "entries"
   add_foreign_key "payment_summaries", "entries"
 end

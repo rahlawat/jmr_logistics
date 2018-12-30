@@ -28,6 +28,11 @@
         <%= f.text_field :gst_in, class: "form-control" %>
       </div>
 
+      <div class="row shift">
+        <%= f.label :address %>
+        <%= f.text_field :address, class: "form-control" %>
+      </div>
+
       <%= link_to 'Back', parties_path, class: 'btn btn-lg btn-primary' %>
       <%= f.submit class: "btn btn-lg btn-primary"%>
   <% end %>

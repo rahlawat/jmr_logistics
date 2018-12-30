@@ -15,6 +15,7 @@
           <td><%= party.party_name %></td>
           <td><%= party.party_code %></td>
           <td><%= party.gst_in %></td>
+          <td align="center"><%= link_to 'Show', party_path(party), class: 'button small radius' %></td>
           <td><%= link_to 'Edit', edit_party_path(party), class: 'button small radius' %></td>
           <td><%= link_to 'Destroy', party_path(party),
                           method: :delete,
