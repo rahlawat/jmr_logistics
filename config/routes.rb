@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resource :download, only: [:show]
     resources :payment_summaries
     resources :bill_entries
+    resources :bills
     collection do
       get 'search'
     end

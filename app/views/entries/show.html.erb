@@ -120,6 +120,24 @@
       <%= render 'bill_entries/show' %>
     </div>
   <% end %>
+
+  <% if @entry.bill.nil? %>
+    <div>
+      <div class="heading-2">
+        <h4>Bill Details</h4>
+      </div>
+      <div class="align-center">
+        <%= link_to 'Add Bill', new_entry_bill_path(@entry.id) %>
+      </div>
+    </div>
+  <% else %>
+    <div>
+      <div class="heading-2">
+        <h4>Bill Details</h4>
+      </div>
+      <%= render 'bills/show' %>
+    </div>
+  <% end %>
   <% if !@entry.payment_summary.nil? %>
     <% if @entry.company.nil? %>
       <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal">Download PDF</button>

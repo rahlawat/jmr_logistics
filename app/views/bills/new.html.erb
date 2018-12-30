@@ -1,0 +1,48 @@
+<div class="jumbotron">
+  <div class="heading">
+    <h3>Bill Details</h3>
+  </div>
+  <%= form_for([@entry, @bill]) do |f| %>
+      <% if @bill.errors.any? %>
+          <div id="error_explanation">
+            Please enter valid values
+            <ul>
+              <% @bill.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <div class="row shift">
+        <%= f.label :party_code %>
+        <%= f.text_field :party_code, class: "form-control" %>
+      </div>
+
+      <div class="row shift">
+        <%= f.label :weight2 %>
+        <%= f.text_field :weight2, class: "form-control" %>
+      </div>
+
+
+      <div class="row shift">
+        <%= f.label :kanta2 %>
+        <%= f.text_field :kanta2, class: "form-control" %>
+      </div>
+
+      <div class="row shift">
+        <%= f.label :rate2 %>
+        <%= f.text_field :rate2, class: "form-control" %>
+      </div>
+
+    <div class="row shift">
+      <%= f.label "TDS%" %>
+      <%= f.text_field :tds_percentage,  class: "form-control" %>
+    </div>
+
+      <%= link_to 'Back', entries_path, class: 'btn btn-lg btn-primary' %>
+      <%= f.submit class: "btn btn-lg btn-primary"%>
+  <% end %>
+
+</div>
+

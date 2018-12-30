@@ -15,6 +15,7 @@ class Entry < ApplicationRecord
   validate :check_truck_number_is_present
   has_one :payment_summary, dependent: :destroy
   has_one :bill_entry, dependent: :destroy
+  has_one :bill, dependent: :destroy
 
   # , format: {with: ''}
 

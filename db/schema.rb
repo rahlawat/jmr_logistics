@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181228142206) do
+ActiveRecord::Schema.define(version: 20181229155747) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,19 @@ ActiveRecord::Schema.define(version: 20181228142206) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.index ["entry_id"], name: "index_bill_entries_on_entry_id", using: :btree
+  end
+
+  create_table "bills", force: :cascade do |t|
+    t.integer  "bill_number"
+    t.decimal  "weight2"
+    t.decimal  "kanta2"
+    t.decimal  "rate2"
+    t.integer  "tds_percentage"
+    t.string   "party_code"
+    t.integer  "entry_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["entry_id"], name: "index_bills_on_entry_id", using: :btree
   end
 
   create_table "entries", force: :cascade do |t|
@@ -88,5 +101,6 @@ ActiveRecord::Schema.define(version: 20181228142206) do
   end
 
   add_foreign_key "bill_entries", "entries"
+  add_foreign_key "bills", "entries"
   add_foreign_key "payment_summaries", "entries"
 end

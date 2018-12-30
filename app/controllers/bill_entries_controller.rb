@@ -3,7 +3,7 @@ class BillEntriesController < ApplicationController
     @entry = Entry.find(params[:entry_id])
     @bill_entry = @entry.build_bill_entry(bill_entry_params)
     if @bill_entry.save
-      render 'edit'
+      redirect_to @entry
     else
       render 'new'
     end
@@ -13,7 +13,7 @@ class BillEntriesController < ApplicationController
     @entry = Entry.find(params[:entry_id])
     @bill_entry = BillEntry.find(params[:id])
     if @bill_entry.update(bill_entry_params)
-      render 'edit'
+      redirect_to @entry
     else
       render 'edit'
     end
