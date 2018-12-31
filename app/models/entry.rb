@@ -5,8 +5,7 @@ class Entry < ApplicationRecord
             length: { maximum: 15 }
   validates :firm, presence: true,
             length: { maximum: 15}
-  validates :truck_owner, presence: true,
-            length: { maximum: 15 }
+  validates :truck_owner, length: { maximum: 15 }
   validates :rate1, presence: true, numericality: true
   validates :rate2, presence: true, numericality: true
   validates :self_advance_1, presence: true, numericality: true
