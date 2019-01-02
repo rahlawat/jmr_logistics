@@ -8,5 +8,4 @@ class PaymentSummary < ApplicationRecord
             length: { maximum: 25 }
   validates :shortage2, presence: true, numericality: true
   validates :payment_charges, presence: true, numericality: true
-  validates :sheet_number, presence: true
 end

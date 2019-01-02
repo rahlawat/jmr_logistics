@@ -1,10 +1,10 @@
 require "render_anywhere"
-
 class EntryPdf
   include RenderAnywhere
 
   def initialize(entry)
     @entry = entry
+    @truck_details = TruckDetails.find_by_truck_number(@entry.truck_number)
   end
 
   def to_pdf
@@ -19,9 +19,9 @@ class EntryPdf
 
   private
 
-  attr_reader :entry
+  attr_reader :entry, :truck_details
 
   def as_html
-    render template: "entries/pdf", layout: "bill_pdf", locals: { entry: @entry }
+    render template: "entries/pdf", layout: "bill_pdf", locals: { entry: @entry, truck_details: @truck_details }
   end
 end

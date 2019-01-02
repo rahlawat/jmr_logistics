@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181230160706) do
+ActiveRecord::Schema.define(version: 20190102095832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,9 +41,7 @@ ActiveRecord::Schema.define(version: 20181230160706) do
     t.integer  "bill_number"
     t.decimal  "weight2"
     t.decimal  "kanta2"
-    t.decimal  "rate2"
     t.integer  "tds_percentage"
-    t.string   "party_code"
     t.integer  "entry_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
@@ -83,7 +81,6 @@ ActiveRecord::Schema.define(version: 20181230160706) do
     t.string   "shortage1"
     t.integer  "shortage2"
     t.integer  "payment_charges"
-    t.string   "sheet_number"
     t.integer  "entry_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
