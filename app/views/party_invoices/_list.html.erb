@@ -6,6 +6,7 @@
       <th>Party Name</th>
       <th>Invoice Number</th>
       <th>Invoice Date</th>
+      <th colspan="2"></th>
     </tr>
     </thead>
 
@@ -16,6 +17,7 @@
           <td><%= party_invoice.party_name %></td>
           <td><%= party_invoice.invoice_number %></td>
           <td><%= party_invoice.invoice_date %></td>
+          <td align="center"><%= link_to 'Show', party_invoice_path(party_invoice), class: 'button small radius' %></td>
         </tr>
     <% end %>
     </tbody>

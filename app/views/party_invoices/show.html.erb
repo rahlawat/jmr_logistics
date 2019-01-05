@@ -1,0 +1,70 @@
+<div class="jumbotron">
+  <div class="heading-2">
+    <h4>Party Invoice</h4>
+  </div>
+  <div class="show">
+    <table class="table table-striped">
+      <tr>
+        <td class="row-right">
+          <strong>Party Code:</strong>
+        </td>
+        <td>
+          <%= @party_invoice.party_code%>
+
+        </td>
+        <td class="row-right">
+          <strong>Party Name:</strong>
+        </td>
+        <td>
+          <%= @party_invoice.party_name %>
+        </td>
+      </tr>
+      <tr>
+        <td class="row-right">
+          <strong>Invoice Number:</strong>
+        </td>
+        <td>
+          <%= @party_invoice.invoice_number %>
+        </td>
+        <td class="row-right">
+          <strong>Invoice Date:</strong>
+        </td>
+        <td>
+          <%= @party_invoice.invoice_date %>
+        </td>
+      </tr>
+    </table>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Date</th>
+        <th>G R Number</th>
+        <th>Truck Number</th>
+        <th>Weight</th>
+        <th>Kanta</th>
+        <th>Rate</th>
+        <th>Freight</th>
+        <th>Advance</th>
+        <th>Balance</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @party_invoice.bills.each do |bill| %>
+        <tr>
+          <td><%= bill.entry.entry_date %></td>
+          <td><%= bill.entry.payment_summary.g_r_number %></td>
+          <td><%= bill.entry.truck_number %></td>
+          <td><%= bill.weight2 %></td>
+          <td><%= bill.kanta2 %></td>
+          <td><%= bill.entry.rate2 %></td>
+          <td><%= bill.freight %></td>
+          <td><%= bill.entry.party_advance_2 %></td>
+          <td><%= bill.balance %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= link_to 'Back', parties_path, class: "btn btn-lg btn-primary" %>
+</div>
