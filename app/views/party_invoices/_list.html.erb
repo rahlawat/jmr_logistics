@@ -1,0 +1,25 @@
+<% if !@party_invoices.nil? and !@party_invoices.empty? %>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Party Code</th>
+      <th>Party Name</th>
+      <th>Invoice Number</th>
+      <th>Invoice Date</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @party_invoices.each do |party_invoice| %>
+        <tr>
+          <td><%= party_invoice.party_code %></td>
+          <td><%= party_invoice.party_name %></td>
+          <td><%= party_invoice.invoice_number %></td>
+          <td><%= party_invoice.invoice_date %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No Parties to Display</p>
+<% end %>

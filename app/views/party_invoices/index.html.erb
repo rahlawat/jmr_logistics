@@ -1,0 +1,11 @@
+<div class="jumbotron space">
+  <ul class="dropdown-menu search_by" aria-labelledby="dropdownMenu3">
+    <li class="dropdown-header">Dropdown header</li>
+  </ul>
+  <h3>Party Invoices</h3>
+  <%= render 'party_invoices/list' %>
+  <%= paginate @party_invoices %>
+  <div>
+    <%= page_entries_info @party_invoices %>
+  </div>
+</div>

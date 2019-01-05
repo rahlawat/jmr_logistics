@@ -16,7 +16,7 @@
           <td><%= entry.entry_date %></td>
           <td><%= entry.truck_number %></td>
           <td><%= entry.station %></td>
-          <td><%= entry.firm %></td>
+          <td><%= entry.firm_name %></td>
           <td align="center"><%= link_to 'Show', entry_path(entry), class: 'button small radius' %></td>
           <td><%= link_to 'Edit', edit_entry_path(entry), class: 'button small radius' %></td>
           <% if entry.payment_summary.nil? %>

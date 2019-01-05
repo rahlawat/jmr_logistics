@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190102095832) do
+ActiveRecord::Schema.define(version: 20190103160838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,9 +43,11 @@ ActiveRecord::Schema.define(version: 20190102095832) do
     t.decimal  "kanta2"
     t.integer  "tds_percentage"
     t.integer  "entry_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "party_invoice_id"
     t.index ["entry_id"], name: "index_bills_on_entry_id", using: :btree
+    t.index ["party_invoice_id"], name: "index_bills_on_party_invoice_id", using: :btree
   end
 
   create_table "entries", force: :cascade do |t|
@@ -57,13 +59,14 @@ ActiveRecord::Schema.define(version: 20190102095832) do
     t.integer  "rate1"
     t.integer  "rate2"
     t.integer  "commission"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "self_advance_1"
     t.integer  "party_advance_2"
     t.integer  "invoice_number"
     t.date     "invoice_date"
     t.string   "company"
+    t.string   "party_code"
   end
 
   create_table "parties", force: :cascade do |t|
@@ -72,6 +75,15 @@ ActiveRecord::Schema.define(version: 20190102095832) do
     t.string "gst_in"
     t.string "address"
     t.index ["party_name", "party_code"], name: "index_parties_on_party_name_and_party_code", unique: true, using: :btree
+  end
+
+  create_table "party_invoices", force: :cascade do |t|
+    t.string   "party_code"
+    t.integer  "invoice_number"
+    t.date     "invoice_date"
+    t.boolean  "invoice_generated"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "payment_summaries", force: :cascade do |t|
@@ -113,5 +125,7 @@ ActiveRecord::Schema.define(version: 20190102095832) do
   add_foreign_key "bill_entries", "entries"
   add_foreign_key "bill_payments", "bills"
   add_foreign_key "bills", "entries"
+  add_foreign_key "bills", "party_invoices"
+  add_foreign_key "entries", "party_invoices"
   add_foreign_key "payment_summaries", "entries"
 end

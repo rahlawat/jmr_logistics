@@ -1,5 +1,5 @@
 class PaymentSummary < ApplicationRecord
-  belongs_to :entry, dependent: :destroy
+  belongs_to :entry
   validates :g_r_number, presence: true,
             length: { maximum: 15 }
   validates :weight, presence: true, numericality: true

@@ -3,15 +3,15 @@ class Entry < ApplicationRecord
             length: { maximum: 15 }
   validates :station, presence: true,
             length: { maximum: 15 }
-  validates :firm, presence: true,
-            length: { maximum: 15}
   validates :truck_owner, length: { maximum: 15 }
   validates :rate1, presence: true, numericality: true
   validates :rate2, presence: true, numericality: true
   validates :self_advance_1, presence: true, numericality: true
   validates :party_advance_2, presence: true, numericality: true
   validates :commission, presence: true, numericality: true
+  validates :party_code, presence: true, length: { maximum: 15 }
   validate :check_truck_number_is_present
+  validate :check_party_code_is_present
   has_one :payment_summary, dependent: :destroy
   has_one :bill_entry, dependent: :destroy
   has_one :bill, dependent: :destroy
@@ -24,6 +24,14 @@ class Entry < ApplicationRecord
 
   def freight1
     ((payment_summary.weight * rate1) + payment_summary.kanta).to_i
+  end
+
+  def firm_name
+    if(!party_code.nil?)
+      Party.find_by_party_code(party_code).party_name
+    else
+      firm
+    end
   end
 
   def cash_to_driver
@@ -117,6 +125,13 @@ class Entry < ApplicationRecord
     truck_details = TruckDetails.find_by_truck_number(self.truck_number)
     if(truck_details.blank?)
       self.errors.add(:truck_number, "add truck details for this truck number first")
+    end
+  end
+
+  def check_party_code_is_present
+    party = Party.find_by_party_code(self.party_code)
+    if(party.blank?)
+      self.errors.add(:party_code, "add party for this party number first")
     end
   end
 

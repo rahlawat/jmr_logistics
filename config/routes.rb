@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: "entries#index"
   resources :truck_details
   resources :parties
+  resources :party_invoices
   concern :paginatable do
     get '(page/:page)', action: :index, on: :collection, as: ''
   end
