@@ -5,6 +5,17 @@ class PartyInvoice < ApplicationRecord
 
   def party_name
     Party.find_by_party_code(party_code).party_name
+  end
 
+  def party
+    Party.find_by_party_code(party_code)
+  end
+
+  def set_invoice_date
+    if self.invoice_date.nil?
+      self.invoice_date = Date.today
+      self.invoice_generated = true
+      save
+    end
   end
 end

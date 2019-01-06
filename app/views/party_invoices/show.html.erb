@@ -65,6 +65,10 @@
       <% end %>
       </tbody>
     </table>
+    <%= link_to "Download PDF",
+                party_invoice_download_path(@party_invoice, format: "pdf"),
+                target: "_blank",
+                class: "btn btn-lg btn-primary" %>
   </div>
   <%= link_to 'Back', parties_path, class: "btn btn-lg btn-primary" %>
 </div>

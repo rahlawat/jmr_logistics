@@ -1,0 +1,80 @@
+<div class="party-invoice">
+  <div class="row">
+    <div class="col-xs-4">
+      GSTIN: 07AREPS4783P1ZV
+    </div>
+    <div class="col-xs-4">
+      <p class="text-center">TAX INVOICE</p>
+    </div>
+    <div class="col-xs-4">
+      <p class="text-right">State Code : 07</p>
+    </div>
+  </div>
+  <div class="party-invoice-content">
+    <h1 class="text-center">JMR LOGISTICS</h1>
+    <h4 class="text-center">HEAD OFFICE</h4>
+    <h4 class="text-center">Shop No 15, Palla More, Old GT Road, Near Wine Shop, Alipur, Delhi-110036</h4>
+    <h4 class="text-center">E-mail: jmrlogistics16@gmail.com</h4>
+    <h4 class="text-center">Phone: 9212666550, 9910680644, 9999778668</h4>
+    <div class="row">
+      <div class="big-font col-xs-8">
+        <p>M/S: <%= party_invoice.party_name %></p>
+        <p>Address: <%= party_invoice.party.address %></p>
+        <p>GSTIN: <%= party_invoice.party.gst_in %></p>
+      </div>
+      <div class="big-font col-xs-4">
+        <p>INVOICE No: <%= party_invoice.invoice_number %></p>
+        <p>DATE: <%= party_invoice.invoice_date %></p>
+        <p>SHIPPED: BY ROAD</p>
+      </div>
+    </div>
+    <div class="big-font space-mx">
+      <table class="table table-condensed">
+        <thead>
+        <tr>
+          <th>Date</th>
+          <th>GR No</th>
+          <th>Truck No</th>
+          <th>Weight Qtl</th>
+          <th>Kanta</th>
+          <th>Rate</th>
+          <th>Freight (Rs)</th>
+          <th>Advance (Rs)</th>
+          <th>Balance (Rs)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% party_invoice.bills.each do |bill| %>
+          <tr>
+            <td><%= bill.entry.entry_date %></td>
+            <td><%= bill.entry.payment_summary.g_r_number %></td>
+            <td><%= bill.entry.truck_number %></td>
+            <td><%= bill.weight2 %></td>
+            <td><%= bill.kanta2 %></td>
+            <td><%= bill.entry.rate2 %></td>
+            <td><%= bill.freight %></td>
+            <td><%= bill.entry.party_advance_2 %></td>
+            <td><%= bill.balance %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="big-font space-mx">
+      <p class="text-center">GST will be paid by Consigner or Consinee</p>
+    </div>
+    <div class="row">
+      <div class="big-font col-xs-8">
+        <p>BANK DETAILS</p>
+        <p>NAME: IDFC Bank</p>
+        <p>A/C NO: 10030426959</p>
+        <p>IFSC CODE:</p>
+        <p>BRANCH: DWARKA</p>
+      </div>
+      <div class="big-font col-xs-4">
+        <p>For JMR Logistics</p>
+        <p>Signature</p>
+      </div>
+    </div>
+  </div>
+</div>
