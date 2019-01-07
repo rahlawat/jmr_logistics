@@ -10,6 +10,7 @@ class PartyInvoicePdf
     kit = PDFKit.new(as_html, page_size: 'A3', footer_html: "#{Rails.root}/app/views/party_invoices/footer.html",
                      'margin-bottom': '2.75in')
     kit.stylesheets << 'app/assets/stylesheets/application.scss'
+    kit.stylesheets << 'app/assets/stylesheets/party_invoices.scss'
     kit.to_file("#{Rails.root}/public/party_invoice.pdf")
   end
 

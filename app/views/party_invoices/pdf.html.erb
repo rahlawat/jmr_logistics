@@ -18,11 +18,11 @@
       <h4 class="text-center office-details">E-mail: jmrlogistics16@gmail.com</h4>
       <h4 class="text-center office-details">Phone: 9212666550, 9910680644, 9999778668</h4>
     </div>
-    <div class="row party-details">
-      <div class="col-xs-8">
-        <p>M/S: <%= party_invoice.party_name %></p>
-        <p>Address: <%= party_invoice.party.address %></p>
-        <p>GSTIN: <%= party_invoice.party.gst_in %></p>
+    <div class="row party-invoice-details">
+      <div class="col-xs-8 party-details">
+        <p class="party-address">M/S: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= party_invoice.party_name %></p>
+        <p class="party-address">Address: <%= party_invoice.party.address %></p>
+        <p class="party-address">GSTIN: &nbsp;&nbsp;<%= party_invoice.party.gst_in %></p>
       </div>
       <div class="col-xs-4">
         <p>INVOICE No: <%= party_invoice.invoice_number %></p>
@@ -30,37 +30,51 @@
         <p>SHIPPED: BY ROAD</p>
       </div>
     </div>
-    <div class="big-font space-mx">
-      <table class="table table-condensed">
-        <thead>
+  </div>
+  <div class="big-font space-mx payment-details">
+    <table class="table table-condensed">
+      <thead>
+      <tr>
+        <th>Date</th>
+        <th>GR No</th>
+        <th>Truck No</th>
+        <th>Weight Qtl</th>
+        <th>Kanta</th>
+        <th>Rate</th>
+        <th>Freight (Rs)</th>
+        <th>Advance (Rs)</th>
+        <th>Balance (Rs)</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% party_invoice.bills.each do |bill| %>
         <tr>
-          <th>Date</th>
-          <th>GR No</th>
-          <th>Truck No</th>
-          <th>Weight Qtl</th>
-          <th>Kanta</th>
-          <th>Rate</th>
-          <th>Freight (Rs)</th>
-          <th>Advance (Rs)</th>
-          <th>Balance (Rs)</th>
+          <td><%= bill.entry.entry_date %></td>
+          <td><%= bill.entry.payment_summary.g_r_number %></td>
+          <td><%= bill.entry.truck_number %></td>
+          <td><%= bill.weight2 %></td>
+          <td><%= bill.kanta2 %></td>
+          <td><%= number_to_indian_currency(bill.entry.rate2, text: '') %></td>
+          <td><%= bill.freight %></td>
+          <td><%= number_to_indian_currency(bill.entry.party_advance_2, text: '') %></td>
+          <td><%= number_to_indian_currency(bill.balance, text: '') %></td>
         </tr>
-        </thead>
-        <tbody>
-        <% party_invoice.bills.each do |bill| %>
-          <tr>
-            <td><%= bill.entry.entry_date %></td>
-            <td><%= bill.entry.payment_summary.g_r_number %></td>
-            <td><%= bill.entry.truck_number %></td>
-            <td><%= bill.weight2 %></td>
-            <td><%= bill.kanta2 %></td>
-            <td><%= bill.entry.rate2 %></td>
-            <td><%= bill.freight %></td>
-            <td><%= bill.entry.party_advance_2 %></td>
-            <td><%= bill.balance %></td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-    </div>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="big-font total-div">
+    <table>
+      <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td colspan="8"><p>Total Rs. </p></td>
+        <td><p><%= number_to_indian_currency(party_invoice.invoice_total, text: '') %></p></td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>

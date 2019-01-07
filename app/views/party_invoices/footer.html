@@ -3,7 +3,6 @@
     <style>
         .row {
             position:absolute;
-            width:100%;
         }
         .row > div{
             float:right;
@@ -12,56 +11,79 @@
         .bank-details {
             width:510px;
             height:200px;
-            margin-top: 10px;
+        }
+        .bank-details table {
+            margin-top: 20px;
         }
         .signature {
             text-align: right;
-            width:400px;
-            height:200px;
+            width:402px;
+            height:180px;
         }
         .signature-text {
             margin-top: 100px;
+            font-size: 20px;
+        }
+        .jmr-signature {
+            font-size: 25px;
+            color: red;
+            font-weight: bold;
+        }
+        .bank-details td {
+            font-size: 18px;
+            line-height: 20px;
         }
         .gst {
             font-weight: bold;
             text-align: center;
+            font-size: 20px;
+            color: red;
+            border-bottom: solid thin #000000;
+            border-left: solid thin #000000;
+            border-right: solid thin #000000;
+        }
+        .gst-text {
+            padding-top: 12px;
+        }
+        .bank-title {
+            font-weight: bold;
         }
     </style>
 </head>
 <body style="margin: 0; width: 100%;">
 <div class="footer">
     <div class="gst">
-        <p class="text-center">GST will be paid by Consigner or Consinee</p>
+        <p class="gst-text">GST will be paid by Consigner or Consinee</p>
     </div>
     <div class="row">
-        <div class="signature big-font col-xs-4">
-            <p>For JMR Logistics</p>
+        <div class="signature col-xs-4">
+            <p class="jmr-signature">For JMR Logistics</p>
             <p class="signature-text">Signature</p>
         </div>
-        <div class="bank-details big-font col-xs-8">
+        <div class="bank-details col-xs-8">
             <table>
                 <tbody>
                 <tr>
-                    <td colspan="2"><p>BANK DETAILS</p></td>
+                    <td class="bank-title" colspan="2"><p>BANK DETAILS</p></td>
                 </tr>
                 <tr>
-                    <td>NAME:</td>
+                    <td class="bank-title">NAME:</td>
                     <td>IDFC Bank</td>
                 </tr>
                 <tr>
-                    <td>A/C NO:</td>
+                    <td class="bank-title">A/C NO:</td>
                     <td>10030426959</td>
                 </tr>
                 <tr>
-                    <td>IFSC CODE:</td>
+                    <td class="bank-title">IFSC CODE:</td>
                     <td>IDFB0040101</td>
                 </tr>
                 <tr>
-                    <td>BRANCH:</td>
+                    <td class="bank-title">BRANCH:</td>
                     <td>NAMAN, BKC</td>
                 </tr>
                 <tr>
-                    <td></td>
+                    <td class="bank-title"></td>
                     <td>(Bandra Kurla Complex)</td>
                 </tr>
                 </tbody>

@@ -18,4 +18,12 @@ class PartyInvoice < ApplicationRecord
       save
     end
   end
+
+  def invoice_total
+    total = 0
+    self.bills.each do |bill|
+      total += bill.balance
+    end
+    total
+  end
 end

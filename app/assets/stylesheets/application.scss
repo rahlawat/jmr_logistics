@@ -38,6 +38,8 @@ body {
 
 .top-row {
   font-size: 18px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .company-name {
@@ -54,21 +56,63 @@ body {
 .payment-details {
   margin-top: 60px;
   font-size: 20px;
+  border-top: solid thin #000000;
+  padding-bottom: 0;
 }
 
-.payment-table {
-  margin-top: 50px;
+.payment-details td, .payment-details th {
+  text-align: right;
+  line-height: 30px;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+  padding-right: 5px;
 }
 
-.party-invoice {
-  min-height: 100%;
-  height: 100%;
-  margin: 0 auto -200px;
+.payment-details td:first-child, .payment-details th:first-child {
+  border-left: none;
+}
+
+.total-div {
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  text-align: right;
+  border-top: 1px solid #000;;
+}
+.total-div td {
+  padding-right: 5px;
+  width: 650px;
+}
+
+.total-div td+td {
+  width: auto;
+}
+.total-div table {
+  width: 100%;
+}
+
+.payment-details td:last-child, .payment-details th:last-child {
+  border-right: none;
+}
+
+.payment-details thead {
+  border-bottom: solid thin #000000;
+}
+
+.party-address {
+  padding-left: 10px;
 }
 
 .party-details {
+  border-right: solid thin #000000;
+}
+
+.party-invoice-details {
   font-size: 20px;
   margin-bottom: 50px;
+  height: 117px;
+  border-top: solid thin #000000;
+  border-bottom: solid thin #000000;
 }
 
 .head-office {
@@ -93,6 +137,7 @@ body {
   border-top: solid thin #000000;
   border-bottom: solid thin #000000;
 }
+
 .bill-split {
   margin-top: 300px;
 }
