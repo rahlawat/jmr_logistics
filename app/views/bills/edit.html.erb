@@ -30,6 +30,13 @@
       <%= f.text_field :tds_percentage,  class: "form-control" %>
     </div>
 
+    <% if current_user.admin? %>
+      <div class="row shift">
+        <%= f.label :bill_number %>
+        <%= f.text_field :bill_number,  class: "form-control" %>
+      </div>
+    <% end %>
+
     <%= link_to 'Back', entries_path, class: 'btn btn-lg btn-primary' %>
     <%= f.submit class: "btn btn-lg btn-primary"%>
   <% end %>

@@ -1,5 +1,6 @@
 require 'pry'
 class BillsController < ApplicationController
+  before_action :authenticate_user!
   def new
     @entry = Entry.find(params[:entry_id])
     @bill = Bill.new
@@ -35,6 +36,21 @@ class BillsController < ApplicationController
   def update
     @entry = Entry.find(params[:entry_id])
     @bill = Bill.find(params[:id])
+    @party_invoice = PartyInvoice.find_by_invoice_number(bill_params[:bill_number])
+    if(!@bill.party_invoice.nil? && @bill.party_invoice.invoice_generated && @bill.bill_number != bill_params[:bill_number])
+      flash.now[:error] = "This invoice has already been sent. Cannot modify the bill number at this stage."
+        render 'edit' and return
+    elsif (@party_invoice.nil?)
+      @bill.create_party_invoice(party_code: @entry.party_code, invoice_number: bill_params[:bill_number])
+    elsif(!@party_invoice.nil? && @party_invoice.party_code != @entry.party_code)
+      flash.now[:error] = "Cannot add Entry to invoice of another Party"
+      render 'edit' and return
+    elsif(!@party_invoice.nil? && @party_invoice.invoice_generated)
+      flash.now[:error] = "This invoice has already been sent. Create a new invoice."
+      render 'edit' and return
+    elsif(!@party_invoice.nil?)
+      @bill.party_invoice = @party_invoice
+    end
     if @bill.update(bill_params)
       redirect_to entry_path(@entry)
     else

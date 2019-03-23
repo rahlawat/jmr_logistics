@@ -1,4 +1,5 @@
 class PartiesController < ApplicationController
+  before_action :authenticate_user!
   def index
     @parties = Party.order(:party_code).page params[:page]
   end

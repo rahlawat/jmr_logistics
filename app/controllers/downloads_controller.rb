@@ -1,6 +1,6 @@
 require 'pry'
 class DownloadsController < ApplicationController
-
+  before_action :authenticate_user!
   def show
     respond_to do |format|
       format.pdf { send_invoice_pdf }

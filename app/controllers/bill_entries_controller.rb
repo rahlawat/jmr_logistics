@@ -1,4 +1,5 @@
 class BillEntriesController < ApplicationController
+  before_action :authenticate_user!
   def create
     @entry = Entry.find(params[:entry_id])
     @bill_entry = @entry.build_bill_entry(bill_entry_params)

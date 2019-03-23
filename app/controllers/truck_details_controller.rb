@@ -1,5 +1,5 @@
 class TruckDetailsController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     @truck_details = TruckDetails.all.page params[:page]
   end

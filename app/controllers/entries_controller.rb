@@ -18,7 +18,10 @@ class EntriesController < ApplicationController
 
   def update
     @entry = Entry.find(params[:id])
-
+    if(!@entry.bill.nil? && @entry.bill.party_invoice.party_code != entry_params[:party_code])
+      flash.now[:error] = "Party invoice created."
+      render 'edit' and return
+    end
     if @entry.update(entry_params)
       redirect_to @entry
     else

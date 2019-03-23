@@ -1,4 +1,5 @@
 class PaymentSummariesController < ApplicationController
+  before_action :authenticate_user!
   def create
     @entry = Entry.find(params[:entry_id])
     @payment_summary = @entry.build_payment_summary(payment_summary_params)
