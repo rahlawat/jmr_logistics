@@ -3,9 +3,6 @@
     <span style="float:left">
       <h4>Party Invoice</h4>
     </span>
-    <% if @party_invoice.invoice_cancelled %>
-      <p class="cancelled-banner" style="float:right; font-size:13px;">Cancelled</p>
-    <% end %>
   </div>
   <div class="show">
     <table class="table table-striped">
@@ -38,16 +35,6 @@
           <%= @party_invoice.invoice_date %>
         </td>
       </tr>
-      <% if @party_invoice.invoice_cancelled %>
-        <tr>
-          <td class="row-right">
-            <strong>Reason for cancellation:</strong>
-          </td>
-          <td>
-            <%= @party_invoice.reason_for_cancellation %>
-          </td>
-        </tr>
-        <% end %>
     </table>
     <% if !@party_invoice.bills.empty? %>
       <table class="table table-striped">
@@ -82,46 +69,16 @@
       </tbody>
     </table>
     <% end %>
-    <% if @party_invoice.invoice_cancelled %>
-      <%= link_to 'Go to the revised party invoice', party_invoice_path(@party_invoice.revised_invoice_id), class: "btn btn-lg btn-primary" %>
-    <% end %>
-    <% if !@party_invoice.invoice_cancelled %>
-      <%= link_to "Download PDF",
+    <%= link_to "Download PDF",
                 download_party_invoice_path(@party_invoice, format: "pdf"),
                 target: "_blank",
                 class: "btn btn-lg btn-primary" %>
-      <% if current_user.admin? %>
-        <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#invoiceNumberModal">Cancel</button>
-      <% end %>
+    <% if (current_user.admin? && @party_invoice.invoice_generated) %>
+      <%= link_to "Unlock",
+                    unlock_party_invoice_path(@party_invoice),
+                    method: :put,
+                    class: "btn btn-lg btn-primary" %>
     <% end %>
     <%= link_to 'Back', party_invoices_path, class: "btn btn-lg btn-primary" %>
-    <div id="invoiceNumberModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Enter the invoice number for the revised Party Invoice</h4>
-          </div>
-          <div class="modal-body">
-            <%= form_for :party_invoice, url: party_invoice_path(@party_invoice), formtarget: :_blank, method: :delete do |f| %>
-              <div class="shift mb-1">
-                <%= f.label :invoice_number, class: "required" %>
-                <%= f.text_field :invoice_number, class: "form-control", required: true %>
-              </div>
-
-              <div class="shift mb-1">
-                <%= f.label :reason_for_cancellation, class: "required" %>
-                <%= f.text_field :reason_for_cancellation, class: "form-control", required: true %>
-              </div>
-              <td><%= f.submit 'Cancel', class: "btn btn-lg btn-primary",  input_html: {"data-dismiss": "modal", "aria-hidden": "true" } %></td>
-            <% end %>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
   </div>
 </div>

@@ -1,0 +1,52 @@
+<div class="jumbotron">
+  <div class="heading-2">
+    <h4>Payment Receipt</h4>
+  </div>
+  <div class="show">
+    <table class="table table-striped">
+      <tr>
+        <td class="row-right">
+          <strong>Party Code:</strong>
+        </td>
+        <td>
+          <%= @payment_receipt.party.party_code%>
+
+        </td>
+        <td class="row-right">
+          <strong>Party Name:</strong>
+        </td>
+        <td>
+          <%= @payment_receipt.party.party_name %>
+        </td>
+      </tr>
+      <tr>
+        <td class="row-right">
+          <strong>Date:</strong>
+        </td>
+        <td>
+          <%= @payment_receipt.date %>
+        </td>
+        <td class="row-right">
+          <strong>Mode Of Payment:</strong>
+        </td>
+        <td>
+          <%= @payment_receipt.mode_of_payment %>
+        </td>
+      </tr>
+      <tr>
+        <td class="row-right">
+          <strong>Amount:</strong>
+        </td>
+        <td>
+          <%= number_to_indian_currency(@payment_receipt.amount, text: 'Rs ') %>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <%= link_to 'Back', payment_receipts_path, class: "btn btn-lg btn-primary" %>
+  <% if current_user.admin? %>
+    <%= link_to 'Destroy', payment_receipt_path(@payment_receipt),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' }, class: 'button small radius'%>
+    <% end %>
+</div>

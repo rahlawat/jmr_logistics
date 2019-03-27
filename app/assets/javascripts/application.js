@@ -11,12 +11,20 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
+//= require underscore
+//= require dependent-fields
+//= require_tree .
+
 
 $(document).on('turbolinks:load',function(){
     $('.datepicker').datepicker();
+});
+
+$(document).ready(function() {
+    DependentFields.bind()
 });

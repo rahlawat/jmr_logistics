@@ -1,0 +1,16 @@
+<div class="jumbotron space">
+  <ul class="dropdown-menu search_by" aria-labelledby="dropdownMenu3">
+    <li class="dropdown-header">Dropdown header</li>
+  </ul>
+  <div class="heading-2" style="text-align:right;width:100%">
+    <span style="float:left">
+      <h3>Payment Receipts</h3>
+    </span>
+    <p style="float:right; font-size:13px;"><%= link_to 'New Payment Receipt', new_payment_receipt_path %></p>
+  </div>
+  <%= render 'payment_receipts/list' %>
+  <%= paginate @payment_receipts %>
+  <div>
+    <%= page_entries_info @payment_receipts %>
+  </div>
+</div>

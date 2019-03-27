@@ -9,25 +9,14 @@ class PartyInvoicesController < ApplicationController
     @party_invoice = PartyInvoice.find(params[:id])
   end
 
-  def destroy
+  def unlock
     @party_invoice = PartyInvoice.find(params[:id])
-    updated_party_invoice = @party_invoice.dup
-    invoice_bills = @party_invoice.bills.collect { |child| child.clone }
-    @party_invoice.bills = []
-    updated_party_invoice.bills = invoice_bills
-    updated_party_invoice.invoice_date = nil
-    updated_party_invoice.invoice_generated  = false
-    updated_party_invoice.invoice_number = params[:party_invoice][:invoice_number]
-    if updated_party_invoice.save
-      updated_party_invoice.bills.each { |bill|
-        bill.bill_number = updated_party_invoice.invoice_number
-        bill.save
-      }
-      @party_invoice.cancel_invoice(params[:party_invoice][:reason_for_cancellation], updated_party_invoice)
+    @party_invoice.invoice_generated = false
+    if @party_invoice.save
       redirect_to @party_invoice
     else
-      flash.now[:error] = "Could not create new party invoice."
-      render 'show' and return
+      flash.now[:error] = "Something went wrong"
+      redirect_to @party_invoice
     end
   end
 end

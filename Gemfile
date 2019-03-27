@@ -35,6 +35,8 @@ gem 'wkhtmltopdf-binary', '= 0.12.3.1'
 gem 'bootstrap-datepicker-rails'
 gem 'kaminari'
 gem 'number_to_indian_currency'
+gem 'jquery-turbolinks'
+gem 'dependent-fields-rails'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

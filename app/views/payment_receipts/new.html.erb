@@ -1,0 +1,49 @@
+<div class="jumbotron">
+  <div class="heading">
+    <h3>Add Payment Receipt</h3>
+  </div>
+  <%= form_for :payment_receipt, url: payment_receipts_path do |f| %>
+    <% if @payment_receipt.errors.any? %>
+      <div id="error_explanation">
+        Please enter valid values
+        <ul>
+          <% @payment_receipt.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="row shift">
+      <%= f.label :party_code %>
+      <%= f.text_field :party_code, class: "form-control" %>
+    </div>
+
+    <div class="row shift">
+      <%= f.label :date %>
+      <%= f.text_field :date, "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
+    </div>
+
+    <div class="row shift mt-1">
+      <%= f.label 'Mode of Payment:' %>
+      <%= f.select :mode_of_payment, PaymentReceipt.mode_of_payments.map {|k,v| v}, class: "form-control drop-down" %>
+    </div>
+
+    <%= content_tag :div, class: 'js-dependent-fields', data: { 'select-id': 'payment_receipt_mode_of_payment', 'option-value': 'Cheque'} do %>
+      <div class="row shift">
+        <%= f.label :cheque_number %>
+        <%= f.text_field :cheque_number, class: "form-control" %>
+      </div>
+    <% end %>
+
+    <div class="row shift">
+      <%= f.label :amount %>
+      <%= f.text_field :amount, class: "form-control" %>
+    </div>
+
+    <%= link_to 'Back', payment_receipts_path, class: 'btn btn-lg btn-primary' %>
+    <%= f.submit class: "btn btn-lg btn-primary"%>
+  <% end %>
+
+</div>
+

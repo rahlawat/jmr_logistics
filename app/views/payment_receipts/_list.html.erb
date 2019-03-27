@@ -1,0 +1,30 @@
+<% if !@payment_receipts.nil? and !@payment_receipts.empty? %>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Party Code</th>
+      <th>Party Name</th>
+      <th>Date</th>
+      <th>Mode of Payment</th>
+      <th>Amount</th>
+      <th colspan="2"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @payment_receipts.each do |payment_receipt| %>
+      <tr>
+        <td><%= payment_receipt.party_code %></td>
+        <td><%= payment_receipt.party.party_name %></td>
+        <td><%= payment_receipt.date %></td>
+        <td><%= payment_receipt.mode_of_payment %></td>
+        <td><%= payment_receipt.amount %></td>
+        <td align="center"><%= link_to 'Show', payment_receipt_path(payment_receipt), class: 'button small radius' %></td>
+        <td><%= link_to 'Edit', edit_payment_receipt_path(payment_receipt), class: 'button small radius' %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No Payment Receipts to Display</p>
+<% end %>

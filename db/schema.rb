@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190326081633) do
+ActiveRecord::Schema.define(version: 20190327114235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,18 @@ ActiveRecord::Schema.define(version: 20190326081633) do
     t.index ["invoice_number"], name: "index_party_invoices_on_invoice_number", unique: true, using: :btree
   end
 
+  create_table "payment_receipts", force: :cascade do |t|
+    t.string   "party_code"
+    t.string   "mode_of_payment"
+    t.date     "date"
+    t.integer  "amount"
+    t.integer  "cheque_number"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "party_id"
+    t.index ["party_id"], name: "index_payment_receipts_on_party_id", using: :btree
+  end
+
   create_table "payment_summaries", force: :cascade do |t|
     t.string   "g_r_number"
     t.decimal  "weight"
@@ -134,5 +146,6 @@ ActiveRecord::Schema.define(version: 20190326081633) do
   add_foreign_key "bills", "entries"
   add_foreign_key "bills", "party_invoices"
   add_foreign_key "entries", "party_invoices"
+  add_foreign_key "payment_receipts", "parties"
   add_foreign_key "payment_summaries", "entries"
 end
