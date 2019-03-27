@@ -173,3 +173,20 @@ ul.hmenu {
 ul.hmenu li {
   display: inline;
 }
+
+.cancelled-banner {
+  background: #FF0000;
+  color: #780000;
+  width: 76px;
+  padding-right: 10px;
+  border-radius: 3px;
+}
+
+.mb-1 {
+  margin-bottom: 10px;
+}
+
+label.required:after{
+  content:"*";
+  color: red;
+}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190323084712) do
+ActiveRecord::Schema.define(version: 20190326081633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,8 +84,12 @@ ActiveRecord::Schema.define(version: 20190323084712) do
     t.integer  "invoice_number"
     t.date     "invoice_date"
     t.boolean  "invoice_generated"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.boolean  "invoice_cancelled",       default: false
+    t.string   "reason_for_cancellation"
+    t.integer  "revised_invoice_id"
+    t.index ["invoice_number"], name: "index_party_invoices_on_invoice_number", unique: true, using: :btree
   end
 
   create_table "payment_summaries", force: :cascade do |t|

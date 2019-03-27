@@ -1,6 +1,6 @@
 class PartyInvoice < ApplicationRecord
   validates :party_code, presence: true, length: { maximum: 15 }
-  validates :invoice_number, presence: true, numericality: true
+  validates :invoice_number, presence: true, numericality: true, uniqueness: true
   has_many :bills
 
   def party_name
@@ -17,6 +17,13 @@ class PartyInvoice < ApplicationRecord
       self.invoice_generated = true
       save
     end
+  end
+
+  def cancel_invoice reason_for_cancellation, revised_invoice
+    self.reason_for_cancellation = reason_for_cancellation
+    self.invoice_cancelled = true
+    self.revised_invoice_id = revised_invoice.id
+    save
   end
 
   def invoice_total
