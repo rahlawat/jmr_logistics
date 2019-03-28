@@ -27,19 +27,27 @@
           <%= @payment_receipt.date %>
         </td>
         <td class="row-right">
-          <strong>Mode Of Payment:</strong>
-        </td>
-        <td>
-          <%= @payment_receipt.mode_of_payment %>
-        </td>
-      </tr>
-      <tr>
-        <td class="row-right">
           <strong>Amount:</strong>
         </td>
         <td>
           <%= number_to_indian_currency(@payment_receipt.amount, text: 'Rs ') %>
         </td>
+      </tr>
+      <tr>
+        <td class="row-right">
+          <strong>Mode Of Payment:</strong>
+        </td>
+        <td>
+          <%= PaymentReceipt.mode_of_payments[@payment_receipt.mode_of_payment.to_sym] %>
+        </td>
+        <% if "cheque".eql? @payment_receipt.mode_of_payment %>
+            <td class="row-right">
+            <strong>Cheque Number:</strong>
+          </td>
+          <td>
+            <%= @payment_receipt.cheque_number %>
+          </td>
+        <% end %>
       </tr>
     </table>
   </div>
@@ -47,6 +55,6 @@
   <% if current_user.admin? %>
     <%= link_to 'Destroy', payment_receipt_path(@payment_receipt),
                   method: :delete,
-                  data: { confirm: 'Are you sure?' }, class: 'button small radius'%>
+                  data: { confirm: 'Are you sure?' }, class: 'btn btn-lg btn-primary'%>
     <% end %>
 </div>

@@ -194,3 +194,14 @@ label.required:after{
   content:"*";
   color: red;
 }
+
+.payment-receipt-field {
+  width: 50%;
+  margin-right: 0px;
+}
+
+.party-name {
+  float:right;
+  font-size:14px;
+  width: 40%;
+}

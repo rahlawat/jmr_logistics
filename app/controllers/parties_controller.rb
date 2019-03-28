@@ -43,6 +43,11 @@ class PartiesController < ApplicationController
     redirect_to parties_path
   end
 
+  def party_by_code
+    @party = Party.find_by_party_code(params[:party_code])
+    render json: @party
+  end
+
   private
   def party_params
     params.require(:party).permit!

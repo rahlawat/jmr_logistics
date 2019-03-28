@@ -2,16 +2,20 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "entries#index"
   resources :truck_details
-  resources :parties
   resources :payment_receipts
   concern :paginatable do
     get '(page/:page)', action: :index, on: :collection, as: ''
   end
+  resources :parties, concerns: :paginatable do
+
+  end
+  get 'parties/party_by_code/:party_code', to: 'parties#party_by_code'
   resources :party_invoices, concerns: :paginatable do
     member do
       patch :unlock
       put :unlock
     end
+    resources :bills
     get 'download', on: :member, to: 'downloads#party_invoice_show'
   end
   resources :entries, concerns: :paginatable do

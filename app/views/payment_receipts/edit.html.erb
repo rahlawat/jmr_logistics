@@ -6,7 +6,10 @@
   <%= form_for :payment_receipt, url: payment_receipt_path(@payment_receipt), method: :patch do |f| %>
     <div class="row shift">
       <%= f.label :party_code %>
-      <%= f.text_field :party_code, class: "form-control" %>
+      <div style="text-align:right;width:100%">
+        <%= f.text_field :party_code, class: "form-control payment-receipt-field" %>
+        <p class="party-name" style="float:right; font-size:14px;"></p>
+      </div>
     </div>
 
     <div class="row shift">

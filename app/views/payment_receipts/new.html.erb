@@ -16,7 +16,10 @@
 
     <div class="row shift">
       <%= f.label :party_code %>
-      <%= f.text_field :party_code, class: "form-control" %>
+      <div style="text-align:right;width:100%">
+        <%= f.text_field :party_code, class: "form-control payment-receipt-field" %>
+        <p class="party-name" style=""></p>
+      </div>
     </div>
 
     <div class="row shift">
