@@ -6,8 +6,8 @@
   <%= form_for :payment_receipt, url: payment_receipt_path(@payment_receipt), method: :patch do |f| %>
     <div class="row shift">
       <%= f.label :party_code %>
+      <%= f.text_field :party_code, class: "form-control payment-receipt-field" %>
       <div style="text-align:right;width:100%">
-        <%= f.text_field :party_code, class: "form-control payment-receipt-field" %>
         <p class="party-name" style="float:right; font-size:14px;"></p>
       </div>
     </div>
@@ -21,13 +21,6 @@
       <%= f.label 'Mode of Payment:' %>
       <%= f.select :mode_of_payment, PaymentReceipt.mode_of_payments.map {|k,v| v}, selected: PaymentReceipt.mode_of_payments[@payment_receipt.mode_of_payment.to_sym], class: "form-control" %>
     </div>
-
-    <%#= content_tag :div, class: 'js-dependent-fields', data: { 'select-id': 'payment_receipt_mode_of_payment', 'option-value': 'Cheque'} do %>
-<!--      <div class="row shift">-->
-        <%#= f.label :cheque_number %>
-        <%#= f.text_field :cheque_number, class: "form-control" %>
-<!--      </div>-->
-    <%# end %>
 
     <div class="row shift cheque-details hidden">
       <%= f.label :cheque_number %>
