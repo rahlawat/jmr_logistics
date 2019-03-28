@@ -16,15 +16,9 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
-//= require underscore
-//= require dependent-fields
 //= require_tree .
 
 
 $(document).on('turbolinks:load',function(){
     $('.datepicker').datepicker();
-});
-
-$(document).ready(function() {
-    DependentFields.bind()
 });
