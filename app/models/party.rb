@@ -9,4 +9,5 @@ class Party < ApplicationRecord
             length: { maximum: 80 }
 
   has_many :payment_receipts
+  has_many :opening_balances
 end

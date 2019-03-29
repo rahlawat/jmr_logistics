@@ -34,6 +34,39 @@
         </td>
       </tr>
     </table>
+
+    <div style="text-align:right;width:100%">
+    <span style="float:left">
+      <h5>Opening Balances</h5>
+    </span>
+      <p style="float:right; font-size:13px;"><%= link_to 'Add Opening Balance', new_party_opening_balance_path(@party.id) %></p>
+    </div>
+    <% if @party.opening_balances.empty? %>
+      <div class="no-record">
+        No Opening Balances for this party yet.
+      </div>
+    <% else %>
+      <table class="table table-striped">
+        <% @party.opening_balances.each do |opening_balance| %>
+          <tr>
+            <td class="row-right">
+              <strong>Year:</strong>
+            </td>
+            <td>
+              <%= opening_balance.year %>
+            </td>
+
+            <td class="row-right">
+              <strong>Balance:</strong>
+            </td>
+            <td>
+              <%= number_to_indian_currency(opening_balance.balance, text: 'Rs ') %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+
   </div>
   <%= link_to 'Back', parties_path, class: "btn btn-lg btn-primary" %>
 </div>

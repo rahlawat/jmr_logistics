@@ -1,0 +1,43 @@
+<div class="jumbotron">
+  <div class="heading">
+    <h3>Edit Opening Balance</h3>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      <dl class="dl-horizontal">
+        <dt>Party Code:</dt>
+        <dd><%= @party.party_code %></dd>
+      </dl>
+    </div>
+    <div class="col-xs-6">
+      <dl class="dl-horizontal">
+        <dt>Party Name:</dt>
+        <dd><%= @party.party_name %></dd>
+      </dl>
+    </div>
+  </div>
+  <%= form_for([@party, @opening_balance]) do |f| %>
+    <% if @opening_balance.errors.any? %>
+      <div id="error_explanation">
+        Please enter valid values
+        <ul>
+          <% @opening_balance.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="row shift">
+      <%= f.label :year, class: "right inline" %>
+      <%= f.text_field :year, class: "form-control" %>
+    </div>
+    <div class="row shift">
+      <%= f.label :balance %>
+      <%= f.text_field :balance,  class: "form-control" %>
+    </div>
+
+    <%= link_to 'Back', party_path(@party), class: "btn btn-lg btn-primary" %>
+    <%= f.submit class: "btn btn-lg btn-primary"%>
+  <% end %>
+
+</div>

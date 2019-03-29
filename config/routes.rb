@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     get '(page/:page)', action: :index, on: :collection, as: ''
   end
   resources :parties, concerns: :paginatable do
-
+    resources :opening_balances
   end
   get 'parties/party_by_code/:party_code', to: 'parties#party_by_code'
   resources :party_invoices, concerns: :paginatable do

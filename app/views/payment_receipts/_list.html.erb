@@ -20,7 +20,9 @@
         <td><%= payment_receipt.mode_of_payment %></td>
         <td><%= payment_receipt.amount %></td>
         <td align="center"><%= link_to 'Show', payment_receipt_path(payment_receipt), class: 'button small radius' %></td>
-        <td><%= link_to 'Edit', edit_payment_receipt_path(payment_receipt), class: 'button small radius' %></td>
+        <% if current_user.admin? %>
+          <td><%= link_to 'Edit', edit_payment_receipt_path(payment_receipt), class: 'button small radius' %></td>
+        <% end %>
       </tr>
     <% end %>
     </tbody>

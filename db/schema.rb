@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190327114235) do
+ActiveRecord::Schema.define(version: 20190329110747) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,13 @@ ActiveRecord::Schema.define(version: 20190327114235) do
     t.index ["party_invoice_id"], name: "index_entries_on_party_invoice_id", using: :btree
   end
 
+  create_table "opening_balances", force: :cascade do |t|
+    t.integer "year"
+    t.integer "amount"
+    t.integer "party_id"
+    t.index ["party_id"], name: "index_opening_balances_on_party_id", using: :btree
+  end
+
   create_table "parties", force: :cascade do |t|
     t.string "party_name"
     t.string "party_code"
@@ -93,7 +100,6 @@ ActiveRecord::Schema.define(version: 20190327114235) do
   end
 
   create_table "payment_receipts", force: :cascade do |t|
-    t.string   "party_code"
     t.string   "mode_of_payment"
     t.date     "date"
     t.integer  "amount"
@@ -101,6 +107,7 @@ ActiveRecord::Schema.define(version: 20190327114235) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "party_id"
+    t.string   "party_code"
     t.index ["party_id"], name: "index_payment_receipts_on_party_id", using: :btree
   end
 
@@ -146,6 +153,7 @@ ActiveRecord::Schema.define(version: 20190327114235) do
   add_foreign_key "bills", "entries"
   add_foreign_key "bills", "party_invoices"
   add_foreign_key "entries", "party_invoices"
+  add_foreign_key "opening_balances", "parties"
   add_foreign_key "payment_receipts", "parties"
   add_foreign_key "payment_summaries", "entries"
 end
