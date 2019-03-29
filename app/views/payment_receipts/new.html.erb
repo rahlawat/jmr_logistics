@@ -44,6 +44,16 @@
       <%= f.text_field :amount, class: "form-control" %>
     </div>
 
+    <div class="row shift">
+      <%= f.label :depository_bank %>
+      <%= f.text_field :depository_bank, class: "form-control" %>
+    </div>
+
+    <div class="row shift">
+      <%= f.label :remark %>
+      <%= f.text_field :remark, class: "form-control" %>
+    </div>
+
     <%= link_to 'Back', payment_receipts_path, class: 'btn btn-lg btn-primary' %>
     <%= f.submit class: "btn btn-lg btn-primary"%>
   <% end %>
