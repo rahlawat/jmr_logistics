@@ -65,7 +65,7 @@
           <td><%= bill.freight %></td>
           <td><%= bill.entry.party_advance_2 %></td>
           <td><%= bill.balance %></td>
-          <td align="center"><%= link_to 'Show', show_bill_entry_path(bill.entry), class: 'button small radius' %></td>
+          <td align="center"><%= link_to 'Show', entry_path(bill.entry), class: 'button small radius' %></td>
         </tr>
       <% end %>
       </tbody>
