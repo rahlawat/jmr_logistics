@@ -38,8 +38,8 @@ class OpeningBalancesController < ApplicationController
   def update
     @party = Party.find(params[:party_id])
     opening_balance_for_year = @party.opening_balances.find_by_year(opening_balance_params[:year])
-    if opening_balance_for_year.nil?
-      @opening_balance = OpeningBalance.find(params[:id])
+    @opening_balance = OpeningBalance.find(params[:id])
+    if (opening_balance_for_year.nil? || @opening_balance.id == opening_balance_for_year.id)
 
       if @opening_balance.update(opening_balance_params)
         redirect_to @party
@@ -47,8 +47,8 @@ class OpeningBalancesController < ApplicationController
         render 'edit'
       end
     else
-      flash.now[:error] = "Opening balance for this party already exists."
-      render 'edit' and return
+      flash.now[:error] = "Opening balance for this year for this party already exists."
+      render 'edit'
     end
   end
 

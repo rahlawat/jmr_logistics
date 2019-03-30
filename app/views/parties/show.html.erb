@@ -47,21 +47,20 @@
       </div>
     <% else %>
       <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Year</th>
+          <th>Balance</th>
+          <th colspan="2"></th>
+        </tr>
+        </thead>
         <% @party.opening_balances.each do |opening_balance| %>
           <tr>
-            <td class="row-right">
-              <strong>Year:</strong>
-            </td>
-            <td>
-              <%= opening_balance.year %>
-            </td>
-
-            <td class="row-right">
-              <strong>Balance:</strong>
-            </td>
-            <td>
-              <%= number_to_indian_currency(opening_balance.balance, text: 'Rs ') %>
-            </td>
+            <td><%= opening_balance.year %></td>
+            <td><%= number_to_indian_currency(opening_balance.balance, text: 'Rs ') %></td>
+            <% if current_user.admin? %>
+              <td align="center"><%= link_to 'Edit', edit_party_opening_balance_path(@party.id, opening_balance), class: 'button small radius' %></td>
+            <% end %>
           </tr>
         <% end %>
       </table>
