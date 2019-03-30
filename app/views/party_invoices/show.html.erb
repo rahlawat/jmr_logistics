@@ -71,10 +71,7 @@
       </tbody>
     </table>
     <% end %>
-    <%= link_to "Download PDF",
-                download_party_invoice_path(@party_invoice, format: "pdf"),
-                target: "_blank",
-                class: "btn btn-lg btn-primary" %>
+    <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#invoiceDateModal">Download PDF</button>
     <% if (current_user.admin? && @party_invoice.invoice_generated) %>
       <%= link_to "Unlock",
                     unlock_party_invoice_path(@party_invoice),
@@ -82,5 +79,27 @@
                     class: "btn btn-lg btn-primary" %>
     <% end %>
     <%= link_to 'Back', party_invoices_path, class: "btn btn-lg btn-primary" %>
+    <div id="invoiceDateModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Enter the invoice date</h4>
+          </div>
+          <div class="modal-body">
+            <%= form_for :party_invoice, url: download_party_invoice_path(@party_invoice, format: "pdf"), formtarget: :_blank, method: :get do |f| %>
+              <div class="shift mb-1">
+                <%= f.label :invoice_date, class: "required" %>
+                <%= f.text_field :invoice_date, "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
+              </div>
+              <td><%= f.submit 'Download', class: "btn btn-lg btn-primary",  input_html: {"data-dismiss": "modal", "aria-hidden": "true" } %></td>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+  </div>
   </div>
 </div>

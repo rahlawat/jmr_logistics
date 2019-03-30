@@ -40,7 +40,7 @@ class DownloadsController < ApplicationController
 
   def party_invoice_pdf
     party_invoice = PartyInvoice.find(params[:id])
-    party_invoice.set_invoice_date
+    party_invoice.set_invoice_date params[:party_invoice][:invoice_date]
     PartyInvoicePdf.new(party_invoice)
   end
 

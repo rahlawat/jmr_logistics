@@ -11,12 +11,10 @@ class PartyInvoice < ApplicationRecord
     Party.find_by_party_code(party_code)
   end
 
-  def set_invoice_date
-    if self.invoice_date.nil?
-      self.invoice_date = Date.today
-      self.invoice_generated = true
-      save
-    end
+  def set_invoice_date invoice_date
+    self.invoice_date = invoice_date
+    self.invoice_generated = true
+    save
   end
 
   def cancel_invoice reason_for_cancellation, revised_invoice
