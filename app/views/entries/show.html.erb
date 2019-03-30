@@ -1,6 +1,9 @@
 <div class="jumbotron">
-  <div class="heading-2">
-    <h4>Entry</h4>
+  <div class="heading-2" style="text-align:right;width:100%">
+    <span style="float:left">
+      <h4>Entry</h4>
+    </span>
+    <p style="float:right; font-size:13px;"><%= link_to 'Edit Entry', edit_entry_path(@entry) %></p>
   </div>
   <div class="show">
     <table class="table table-striped">
@@ -90,8 +93,11 @@
     </div>
   <% else %>
     <div>
-      <div class="heading-2">
-        <h4>G R Entry</h4>
+      <div class="heading-2" style="text-align:right;width:100%">
+        <span style="float:left">
+          <h4>G R Entry</h4>
+        </span>
+        <p style="float:right; font-size:13px;"><%= link_to 'Edit Payment Summary', edit_entry_payment_summary_path(@entry.id, @entry.payment_summary) %></p>
       </div>
       <%= render 'payment_summaries/show' %>
     </div>
@@ -132,8 +138,11 @@
     </div>
   <% else %>
     <div>
-      <div class="heading-2">
-        <h4>Bill Details</h4>
+      <div class="heading-2" style="text-align:right;width:100%">
+        <span style="float:left">
+          <h4>Bill Details</h4>
+        </span>
+        <p style="float:right; font-size:13px;"><%= link_to 'Edit Bill Details', edit_entry_bill_path(@entry.id, @entry.bill.id) %></p>
       </div>
       <%= render 'bills/show' %>
     </div>
