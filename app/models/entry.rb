@@ -13,7 +13,6 @@ class Entry < ApplicationRecord
   validate :check_truck_number_is_present
   validate :check_party_code_is_present
   has_one :payment_summary, dependent: :destroy
-  has_one :bill_entry, dependent: :destroy
   has_one :bill, dependent: :destroy
 
   # , format: {with: ''}
@@ -40,24 +39,6 @@ class Entry < ApplicationRecord
 
   def paid_to_truck_owner
     freight1 - self_advance_1 - cash_to_driver - commission - payment_summary.shortage2 - payment_summary.payment_charges
-  end
-
-  def tds
-    if(bill_entry)
-      (freight2 * bill_entry.tds_percentage) / 100
-    end
-  end
-
-  def bill_payment
-    if(bill_entry)
-      freight2 - party_advance_2 - payment_summary.shortage2 - tds
-    end
-  end
-
-  def loss_or_profit
-    if(bill_entry)
-      bill_payment - freight2
-    end
   end
 
   def self.search(truck_number, date)
