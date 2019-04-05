@@ -24,12 +24,6 @@
           <% else %>
               <td><%= link_to 'Edit Payment Summary', edit_entry_payment_summary_path(entry.id, entry.payment_summary.id), class: 'button small radius' %></td>
           <% end %>
-          <% if entry.bill_entry.nil? %>
-              <td><%= link_to 'Add Bill Entry', new_entry_bill_entry_path(entry.id), class: 'button small radius' %></td>
-          <% else %>
-              <td><%= link_to 'Edit Bill Entry', edit_entry_bill_entry_path(entry.id, entry.bill_entry.id), class: 'button small radius' %></td>
-          <% end %>
-
           <% if entry.bill.nil? %>
             <td><%= link_to 'Add Bill Details', new_entry_bill_path(entry.id), class: 'button small radius' %></td>
           <% else %>

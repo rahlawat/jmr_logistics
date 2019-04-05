@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190329154139) do
+ActiveRecord::Schema.define(version: 20190405044134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20190329154139) do
   end
 
   create_table "bills", force: :cascade do |t|
-    t.integer  "bill_number"
+    t.string   "bill_number"
     t.decimal  "weight2"
     t.decimal  "kanta2"
     t.integer  "tds_percentage"
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20190329154139) do
 
   create_table "party_invoices", force: :cascade do |t|
     t.string   "party_code"
-    t.integer  "invoice_number"
+    t.string   "invoice_number"
     t.date     "invoice_date"
     t.boolean  "invoice_generated"
     t.datetime "created_at",                              null: false

@@ -9,6 +9,7 @@ class BillsController < ApplicationController
   def create
     @entry = Entry.find(params[:entry_id])
     @bill = @entry.build_bill(bill_params)
+    binding.pry
     @party_invoice = PartyInvoice.find_by_invoice_number(bill_params[:bill_number])
     if(@party_invoice.nil?)
       @bill.create_party_invoice(party_code: @entry.party_code, invoice_number: bill_params[:bill_number])

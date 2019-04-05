@@ -1,6 +1,6 @@
 class PartyInvoice < ApplicationRecord
   validates :party_code, presence: true, length: { maximum: 15 }
-  validates :invoice_number, presence: true, numericality: true, uniqueness: true
+  validates :invoice_number, presence: true, uniqueness: true, length: { maximum: 15 }
   has_many :bills
 
   def party_name

@@ -109,23 +109,6 @@
       <%= render 'entries/details' %>
     </div>
   <% end %>
-  <% if @entry.bill_entry.nil? %>
-    <div>
-      <div class="heading-2">
-        <h4>Bill Entry</h4>
-      </div>
-      <div class="align-center">
-        <%= link_to 'Add Bill Entry', new_entry_bill_entry_path(@entry.id) %>
-      </div>
-    </div>
-  <% else %>
-    <div>
-      <div class="heading-2">
-        <h4>Bill Entry</h4>
-      </div>
-      <%= render 'bill_entries/show' %>
-    </div>
-  <% end %>
 
   <% if @entry.bill.nil? %>
     <div>
