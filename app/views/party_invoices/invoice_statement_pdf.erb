@@ -1,0 +1,28 @@
+<div class="party-invoice">
+  <div class="big-font space-mx invoice-statement">
+    <table class="table table-condensed">
+      <thead>
+      <tr>
+        <th>Date</th>
+        <th>Invoice Number</th>
+        <th>Party Name & Address</th>
+        <th>Party GST Number</th>
+        <th>Amount (Rs)</th>
+        <th>Remarks</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% party_invoices.each do |party_invoice| %>
+        <tr>
+          <td><%= party_invoice.invoice_date %></td>
+          <td><%= party_invoice.invoice_number %></td>
+          <td><%= party_invoice.party_name %>, <%= party_invoice.party.address %></td>
+          <td><%= party_invoice.party.gst_in %></td>
+          <td><%= number_to_indian_currency(party_invoice.invoice_amount, text: '') %></td>
+          <td></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

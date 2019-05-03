@@ -53,11 +53,15 @@ body {
   margin-bottom: 60px;
 }
 
-.payment-details {
+.payment-details, .invoice-statement {
   margin-top: 60px;
   font-size: 20px;
   border-top: solid thin #000000;
   padding-bottom: 0;
+}
+
+.invoice-statement {
+  border-bottom: solid thin #000000;
 }
 
 .payment-details td, .payment-details th {
@@ -66,6 +70,13 @@ body {
   border-left: 1px solid #000;
   border-right: 1px solid #000;
   padding-right: 5px;
+}
+
+.invoice-statement td, .invoice-statement th {
+  line-height: 30px;
+  text-align: center;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
 }
 
 .payment-details td:first-child, .payment-details th:first-child {
@@ -99,7 +110,7 @@ body {
   border-right: none;
 }
 
-.payment-details thead {
+.payment-details thead, .invoice-statement thead {
   border-bottom: solid thin #000000;
 }
 

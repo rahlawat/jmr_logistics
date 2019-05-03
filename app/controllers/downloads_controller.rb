@@ -19,6 +19,15 @@ class DownloadsController < ApplicationController
     end
   end
 
+  def invoice_statement_show
+    respond_to do |format|
+      format.pdf { send_invoice_statement_pdf }
+      if Rails.env.development?
+        format.html { render_sample_invoice_statement_html }
+      end
+    end
+  end
+
   private
 
   def entry_pdf
@@ -44,9 +53,21 @@ class DownloadsController < ApplicationController
     PartyInvoicePdf.new(party_invoice)
   end
 
+  def invoice_statement_pdf
+    party_invoices = PartyInvoice.order(:invoice_number)
+    InvoiceStatementPdf.new(party_invoices)
+  end
+
   def send_party_invoice_pdf
     send_file party_invoice_pdf.to_pdf,
               filename: party_invoice_pdf.filename,
+              type: "application/pdf",
+              disposition: "inline"
+  end
+
+  def send_invoice_statement_pdf
+    send_file invoice_statement_pdf.to_pdf,
+              filename: invoice_statement_pdf.filename,
               type: "application/pdf",
               disposition: "inline"
   end
@@ -57,5 +78,9 @@ class DownloadsController < ApplicationController
 
   def render_sample_party_invoice_html
     render template: "party_invoices/pdf", layout: "bill_pdf", locals: { party_invoice: @party_invoice}
+  end
+
+  def render_sample_invoice_statement_html
+    render template: "party_invoices/invoice_statement_pdf", layout: "bill_pdf", locals: { party_invoices: PartyInvoice.order(:invoice_number)}
   end
 end

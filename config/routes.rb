@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :bills
     get 'download', on: :member, to: 'downloads#party_invoice_show'
   end
+  get 'download_statement', to: 'downloads#invoice_statement_show'
   resources :entries, concerns: :paginatable do
     resource :download, only: [:show]
     resources :payment_summaries

@@ -17,6 +17,14 @@ class PartyInvoice < ApplicationRecord
     save
   end
 
+  def invoice_amount
+    amount = 0
+    self.bills.each do |bill|
+      amount += bill.balance
+    end
+    amount
+  end
+
   def cancel_invoice reason_for_cancellation, revised_invoice
     self.reason_for_cancellation = reason_for_cancellation
     self.invoice_cancelled = true
