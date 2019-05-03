@@ -7,8 +7,7 @@ class InvoiceStatementPdf
   end
 
   def to_pdf
-    kit = PDFKit.new(as_html, page_size: 'A4',
-                     'margin-bottom': '2.75in')
+    kit = PDFKit.new(as_html, page_size: 'A3')
     kit.stylesheets << 'app/assets/stylesheets/application.scss'
     kit.to_file("#{Rails.root}/public/invoice_statement.pdf")
   end
