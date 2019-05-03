@@ -60,10 +60,6 @@ body {
   padding-bottom: 0;
 }
 
-.invoice-statement {
-  border-bottom: solid thin #000000;
-}
-
 .payment-details td, .payment-details th {
   text-align: right;
   line-height: 30px;
@@ -77,6 +73,10 @@ body {
   text-align: center;
   border-left: 1px solid #000;
   border-right: 1px solid #000;
+}
+
+.invoice-statement tr {
+  border-bottom: 1px solid #000;
 }
 
 .payment-details td:first-child, .payment-details th:first-child {
