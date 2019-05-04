@@ -215,6 +215,17 @@ label.required:after{
   margin-right: 0px;
 }
 
+table, tr, td, th, tbody, thead, tfoot {
+  page-break-inside: avoid !important;
+}
+
+.report-title {
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: underline;
+  margin-top: 20px;
+}
+
 .party-name {
   float:right;
   font-size:14px;
