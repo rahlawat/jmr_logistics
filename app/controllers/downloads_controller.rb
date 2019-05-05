@@ -28,6 +28,15 @@ class DownloadsController < ApplicationController
     end
   end
 
+  def expenses_show
+    respond_to do |format|
+      format.pdf { send_expenses_pdf }
+      if Rails.env.development?
+        format.html { render_sample_expenses_html }
+      end
+    end
+  end
+
   private
 
   def entry_pdf
@@ -56,8 +65,15 @@ class DownloadsController < ApplicationController
   def invoice_statement_pdf
     from_date = params[:invoice_statement][:from_date]
     to_date = params[:invoice_statement][:to_date]
-    party_invoices = PartyInvoice.where(:invoice_generated => true, :invoice_date => from_date..to_date).order(:invoice_number)
-    InvoiceStatementPdf.new(party_invoices)
+    party_invoices = PartyInvoice.where(:invoice_generated => true, :invoice_date => from_date..to_date).order(invoice_date: :asc)
+    InvoiceStatementPdf.new(party_invoices, from_date, to_date)
+  end
+
+  def expenses_pdf
+    from_date = params[:expense_statement][:from_date]
+    to_date = params[:expense_statement][:to_date]
+    party_invoices = Entry.where( :invoice_date => from_date..to_date).order(invoice_date: :asc)
+    InvoiceStatementPdf.new(party_invoices, from_date, to_date)
   end
 
   def send_party_invoice_pdf
@@ -74,6 +90,14 @@ class DownloadsController < ApplicationController
               disposition: "inline"
   end
 
+  def send_expenses_pdf
+    send_file expenses_pdf.to_pdf,
+              filename: expenses_pdf.filename,
+              type: "application/pdf",
+              disposition: "inline"
+  end
+
+
   def render_sample_html
     render template: "entries/pdf", layout: "bill_pdf", locals: { entry: @entry}
   end
@@ -83,6 +107,13 @@ class DownloadsController < ApplicationController
   end
 
   def render_sample_invoice_statement_html
-    render template: "party_invoices/invoice_statement_pdf", layout: "bill_pdf", locals: { party_invoices: PartyInvoice.order(:invoice_number)}
+    from_date = params[:invoice_statement][:from_date]
+    to_date = params[:invoice_statement][:to_date]
+    render template: "party_invoices/invoice_statement_pdf", layout: "bill_pdf", locals: {
+        party_invoices: PartyInvoice.where(:invoice_generated => true, :invoice_date => from_date..to_date).order(:invoice_number)}
+  end
+
+  def render_sample_expenses_html
+    render template: "entries/expenses_pdf", layout: "bill_pdf", locals: { party_invoices: Entry.all}
   end
 end
