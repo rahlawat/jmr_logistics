@@ -27,7 +27,7 @@
           <td><%= entry.truck_number %></td>
           <td><%= number_to_indian_currency(entry.self_advance_1, text: '') %></td>
           <td><%= number_to_indian_currency(entry.cash_to_driver, text: '') %></td>
-          <td></td>
+          <td><%= number_to_indian_currency(entry.paid_to_truck_owner, text: '') %></td>
           <td><%= entry.invoice_number %></td>
           <td><%= entry.invoice_date %></td>
         </tr>
