@@ -34,27 +34,27 @@
           </tr>
           <tr class="table-space">
             <td>Advance</td>
-            <td class="text-right">- <%= entry.self_advance_1 %></td>
+            <td class="text-right">- <%= number_to_indian_currency(entry.self_advance_1, text: '') %></td>
           </tr>
           <tr class="table-space">
             <td>CD</td>
-            <td class="text-right">- <%= entry.cash_to_driver %></td>
+            <td class="text-right">- <%= number_to_indian_currency(entry.cash_to_driver, text: '') %></td>
           </tr>
           <tr class="table-space">
             <td>Commission</td>
-            <td class="text-right">- <%= entry.commission %></td>
+            <td class="text-right">- <%= number_to_indian_currency(entry.commission, text: '') %></td>
           </tr>
           <tr class="table-space">
             <td>Payment Charges</td>
-            <td class="text-right">- <%= entry.payment_summary.payment_charges %></td>
+            <td class="text-right">- <%= number_to_indian_currency(entry.payment_summary.payment_charges, text: '') %></td>
           </tr>
           <tr class="table-space">
             <td>Shortage</td>
-            <td class="text-right">- <%= entry.payment_summary.shortage2 %></td>
+            <td class="text-right">- <%= number_to_indian_currency(entry.payment_summary.shortage2, text: '') %></td>
           </tr>
           <tr class="table-space">
             <td>Balance Amount Paid (Rupees)</td>
-            <td class="border text-right"> <%= entry.paid_to_truck_owner %></td>
+            <td class="border text-right"> <%= number_to_indian_currency(entry.paid_to_truck_owner, text: '') %></td>
           </tr>
         </tbody>
       </table>
@@ -108,27 +108,27 @@
         </tr>
         <tr class="table-space">
           <td>Advance</td>
-          <td class="text-right">- <%= entry.self_advance_1 %></td>
+          <td class="text-right">- <%= number_to_indian_currency(entry.self_advance_1, text: '') %></td>
         </tr>
         <tr class="table-space">
           <td>CD</td>
-          <td class="text-right">- <%= entry.cash_to_driver %></td>
+          <td class="text-right">- <%= number_to_indian_currency(entry.cash_to_driver, text: '') %></td>
         </tr>
         <tr class="table-space">
           <td>Commission</td>
-          <td class="text-right">- <%= entry.commission %></td>
+          <td class="text-right">- <%= number_to_indian_currency(entry.commission, text: '') %></td>
         </tr>
         <tr class="table-space">
           <td>Payment Charges</td>
-          <td class="text-right">- <%= entry.payment_summary.payment_charges %></td>
+          <td class="text-right">- <%= number_to_indian_currency(entry.payment_summary.payment_charges, text: '') %></td>
         </tr>
         <tr class="table-space">
           <td>Shortage</td>
-          <td class="text-right">- <%= entry.payment_summary.shortage2 %></td>
+          <td class="text-right">- <%= number_to_indian_currency(entry.payment_summary.shortage2, text: '') %></td>
         </tr>
         <tr class="table-space">
           <td>Balance Amount Paid (Rupees)</td>
-          <td class="border text-right"> <%= entry.paid_to_truck_owner %></td>
+          <td class="border text-right"> <%= number_to_indian_currency(entry.paid_to_truck_owner, text: '') %></td>
         </tr>
         </tbody>
       </table>
