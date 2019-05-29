@@ -2,8 +2,10 @@ require "render_anywhere"
 class ExpenseStatementPdf
   include RenderAnywhere
 
-  def initialize(entries)
+  def initialize(entries, from_date, to_date)
     @entries = entries
+    @from_date = from_date
+    @to_date = to_date
   end
 
   def to_pdf
@@ -13,7 +15,7 @@ class ExpenseStatementPdf
   end
 
   def filename
-    "Invoice_Statement_#{@party_invoices.count}.pdf"
+    "Expense_Statement_#{@from_date}_#{@to_date}.pdf"
   end
 
   private
@@ -21,6 +23,6 @@ class ExpenseStatementPdf
   attr_reader :party_invoices
 
   def as_html
-    render template: "party_invoices/invoice_statement_pdf", layout: "bill_pdf", locals: { party_invoices: @party_invoices }
+    render template: "entries/expense_statement_pdf", layout: "bill_pdf", locals: { entries: @entries }
   end
 end

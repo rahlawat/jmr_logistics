@@ -72,8 +72,8 @@ class DownloadsController < ApplicationController
   def expenses_pdf
     from_date = params[:expense_statement][:from_date]
     to_date = params[:expense_statement][:to_date]
-    party_invoices = Entry.where( :invoice_date => from_date..to_date).order(invoice_date: :asc)
-    InvoiceStatementPdf.new(party_invoices, from_date, to_date)
+    entries = Entry.where( :invoice_date => from_date..to_date).order(invoice_date: :asc)
+    ExpenseStatementPdf.new(entries, from_date, to_date)
   end
 
   def send_party_invoice_pdf
@@ -114,6 +114,6 @@ class DownloadsController < ApplicationController
   end
 
   def render_sample_expenses_html
-    render template: "entries/expenses_pdf", layout: "bill_pdf", locals: { party_invoices: Entry.all}
+    render template: "entries/expenses_pdf", layout: "bill_pdf", locals: { entries: Entry.all}
   end
 end
