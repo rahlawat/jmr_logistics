@@ -19,7 +19,7 @@
         <td class="col-sm-1">Cash to Driver (Rs)</td>
         <td class="col-sm-1">Balance Payment</td>
         <td class="col-sm-1">Total</td>
-        <td class="col-sm-2">Truck Number</td>
+        <td class="col-sm-4">Truck Number</td>
         <td class="col-sm-1">Date of Dispatch</td>
         <td class="col-sm-1">Truck Owner</td>
       </tr>
@@ -31,7 +31,7 @@
           <td class="col-sm-1"><%= number_to_indian_currency(entry.cash_to_driver, text: '') %></td>
           <td class="col-sm-1"><%= number_to_indian_currency(entry.paid_to_truck_owner, text: '') %></td>
           <td class="col-sm-1"><%= number_to_indian_currency(entry.self_advance_1 + entry.cash_to_driver + entry.paid_to_truck_owner, text: '') %></td>
-          <td class="col-sm-2"><%= entry.truck_number %></td>
+          <td class="col-sm-4"><%= entry.truck_number %></td>
           <td class="col-sm-1"><%= entry.entry_date %></td>
           <td class="col-sm-1"><%= truncate(entry.truck_owner, length: 6) %></td>
         </tr>
