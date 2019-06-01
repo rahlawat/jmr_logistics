@@ -13,27 +13,27 @@
     <table class="table table-condensed">
       <tbody>
       <tr class="table-header">
-        <td class="col-sm-1">Invoice Date</td>
-        <td class="col-sm-1">Invoice Number</td>
-        <td class="col-sm-1">Advance to Owner (Rs)</td>
-        <td class="col-sm-1">Cash to Driver (Rs)</td>
-        <td class="col-sm-1">Balance Payment</td>
-        <td class="col-sm-1">Total</td>
-        <td class="col-sm-4">Truck Number</td>
-        <td class="col-sm-1">Date of Dispatch</td>
-        <td class="col-sm-1">Truck Owner</td>
+        <td style="width:10%">Invoice Date</td>
+        <td style="width:10%">Invoice Number</td>
+        <td style="width:10%">Advance to Owner (Rs)</td>
+        <td style="width:10%">Cash to Driver (Rs)</td>
+        <td style="width:10%">Balance Payment</td>
+        <td style="width:10%">Total</td>
+        <td style="width:20%">Truck Number</td>
+        <td style="width:10%">Date of Dispatch</td>
+        <td style="width:10%">Truck Owner</td>
       </tr>
       <% entries.each do |entry| %>
         <tr>
-          <td class="col-sm-1"><%= entry.invoice_date %></td>
-          <td class="col-sm-1"><%= entry.invoice_number %></td>
-          <td class="col-sm-1"><%= number_to_indian_currency(entry.self_advance_1, text: '') %></td>
-          <td class="col-sm-1"><%= number_to_indian_currency(entry.cash_to_driver, text: '') %></td>
-          <td class="col-sm-1"><%= number_to_indian_currency(entry.paid_to_truck_owner, text: '') %></td>
-          <td class="col-sm-1"><%= number_to_indian_currency(entry.self_advance_1 + entry.cash_to_driver + entry.paid_to_truck_owner, text: '') %></td>
-          <td class="col-sm-4"><%= entry.truck_number %></td>
-          <td class="col-sm-1"><%= entry.entry_date %></td>
-          <td class="col-sm-1"><%= truncate(entry.truck_owner, length: 6) %></td>
+          <td style="width:10%"><%= entry.invoice_date %></td>
+          <td style="width:10%"><%= entry.invoice_number %></td>
+          <td style="width:10%"><%= number_to_indian_currency(entry.self_advance_1, text: '') %></td>
+          <td style="width:10%"><%= number_to_indian_currency(entry.cash_to_driver, text: '') %></td>
+          <td style="width:10%"><%= number_to_indian_currency(entry.paid_to_truck_owner, text: '') %></td>
+          <td style="width:10%"><%= number_to_indian_currency(entry.self_advance_1 + entry.cash_to_driver + entry.paid_to_truck_owner, text: '') %></td>
+          <td style="width:20%"><%= entry.truck_number %></td>
+          <td style="width:10%"><%= entry.entry_date %></td>
+          <td style="width:10%"><%= truncate(entry.truck_owner, length: 6) %></td>
         </tr>
       <% end %>
       </tbody>
