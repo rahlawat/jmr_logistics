@@ -13,23 +13,27 @@
     <table class="table table-condensed">
       <tbody>
       <tr class="table-header">
-        <td>Date of Dispatch</td>
-        <td>Truck Number</td>
+        <td>Invoice Date</td>
+        <td>Invoice Number</td>
         <td>Advance to Owner (Rs)</td>
         <td>Cash to Driver (Rs)</td>
         <td>Balance Payment</td>
-        <td>Invoice Number</td>
-        <td>Invoice Date</td>
+        <td>Total</td>
+        <td>Truck Number</td>
+        <td>Date of Dispatch</td>
+        <td>Truck Owner</td>
       </tr>
       <% entries.each do |entry| %>
         <tr>
-          <td><%= entry.entry_date %></td>
-          <td><%= entry.truck_number %></td>
+          <td><%= entry.invoice_date %></td>
+          <td><%= entry.invoice_number %></td>
           <td><%= number_to_indian_currency(entry.self_advance_1, text: '') %></td>
           <td><%= number_to_indian_currency(entry.cash_to_driver, text: '') %></td>
           <td><%= number_to_indian_currency(entry.paid_to_truck_owner, text: '') %></td>
-          <td><%= entry.invoice_number %></td>
-          <td><%= entry.invoice_date %></td>
+          <td><%= number_to_indian_currency(entry.self_advance_1 + entry.cash_to_driver + entry.paid_to_truck_owner, text: '') %></td>
+          <td><%= entry.truck_number %></td>
+          <td><%= entry.entry_date %></td>
+          <td><%= truncate(entry.truck_owner, length: 6) %></td>
         </tr>
       <% end %>
       </tbody>

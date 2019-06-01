@@ -33,6 +33,10 @@ class Entry < ApplicationRecord
     end
   end
 
+  def truck_owner
+    TruckDetails.find_by_truck_number(self.truck_number).truck_owner
+  end
+
   def cash_to_driver
     (freight1 * 4) / 100
   end
