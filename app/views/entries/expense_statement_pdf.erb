@@ -33,7 +33,7 @@
           <td style="width:10%"><%= number_to_indian_currency(entry.self_advance_1 + entry.cash_to_driver + entry.paid_to_truck_owner, text: '') %></td>
           <td style="width:14%"><%= entry.truck_number %></td>
           <td style="width:12%"><%= entry.entry_date %></td>
-          <td style="width:14%"><%= truncate(entry.truck_owner, length: 14) %></td>
+          <td style="width:14%"><%= truncate(entry.get_truck_owner, length: 14) %></td>
         </tr>
       <% end %>
       </tbody>

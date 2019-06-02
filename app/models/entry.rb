@@ -33,7 +33,7 @@ class Entry < ApplicationRecord
     end
   end
 
-  def truck_owner
+  def get_truck_owner
     TruckDetails.find_by_truck_number(self.truck_number).truck_owner
   end
 
