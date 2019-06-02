@@ -72,7 +72,7 @@ class DownloadsController < ApplicationController
   def expenses_pdf
     from_date = params[:expense_statement][:from_date]
     to_date = params[:expense_statement][:to_date]
-    entries = Entry.where( :invoice_date => from_date..to_date).order(invoice_date: :asc)
+    entries = Entry.where( :invoice_date => from_date..to_date).order(invoice_number: :asc)
     ExpenseStatementPdf.new(entries, from_date, to_date)
   end
 
