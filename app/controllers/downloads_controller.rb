@@ -19,6 +19,15 @@ class DownloadsController < ApplicationController
     end
   end
 
+  def ledger_show
+    respond_to do |format|
+      format.pdf { send_ledger_pdf }
+      if Rails.env.development?
+        format.html { render_sample_ledger_html }
+      end
+    end
+  end
+
   def invoice_statement_show
     respond_to do |format|
       format.pdf { send_invoice_statement_pdf }
@@ -76,6 +85,15 @@ class DownloadsController < ApplicationController
     ExpenseStatementPdf.new(entries, from_date, to_date)
   end
 
+  def ledger_pdf
+    from_date = params[:ledger][:from_date]
+    to_date = params[:ledger][:to_date]
+    party_code = params[:ledger][:party_code]
+    entries = Entry.where(:party_code => party_code, :invoice_date => from_date..to_date).order(invoice_number: :asc)
+    payment_receipts = PaymentReceipt.where(:party_code => party_code, :date => from_date..to_date).order(date: :asc)
+    ExpenseStatementPdf.new(entries, payment_receipts, from_date, to_date)
+  end
+
   def send_party_invoice_pdf
     send_file party_invoice_pdf.to_pdf,
               filename: party_invoice_pdf.filename,
@@ -93,6 +111,13 @@ class DownloadsController < ApplicationController
   def send_expenses_pdf
     send_file expenses_pdf.to_pdf,
               filename: expenses_pdf.filename,
+              type: "application/pdf",
+              disposition: "inline"
+  end
+
+  def send_ledger_pdf
+    send_file ledger_pdf.to_pdf,
+              filename: ledger_pdf.filename,
               type: "application/pdf",
               disposition: "inline"
   end
