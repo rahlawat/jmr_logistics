@@ -23,6 +23,15 @@
         <td >Credit</td>
         <td >Balance</td>
       </tr>
+      <tr>
+        <td></td>
+        <td>Opening Balance </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><%= balance %> </td>
+      </tr>
       <% payments.each do |payment| %>
         <% if payment.instance_of? PartyInvoice %>
           <tr>
@@ -33,7 +42,7 @@
             <td><%= (payment.invoice_total * payment.bills[0].tds_percentage/100) %> </td>
             <td><%= payment.invoice_total - (payment.invoice_total * payment.bills[0].tds_percentage/100)%></td>
             <td></td>
-            <td><%= balance = (balance - (payment.invoice_total - (payment.invoice_total * payment.bills[0].tds_percentage/100)))%> </td>
+            <td><%= balance = (balance + (payment.invoice_total - (payment.invoice_total * payment.bills[0].tds_percentage/100)))%> </td>
           </tr>
         <% elsif payment.instance_of? PaymentReceipt %>
           <tr>
@@ -43,7 +52,7 @@
             <td></td>
             <td></td>
             <td><%= payment.amount %></td>
-            <td><%= balance = (balance + payment.amount) %></td>
+            <td><%= balance = (balance - payment.amount) %></td>
           </tr>
         <% end %>
       <% end %>
