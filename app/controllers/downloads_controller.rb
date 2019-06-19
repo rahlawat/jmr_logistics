@@ -67,21 +67,21 @@ class DownloadsController < ApplicationController
 
   def party_invoice_pdf
     party_invoice = PartyInvoice.find(params[:id])
-    party_invoice.set_invoice_date params[:party_invoice][:invoice_date]
+    party_invoice.set_invoice_date params[:party_invoice][:date]
     PartyInvoicePdf.new(party_invoice)
   end
 
   def invoice_statement_pdf
     from_date = params[:invoice_statement][:from_date]
     to_date = params[:invoice_statement][:to_date]
-    party_invoices = PartyInvoice.where(:invoice_generated => true, :invoice_date => from_date..to_date).order(invoice_date: :asc)
+    party_invoices = PartyInvoice.where(:invoice_generated => true, :date => from_date..to_date).order(date: :asc)
     InvoiceStatementPdf.new(party_invoices, from_date, to_date)
   end
 
   def expenses_pdf
     from_date = params[:expense_statement][:from_date]
     to_date = params[:expense_statement][:to_date]
-    entries = Entry.where( :invoice_date => from_date..to_date).order(invoice_number: :asc)
+    entries = Entry.where( :date => from_date..to_date).order(invoice_number: :asc)
     ExpenseStatementPdf.new(entries, from_date, to_date)
   end
 
@@ -89,9 +89,14 @@ class DownloadsController < ApplicationController
     from_date = params[:ledger][:from_date]
     to_date = params[:ledger][:to_date]
     party_code = params[:ledger][:party_code]
-    entries = Entry.where(:party_code => party_code, :invoice_date => from_date..to_date).order(invoice_number: :asc)
+    party_invoices = PartyInvoice.where(:party_code => party_code, :date => from_date..to_date, :invoice_generated => true).order(date: :asc)
     payment_receipts = PaymentReceipt.where(:party_code => party_code, :date => from_date..to_date).order(date: :asc)
-    ExpenseStatementPdf.new(entries, payment_receipts, from_date, to_date)
+    party = Party.where(:party_code => party_code).first
+    opening_balance = party.opening_balances.select { |opening_balance|
+      (Time.now.month < 4 && opening_balance.year == Time.now.year - 1 )|| (Time.now.month >= 4 && opening_balance.year == Time.now.year)
+    }
+    @balance = opening_balance[0].balance
+    LedgerPdf.new(party_invoices, payment_receipts, from_date, to_date, party_code)
   end
 
   def send_party_invoice_pdf
@@ -135,10 +140,14 @@ class DownloadsController < ApplicationController
     from_date = params[:invoice_statement][:from_date]
     to_date = params[:invoice_statement][:to_date]
     render template: "party_invoices/invoice_statement_pdf", layout: "bill_pdf", locals: {
-        party_invoices: PartyInvoice.where(:invoice_generated => true, :invoice_date => from_date..to_date).order(:invoice_number)}
+        party_invoices: PartyInvoice.where(:invoice_generated => true, :date => from_date..to_date).order(:invoice_number)}
   end
 
   def render_sample_expenses_html
     render template: "entries/expenses_pdf", layout: "bill_pdf", locals: { entries: Entry.all}
+  end
+
+  def render_sample_ledger_html
+    render template: "parties/ledger_pdf", layout: "bill_pdf", locals: { entries: Entry.all}
   end
 end

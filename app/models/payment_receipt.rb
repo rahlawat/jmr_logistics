@@ -5,4 +5,10 @@ class PaymentReceipt < ApplicationRecord
 
   enum mode_of_payment: { imps: 'IMPS/UPI', cash: 'Cash', neft: 'NEFT/RTGS', cheque: 'Cheque' }
   belongs_to :party
+
+
+  def party_name
+    Party.find_by_party_code(party_code).party_name
+  end
+
 end

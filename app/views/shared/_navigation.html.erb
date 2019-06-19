@@ -14,6 +14,7 @@
         <li> <%= link_to 'Payment Receipts List', payment_receipts_path %></li>
         <li><%= link_to 'Invoice Statement', "#", "data-toggle": "modal", "data-target": "#invoiceStatementModal" %></li>
         <li><%= link_to 'Expense Statement', "#", "data-toggle": "modal", "data-target": "#expenseStatementModal" %></li>
+        <li><%= link_to 'Ledger', "#", "data-toggle": "modal", "data-target": "#ledgerModal" %></li>
         <li> <%= link_to 'Search', search_entries_path %></li>
         <% if user_signed_in? %>
           <li>
@@ -63,6 +64,36 @@
           </div>
           <div class="modal-body">
             <%= form_for :expense_statement, url: download_expenses_path(format: "pdf"), formtarget: :_blank, method: :get do |f| %>
+              <div class="shift mb-1">
+                <%= f.label :from_date, class: "required" %>
+                <%= f.text_field :from_date, "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
+              </div>
+              <div class="shift mb-1">
+                <%= f.label :to_date, class: "required" %>
+                <%= f.text_field :to_date, "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
+              </div>
+              <td><%= f.submit 'Download', class: "btn btn-lg btn-primary",  input_html: {"data-dismiss": "modal", "aria-hidden": "true" } %></td>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div id="ledgerModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Enter the from date, to date and party code: </h4>
+          </div>
+          <div class="modal-body">
+            <%= form_for :ledger, url: download_ledger_path(format: "pdf"), formtarget: :_blank, method: :get do |f| %>
+              <div class="shift mb-1">
+                <%= f.label :party_code, class: "required" %>
+                <%= f.text_field :party_code, class: "form-control" %>
+              </div>
               <div class="shift mb-1">
                 <%= f.label :from_date, class: "required" %>
                 <%= f.text_field :from_date, "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>

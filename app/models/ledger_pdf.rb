@@ -2,17 +2,24 @@ require "render_anywhere"
 class LedgerPdf
   include RenderAnywhere
 
-  def initialize(entries,payment_receipts, from_date, to_date)
-    @entries = entries
+  def initialize(party_invoices,payment_receipts, from_date, to_date, party_code)
+    @party_invoices = party_invoices
     @payment_receipts = payment_receipts
+    all_payments = @party_invoices + @payment_receipts
+    @sorted_payments = all_payments.sort_by {|x| x.date}
     @from_date = from_date
     @to_date = to_date
+    party = Party.where(:party_code => party_code).first
+    opening_balance = party.opening_balances.select { |opening_balance|
+      (Time.now.month < 4 && opening_balance.year == Time.now.year - 1 )|| (Time.now.month >= 4 && opening_balance.year == Time.now.year)
+    }
+    @balance = opening_balance[0].balance
   end
 
   def to_pdf
     kit = PDFKit.new(as_html, page_size: 'A3')
     kit.stylesheets << 'app/assets/stylesheets/application.scss'
-    kit.to_file("#{Rails.root}/public/expense_statement.pdf")
+    kit.to_file("#{Rails.root}/public/ledger.pdf")
   end
 
   def filename
@@ -21,9 +28,9 @@ class LedgerPdf
 
   private
 
-  attr_reader :entries, :payment_receipts
+  attr_reader :party_invoices, :payment_receipts, :sorted_payments
 
   def as_html
-    render template: "entries/expense_statement_pdf", layout: "bill_pdf", locals: { entries: @entries }
+    render template: "parties/ledger_pdf", layout: "bill_pdf", locals: { payments: @sorted_payments, balance: @balance }
   end
 end

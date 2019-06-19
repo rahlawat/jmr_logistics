@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   end
   get 'download_statement', to: 'downloads#invoice_statement_show'
   get 'download_expenses', to: 'downloads#expenses_show'
+  get 'download_ledger', to: 'downloads#ledger_show'
   resources :entries, concerns: :paginatable do
     resource :download, only: [:show]
     resources :payment_summaries

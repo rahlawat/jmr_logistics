@@ -11,8 +11,16 @@ class PartyInvoice < ApplicationRecord
     Party.find_by_party_code(party_code)
   end
 
+  def get_all_gr_numbers
+    gr_number =""
+    self.bills.each do |bill|
+      gr_number += bill.entry.payment_summary.g_r_number + ','
+    end
+    gr_number
+  end
+
   def set_invoice_date invoice_date
-    self.invoice_date = invoice_date
+    self.date = invoice_date
     self.invoice_generated = true
     save
   end

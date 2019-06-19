@@ -32,7 +32,7 @@
           <strong>Invoice Date:</strong>
         </td>
         <td>
-          <%= @party_invoice.invoice_date %>
+          <%= @party_invoice.date %>
         </td>
       </tr>
     </table>
@@ -92,7 +92,7 @@
             <%= form_for :party_invoice, url: download_party_invoice_path(@party_invoice, format: "pdf"), formtarget: :_blank, method: :get do |f| %>
               <div class="shift mb-1">
                 <%= f.label :invoice_date, class: "required" %>
-                <%= f.text_field :invoice_date, "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
+                <%= f.text_field :date, "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
               </div>
               <td><%= f.submit 'Download', class: "btn btn-lg btn-primary",  input_html: {"data-dismiss": "modal", "aria-hidden": "true" } %></td>
             <% end %>
