@@ -36,8 +36,8 @@
         <% if payment.instance_of? PartyInvoice %>
           <tr>
             <td><%= payment.date %></td>
-            <td style="white-space:pre-wrap; word-wrap:break-word"> Freight Forward
-              Bill No. - <%= payment.invoice_number %> ; G.R. No. - <%= payment.get_all_gr_numbers %> </td>
+            <td class="ledger-particular" style="white-space:pre-wrap; word-wrap:break-word"> Freight Forward; Bill No. - <%= payment.invoice_number %>
+ G.R. No. - <%= payment.get_all_gr_numbers %> </td>
             <td><%= payment.invoice_total %></td>
             <td><%= (payment.invoice_total * payment.bills[0].tds_percentage/100) %> </td>
             <td><%= payment.invoice_total - (payment.invoice_total * payment.bills[0].tds_percentage/100)%></td>
@@ -47,8 +47,11 @@
         <% elsif payment.instance_of? PaymentReceipt %>
           <tr>
             <td><%= payment.date %></td>
-            <td><%= payment.depository_bank %></td>
-            <td><%= payment.mode_of_payment %></td>
+            <td class="ledger-particular"> <%= payment.depository_bank %>;  Mode: <%= payment.mode_of_payment %>
+            <% if "cheque".eql? payment.mode_of_payment %>
+              ; Cheque No: <%= payment.cheque_number %>
+                <% end %></td>
+            <td></td>
             <td></td>
             <td></td>
             <td><%= payment.amount %></td>
