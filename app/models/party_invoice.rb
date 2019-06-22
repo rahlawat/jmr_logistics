@@ -47,4 +47,12 @@ class PartyInvoice < ApplicationRecord
     end
     total
   end
+
+  def freight_total
+    total = 0
+    self.bills.each do |bill|
+      total += bill.freight
+    end
+    total
+  end
 end
