@@ -10,10 +10,8 @@ class LedgerPdf
     @from_date = from_date
     @to_date = to_date
     party = Party.where(:party_code => party_code).first
-    opening_balance = party.opening_balances.select { |opening_balance|
-      (Time.now.month < 4 && opening_balance.year == Time.now.year - 1 )|| (Time.now.month >= 4 && opening_balance.year == Time.now.year)
-    }
-    @balance = opening_balance[0].balance
+    opening_balance = party.calculate_current_balance from_date
+    @balance = opening_balance
   end
 
   def to_pdf
