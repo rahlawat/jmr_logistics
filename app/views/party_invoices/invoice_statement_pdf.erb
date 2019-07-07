@@ -22,7 +22,7 @@
       </tr>
       <% party_invoices.each do |party_invoice| %>
         <tr>
-          <td><%= party_invoice.invoice_date %></td>
+          <td><%= party_invoice.date %></td>
           <td><%= party_invoice.invoice_number %></td>
           <td><%= party_invoice.party_name %>, <%= party_invoice.party.address %></td>
           <td><%= party_invoice.party.gst_in %></td>
