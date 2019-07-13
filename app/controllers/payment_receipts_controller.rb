@@ -1,6 +1,6 @@
 class PaymentReceiptsController < ApplicationController
   def index
-    @payment_receipts = PaymentReceipt.all.page params[:page]
+    @payment_receipts = PaymentReceipt.order(:date).all.page params[:page]
   end
 
   def new

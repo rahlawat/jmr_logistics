@@ -46,6 +46,16 @@ class DownloadsController < ApplicationController
     end
   end
 
+
+  def balance_for_parties
+    respond_to do |format|
+      format.pdf { send_balance_for_parties_pdf }
+      if Rails.env.development?
+        format.html { render_sample_balance_html }
+      end
+    end
+  end
+
   private
 
   def entry_pdf
@@ -76,6 +86,11 @@ class DownloadsController < ApplicationController
     to_date = params[:invoice_statement][:to_date]
     party_invoices = PartyInvoice.where(:invoice_generated => true, :date => from_date..to_date).order(date: :asc)
     InvoiceStatementPdf.new(party_invoices, from_date, to_date)
+  end
+
+  def balance_for_parties_pdf
+    till_date = Date.today
+    BalanceForPartiesPdf.new(till_date)
   end
 
   def expenses_pdf
@@ -109,6 +124,13 @@ class DownloadsController < ApplicationController
   def send_invoice_statement_pdf
     send_file invoice_statement_pdf.to_pdf,
               filename: invoice_statement_pdf.filename,
+              type: "application/pdf",
+              disposition: "inline"
+  end
+
+  def send_balance_for_parties_pdf
+    send_file balance_for_parties_pdf.to_pdf,
+              filename: balance_for_parties_pdf.filename,
               type: "application/pdf",
               disposition: "inline"
   end
@@ -149,5 +171,9 @@ class DownloadsController < ApplicationController
 
   def render_sample_ledger_html
     render template: "parties/ledger_pdf", layout: "bill_pdf", locals: { entries: Entry.all}
+  end
+
+  def render_sample_balance_html
+    render template: "parties/balance_for_parties_pdf", layout: "bill_pdf", locals: { parties: Party.all}
   end
 end

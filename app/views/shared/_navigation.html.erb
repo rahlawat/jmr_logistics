@@ -15,6 +15,7 @@
         <li><%= link_to 'Invoice Statement', "#", "data-toggle": "modal", "data-target": "#invoiceStatementModal" %></li>
         <li><%= link_to 'Expense Statement', "#", "data-toggle": "modal", "data-target": "#expenseStatementModal" %></li>
         <li><%= link_to 'Ledger', "#", "data-toggle": "modal", "data-target": "#ledgerModal" %></li>
+        <li><%= link_to 'Balance for Parties', download_parties_balance_path %></li>
         <li> <%= link_to 'Search', search_entries_path %></li>
         <% if user_signed_in? %>
           <li>

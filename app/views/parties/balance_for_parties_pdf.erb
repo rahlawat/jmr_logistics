@@ -1,0 +1,34 @@
+<div class="party-invoice">
+  <div class="party-invoice-content">
+    <div class="company-details">
+      <h1 class="text-center company-name">JMR LOGISTICS</h1>
+      <h3 class="text-center head-office">HEAD OFFICE</h3>
+      <h4 class="text-center office-details">Shop No 15, Palla More, Old GT Road, Near Wine Shop, Alipur, Delhi-110036</h4>
+      <h4 class="text-center office-details">E-mail: jmrlogistics16@gmail.com</h4>
+      <h4 class="text-center office-details">Phone: 9212666550, 9910680644, 9999778668</h4>
+      <h4 class="text-center report-title">Balance Statement (as of <%= to_date %>)</h4>
+    </div>
+  </div>
+  <div class="big-font space-mx invoice-statement">
+    <table class="table table-condensed">
+      <tbody>
+      <tr class="table-header">
+        <td>Party Code</td>
+        <td>Party Name</td>
+        <td>Balance (Rs)</td>
+      </tr>
+      <% parties.each do |party| %>
+        <% current_party_balance = party.calculate_current_balance(to_date) %>
+        <% if current_party_balance > 0 %>
+          <tr>
+            <td><%= party.code %></td>
+            <td><%= party.party_name %></td>
+            <td><%= number_to_indian_currency(current_party_balance, text: '') %></td>
+            <td></td>
+          </tr>
+        <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
