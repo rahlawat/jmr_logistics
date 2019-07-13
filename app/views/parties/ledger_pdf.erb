@@ -42,7 +42,7 @@
             <td><%= (payment.freight_total * payment.bills[0].tds_percentage/100) %> </td>
             <td><%= payment.freight_total - (payment.freight_total * payment.bills[0].tds_percentage/100)%></td>
             <td></td>
-            <td><%= balance = (balance + (payment.freight_total - (payment.invoice_total * payment.bills[0].tds_percentage/100)))%> </td>
+            <td><%= balance = (balance + (payment.freight_total - (payment.freight_total * payment.bills[0].tds_percentage/100)))%> </td>
           </tr>
         <% elsif payment.instance_of? PaymentReceipt %>
           <tr>
