@@ -19,12 +19,11 @@
       </tr>
       <% parties.each do |party| %>
         <% current_party_balance = party.calculate_current_balance(to_date) %>
-        <% if current_party_balance > 0 %>
+        <% if current_party_balance != 0  %>
           <tr>
             <td><%= party.party_code %></td>
-            <td><%= party.party_name %></td>
-            <td><%= number_to_indian_currency(current_party_balance, text: '') %></td>
-            <td></td>
+            <td><span style="float:left;"><%= party.party_name %></span></td>
+            <td><span style="float:right;"><%= number_to_indian_currency(current_party_balance, text: '') %></span></td>
           </tr>
         <% end %>
       <% end %>
