@@ -22,8 +22,8 @@
         <% if current_party_balance != 0  %>
           <tr>
             <td><%= party.party_code %></td>
-            <td><span style="float:left;"><%= party.party_name %></span></td>
-            <td><span style="float:right;"><%= number_to_indian_currency(current_party_balance, text: '') %></span></td>
+            <td><span style="float:left; padding-left:5px;"><%= party.party_name %></span></td>
+            <td><span style="float:right; padding-right:5px;"><%= number_to_indian_currency(current_party_balance, text: '') %></span></td>
           </tr>
         <% end %>
       <% end %>
