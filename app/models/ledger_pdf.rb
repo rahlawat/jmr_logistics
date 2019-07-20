@@ -9,7 +9,7 @@ class LedgerPdf
     @sorted_payments = all_payments.sort_by {|x| x.date}
     @from_date = from_date
     @to_date = to_date
-    party = Party.where(:party_code => party_code).first
+    @party = Party.where(:party_code => party_code).first
     opening_balance = party.calculate_current_balance from_date
     @balance = opening_balance
   end
@@ -26,9 +26,9 @@ class LedgerPdf
 
   private
 
-  attr_reader :party_invoices, :payment_receipts, :sorted_payments
+  attr_reader :party_invoices, :payment_receipts, :sorted_payments, :party
 
   def as_html
-    render template: "parties/ledger_pdf", layout: "bill_pdf", locals: { payments: @sorted_payments, balance: @balance }
+    render template: "parties/ledger_pdf", layout: "bill_pdf", locals: { payments: @sorted_payments, balance: @balance, party: @party }
   end
 end
