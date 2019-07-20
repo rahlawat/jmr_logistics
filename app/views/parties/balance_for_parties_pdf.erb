@@ -6,7 +6,7 @@
       <h4 class="text-center office-details">Shop No 15, Palla More, Old GT Road, Near Wine Shop, Alipur, Delhi-110036</h4>
       <h4 class="text-center office-details">E-mail: jmrlogistics16@gmail.com</h4>
       <h4 class="text-center office-details">Phone: 9212666550, 9910680644, 9999778668</h4>
-      <h4 class="text-center report-title">Balance Statement (as of <%= to_date %>)</h4>
+      <h4 class="text-center report-title">Balance Statement as of <%= to_date %></h4>
     </div>
   </div>
   <div class="big-font space-mx invoice-statement">
@@ -21,7 +21,7 @@
         <% current_party_balance = party.calculate_current_balance(to_date) %>
         <% if current_party_balance > 0 %>
           <tr>
-            <td><%= party.code %></td>
+            <td><%= party.party_code %></td>
             <td><%= party.party_name %></td>
             <td><%= number_to_indian_currency(current_party_balance, text: '') %></td>
             <td></td>

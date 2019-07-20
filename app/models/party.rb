@@ -17,6 +17,9 @@ class Party < ApplicationRecord
     opening_balance = self.opening_balances.select { |opening_balance|
       (to_date.month < 4 && opening_balance.year == to_date.year - 1 )|| (to_date.month >= 4 && opening_balance.year == to_date.year)
     }
+    if !opening_balance.any?
+      return 0
+    end
     balance = opening_balance[0].balance
     from_date_for_data = DateTime.new(opening_balance[0].year, 4, 1)
     payments = PaymentReceipt.where(:party_code => party_code, :date => from_date_for_data..till_date).order(date: :asc)

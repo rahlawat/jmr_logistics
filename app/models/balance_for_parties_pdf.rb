@@ -1,3 +1,4 @@
+require "pry"
 require "render_anywhere"
 class BalanceForPartiesPdf
   include RenderAnywhere

@@ -174,6 +174,6 @@ class DownloadsController < ApplicationController
   end
 
   def render_sample_balance_html
-    render template: "parties/balance_for_parties_pdf", layout: "bill_pdf", locals: { parties: Party.all}
+    render template: "parties/balance_for_parties_pdf", layout: "bill_pdf", locals: { parties: Party.all, to_date: Date.today.strftime}
   end
 end
