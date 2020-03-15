@@ -35,7 +35,7 @@ class EntriesController < ApplicationController
     elsif(params[:start_date] and params[:end_date])
       @entries = Entry.entries_without_gr_entry_between(params[:start_date], params[:end_date])
     elsif(params[:entry_start_date] and params[:entry_end_date])
-      @entries = Entry.entries_without_bill_entry_between(params[:entry_start_date], params[:entry_end_date])
+      @entries = Entry.entries_without_bill_between(params[:entry_start_date], params[:entry_end_date])
     elsif(params[:invoice_number])
       @entries = Entry.entries_with_invoice_number(params[:invoice_number])
     end

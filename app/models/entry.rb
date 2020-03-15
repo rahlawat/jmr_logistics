@@ -91,13 +91,13 @@ class Entry < ApplicationRecord
     entries_witout_gr_entry
   end
 
-  def self.entries_without_bill_entry_between(start_date, end_date)
-    entries_without_bill_entry = Array.new
+  def self.entries_without_bill_between(start_date, end_date)
+    entries_without_bill = Array.new
     entries = where(entry_date: start_date.to_date..end_date.to_date)
     entries.each do |entry|
-      entries_without_bill_entry.push(entry) if !entry.bill_entry.present?
+      entries_without_bill.push(entry) if !entry.bill.present?
     end
-    entries_without_bill_entry
+    entries_without_bill
   end
 
   def self.entries_with_invoice_number(invoice_number)
