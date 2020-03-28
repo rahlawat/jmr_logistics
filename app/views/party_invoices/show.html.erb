@@ -79,6 +79,11 @@
                     class: "btn btn-lg btn-primary" %>
     <% end %>
     <%= link_to 'Back', party_invoices_path, class: "btn btn-lg btn-primary" %>
+    <% if current_user.admin? %>
+      <%= link_to 'Destroy', party_invoice_path(@party_invoice),
+                method: :delete,
+                data: { confirm: 'Are you sure?' }, class: "btn btn-lg btn-primary" %>
+    <% end %>
     <div id="invoiceDateModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
 

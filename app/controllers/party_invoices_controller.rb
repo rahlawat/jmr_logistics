@@ -9,6 +9,13 @@ class PartyInvoicesController < ApplicationController
     @party_invoice = PartyInvoice.find(params[:id])
   end
 
+  def destroy
+    @party_invoice = PartyInvoice.find(params[:id])
+    @party_invoice.destroy
+
+    redirect_to party_invoices_path
+  end
+
   def unlock
     @party_invoice = PartyInvoice.find(params[:id])
     @party_invoice.invoice_generated = false
