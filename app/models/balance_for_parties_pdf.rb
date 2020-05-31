@@ -4,8 +4,8 @@ class BalanceForPartiesPdf
   include RenderAnywhere
 
   def initialize(from_date, to_date)
-    @from_date = from_date.strftime
-    @to_date = to_date.strftime
+    @from_date = from_date
+    @to_date = to_date
     @parties = Party.order(:party_code)
   end
 
