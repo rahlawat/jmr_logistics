@@ -6,7 +6,7 @@ class BalanceForPartiesPdf
   def initialize(to_date)
     @to_date = to_date.strftime
     # @parties = Party.order(:party_code)
-    @parties = Party.first
+    @parties = Party.take(2)
   end
 
   def to_pdf
