@@ -23,8 +23,8 @@ class Party < ApplicationRecord
     end
     balance = opening_balance[0].balance
     from_date_for_data = DateTime.new(opening_balance[0].year, 4, 1)
-    payments = PaymentReceipt.where(:party_code => party_code, :date => from_date_for_data..till_date).order(date: :asc)
-    party_invoices = PartyInvoice.where(:party_code => party_code, :date => from_date_for_data..till_date, :invoice_generated => true).order(date: :asc)
+    payments = PaymentReceipt.where(:party_code => party_code, :date => from_date_for_data..to_date).order(date: :asc)
+    party_invoices = PartyInvoice.where(:party_code => party_code, :date => from_date_for_data..to_date, :invoice_generated => true).order(date: :asc)
     payments.each do |payment|
       balance = balance - payment.amount
     end
