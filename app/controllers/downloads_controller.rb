@@ -89,8 +89,9 @@ class DownloadsController < ApplicationController
   end
 
   def balance_for_parties_pdf
-    till_date = Date.today
-    BalanceForPartiesPdf.new(till_date)
+    from_date = params[:ledger][:from_date]
+    to_date = params[:ledger][:to_date]
+    BalanceForPartiesPdf.new(from_date, to_date)
   end
 
   def expenses_pdf

@@ -12,10 +12,11 @@ class Party < ApplicationRecord
   has_many :opening_balances
 
 
-  def calculate_current_balance till_date
-    to_date = DateTime.parse(till_date)
+  def calculate_current_balance from_date, to_date
+    from_date = DateTime.parse(from_date)
+    to_date = DateTime.parse(to_date)
     opening_balance = self.opening_balances.select { |opening_balance|
-      (to_date.month < 4 && opening_balance.year == to_date.year - 1 )|| (to_date.month >= 4 && opening_balance.year == to_date.year)
+      (from_date.month < 4 && opening_balance.year == from_date.year - 1 )|| (from_date.month >= 4 && opening_balance.year == from_date.year)
     }
     if !opening_balance.any?
       return 0

@@ -3,7 +3,8 @@ require "render_anywhere"
 class BalanceForPartiesPdf
   include RenderAnywhere
 
-  def initialize(to_date)
+  def initialize(from_date, to_date)
+    @from_date = from_date.strftime
     @to_date = to_date.strftime
     @parties = Party.order(:party_code)
   end
@@ -15,14 +16,14 @@ class BalanceForPartiesPdf
   end
 
   def filename
-    "balance_for_parties_statement_till_#{@to_date}.pdf"
+    "balance_for_parties_statement_till_#{@from_date}_#{@to_date}.pdf"
   end
 
   private
 
-  attr_reader :parties, :to_date
+  attr_reader :parties, :from_date, :to_date
 
   def as_html
-    render template: "parties/balance_for_parties_pdf", layout: "bill_pdf", locals: { parties: @parties, to_date: @to_date  }
+    render template: "parties/balance_for_parties_pdf", layout: "bill_pdf", locals: { parties: @parties, from_date: @from_date, to_date: @to_date  }
   end
 end
