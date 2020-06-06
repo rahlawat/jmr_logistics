@@ -10,7 +10,7 @@ class LedgerPdf
     @from_date = from_date
     @to_date = to_date
     @party = Party.where(:party_code => party_code).first
-    opening_balance = party.calculate_current_balance from_date
+    opening_balance = party.calculate_current_balance from_date, to_date
     @balance = opening_balance
   end
 
