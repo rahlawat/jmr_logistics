@@ -109,7 +109,7 @@ class DownloadsController < ApplicationController
     payment_receipts = PaymentReceipt.where(:party_code => party_code, :date => from_date..to_date).order(date: :asc)
     party = Party.where(:party_code => party_code).first
     opening_balance = party.opening_balances.select { |opening_balance|
-      (Time.now.month < 4 && opening_balance.year == Time.now.year - 1 )|| (Time.now.month >= 4 && opening_balance.year == Time.now.year)
+      (from_date.month < 4 && opening_balance.year == from_date.year - 1 )|| (from_date.month >= 4 && opening_balance.year == from_date.year)
     }
     @balance = opening_balance[0].balance
     LedgerPdf.new(party_invoices, payment_receipts, from_date, to_date, party_code)
