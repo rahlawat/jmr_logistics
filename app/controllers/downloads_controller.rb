@@ -102,8 +102,8 @@ class DownloadsController < ApplicationController
   end
 
   def ledger_pdf
-    from_date = params[:ledger][:from_date]
-    to_date = params[:ledger][:to_date]
+    from_date = DateTime.parse(params[:ledger][:from_date])
+    to_date = DateTime.parse(params[:ledger][:to_date])
     party_code = params[:ledger][:party_code]
     party_invoices = PartyInvoice.where(:party_code => party_code, :date => from_date..to_date, :invoice_generated => true).order(date: :asc)
     payment_receipts = PaymentReceipt.where(:party_code => party_code, :date => from_date..to_date).order(date: :asc)
