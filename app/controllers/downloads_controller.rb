@@ -84,7 +84,7 @@ class DownloadsController < ApplicationController
   def invoice_statement_pdf
     from_date = params[:invoice_statement][:from_date]
     to_date = params[:invoice_statement][:to_date]
-    party_invoices = PartyInvoice.where(:invoice_generated => true, :date => from_date..to_date).order(date: :asc)
+    party_invoices = PartyInvoice.where(:invoice_generated => true, :date => from_date..to_date).order(invoice_number: :asc)
     InvoiceStatementPdf.new(party_invoices, from_date, to_date)
   end
 
