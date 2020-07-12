@@ -28,7 +28,7 @@ class PartyInvoice < ApplicationRecord
   def invoice_amount
     amount = 0
     self.bills.each do |bill|
-      amount += bill.balance
+      amount += bill.freight
     end
     amount
   end
