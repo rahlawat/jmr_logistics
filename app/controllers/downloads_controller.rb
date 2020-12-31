@@ -1,12 +1,10 @@
 require 'pry'
-class DownloadsController < ApplicationController
+class DownloadsController < ApplicatiAonController
   before_action :authenticate_user!
   def show
     respond_to do |format|
       format.pdf { send_invoice_pdf }
-      if Rails.env.development?
-        format.html { render_sample_html }
-      end
+      format.html { render_sample_html }
     end
   end
 
