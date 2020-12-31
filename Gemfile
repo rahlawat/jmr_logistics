@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby "2.7.2p137"
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -28,10 +29,11 @@ gem 'jbuilder', '~> 2.5'
 gem 'pg'
 gem 'pry'
 gem 'devise'
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass', '~> 3.4.1'
+gem 'sass-rails'
 gem 'pdfkit'
 gem 'render_anywhere'
-gem 'wkhtmltopdf-binary', '= 0.12.3.1'
+gem 'wkhtmltopdf-binary', '= 0.12.5'
 gem 'bootstrap-datepicker-rails'
 gem 'kaminari'
 gem 'number_to_indian_currency'

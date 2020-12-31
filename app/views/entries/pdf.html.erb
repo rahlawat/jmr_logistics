@@ -1,11 +1,11 @@
-<div class="invoice">
+<div class="invoice container">
   <% if entry.company.eql?("jmr") %>
     <h1 class="text-center">JMR Logistics</h1>
     <h3 class="text-center">Shop No 15, Palla More, Alipur, Delhi-110036</h3>
   <% else %>
-      <h1 class="text-center">R.K. Gujarat Road Carrier</h1>
-      <h3 class="text-center">Narela Road Shop No. 84, Vill. Sanoth, Delhi-110040</h3>
-  <% end %>
+    <h1 class="text-center">R.K. Gujarat Road Carrier</h1>
+    <h3 class="text-center">Narela Road Shop No. 84, Vill. Sanoth, Delhi-110040</h3>
+  <% end %>  
   <div class="big-font space-mx">
     <div class="row">
       <div class="col-xs-6">
@@ -26,7 +26,7 @@
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="..." height="25" width="25" class="squared">&nbsp;&nbsp;Cheque (CH.No. ______________________)
     </div>
     <div class="space-mx">
-      <table class="table table-condensed">
+      <table class="table table-condensed table-borderless">
         <tbody>
           <tr class="table-space">
             <td>Total Freight ( <%= entry.payment_summary.weight %> * <%= entry.rate1 %> + <%= entry.payment_summary.kanta %> )</td>
@@ -100,7 +100,7 @@
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="..." height="25" width="25" class="squared">&nbsp;&nbsp;Cheque (CH.No. ______________________)
     </div>
     <div class="space-mx">
-      <table class="table">
+      <table class="table table-borderless table-condensed">
         <tbody>
         <tr class="table-space">
           <td>Total Freight ( <%= entry.payment_summary.weight %> * <%= entry.rate1 %> + <%= entry.payment_summary.kanta %> )</td>

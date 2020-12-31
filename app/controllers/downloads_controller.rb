@@ -14,7 +14,7 @@ class DownloadsController < ApplicationController
     respond_to do |format|
       format.pdf { send_party_invoice_pdf }
       if Rails.env.development?
-        format.html { render_sample_html }
+        format.html { render_sample_party_invoice_html }
       end
     end
   end
@@ -147,7 +147,12 @@ class DownloadsController < ApplicationController
 
 
   def render_sample_html
-    render template: "entries/pdf", layout: "bill_pdf", locals: { entry: @entry}
+    entry = Entry.find(params[:entry_id])
+    if(params[:company].present?)
+      entry.set_company params[:company]
+    end
+    truck_details = TruckDetails.find_by_truck_number(entry.truck_number)
+    render template: "entries/pdf", layout: "bill_pdf", locals: { entry: entry, truck_details: truck_details}
   end
 
   def render_sample_party_invoice_html
