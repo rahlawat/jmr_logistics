@@ -1,5 +1,5 @@
 require 'pry'
-class DownloadsController < ApplicatiAonController
+class DownloadsController < ApplicationController
   before_action :authenticate_user!
   def show
     respond_to do |format|
