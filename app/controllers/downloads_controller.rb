@@ -11,36 +11,28 @@ class DownloadsController < ApplicationController
   def party_invoice_show
     respond_to do |format|
       format.pdf { send_party_invoice_pdf }
-      if Rails.env.development?
-        format.html { render_sample_party_invoice_html }
-      end
+      format.html { render_sample_party_invoice_html }
     end
   end
 
   def ledger_show
     respond_to do |format|
       format.pdf { send_ledger_pdf }
-      if Rails.env.development?
-        format.html { render_sample_ledger_html }
-      end
+      format.html { render_sample_ledger_html }
     end
   end
 
   def invoice_statement_show
     respond_to do |format|
       format.pdf { send_invoice_statement_pdf }
-      if Rails.env.development?
-        format.html { render_sample_invoice_statement_html }
-      end
+      format.html { render_sample_invoice_statement_html }
     end
   end
 
   def expenses_show
     respond_to do |format|
       format.pdf { send_expenses_pdf }
-      if Rails.env.development?
-        format.html { render_sample_expenses_html }
-      end
+      format.html { render_sample_expenses_html }
     end
   end
 
@@ -48,9 +40,7 @@ class DownloadsController < ApplicationController
   def balance_for_parties
     respond_to do |format|
       format.pdf { send_balance_for_parties_pdf }
-      if Rails.env.development?
-        format.html { render_sample_balance_html }
-      end
+      format.html { render_sample_balance_html }
     end
   end
 
@@ -156,25 +146,43 @@ class DownloadsController < ApplicationController
   end
 
   def render_sample_party_invoice_html
-    render template: "party_invoices/pdf", layout: "bill_pdf", locals: { party_invoice: @party_invoice}
+    party_invoice = PartyInvoice.find(params[:id])
+    party_invoice.set_invoice_date params[:party_invoice][:date]
+    render template: "party_invoices/pdf", layout: "bill_pdf", locals: { party_invoice: party_invoice}
   end
 
   def render_sample_invoice_statement_html
     from_date = params[:invoice_statement][:from_date]
     to_date = params[:invoice_statement][:to_date]
-    render template: "party_invoices/invoice_statement_pdf", layout: "bill_pdf", locals: {
-        party_invoices: PartyInvoice.where(:invoice_generated => true, :date => from_date..to_date).order(:invoice_number)}
+    party_invoices = PartyInvoice.where(:invoice_generated => true, :date => from_date..to_date).order(invoice_number: :asc)
+    render template: "party_invoices/invoice_statement_pdf", layout: "bill_pdf", locals: {party_invoices: party_invoices}
   end
 
   def render_sample_expenses_html
-    render template: "entries/expenses_pdf", layout: "bill_pdf", locals: { entries: Entry.all}
+    from_date = params[:expense_statement][:from_date]
+    to_date = params[:expense_statement][:to_date]
+    entries = Entry.where( :invoice_date => from_date..to_date).order(invoice_number: :asc)
+    render template: "entries/expenses_pdf", layout: "bill_pdf", locals: { entries: entries}
   end
 
   def render_sample_ledger_html
-    render template: "parties/ledger_pdf", layout: "bill_pdf", locals: { entries: Entry.all}
+    from_date = params[:ledger][:from_date]
+    to_date = params[:ledger][:to_date]
+    party_code = params[:ledger][:party_code]
+    party_invoices = PartyInvoice.where(:party_code => party_code, :date => from_date..to_date, :invoice_generated => true).order(date: :asc)
+    payment_receipts = PaymentReceipt.where(:party_code => party_code, :date => from_date..to_date).order(date: :asc)
+    all_payments = party_invoices + payment_receipts
+    sorted_payments = all_payments.sort_by {|x| x.date}
+    party = Party.where(:party_code => party_code).first
+    opening_balance = party.calculate_balance_till_date from_date
+    balance = opening_balance
+    render template: "parties/ledger_pdf", layout: "bill_pdf", locals: { payments: sorted_payments, balance: balance, party: party }
   end
 
   def render_sample_balance_html
-    render template: "parties/balance_for_parties_pdf", layout: "bill_pdf", locals: { parties: Party.all, to_date: Date.today.strftime}
+    from_date = params[:parties_balance][:from_date]
+    to_date = params[:parties_balance][:to_date]
+    parties = Party.order(:party_code)
+    render template: "parties/balance_for_parties_pdf", layout: "bill_pdf", locals: { parties: parties, from_date: from_date, to_date: to_date }
   end
 end
