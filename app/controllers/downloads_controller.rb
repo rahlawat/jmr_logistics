@@ -149,6 +149,8 @@ class DownloadsController < ApplicationController
     if(params[:company].present?)
       entry.set_company params[:company]
     end
+    entry.set_invoice_number
+    entry.set_invoice_date
     truck_details = TruckDetails.find_by_truck_number(entry.truck_number)
     render template: "entries/pdf", layout: "bill_pdf", locals: { entry: entry, truck_details: truck_details}
   end
