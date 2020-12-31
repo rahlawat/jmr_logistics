@@ -156,8 +156,12 @@ body {
   margin-top: 30px;
 }
 .border {
-  border-top: solid thin #000000;
-  border-bottom: solid thin #000000;
+  border-top: solid thin #000000 !important;
+  border-bottom: solid thin #000000 !important;
+}
+
+.invoice .table thead tr th, .invoice .table tbody tr td {
+  border: none;
 }
 
 .bill-split {
