@@ -23,6 +23,6 @@ class ExpenseStatementPdf
   attr_reader :entries
 
   def as_html
-    render template: "entries/expense_statement_pdf", layout: "bill_pdf", locals: { entries: @entries }
+    ActionController::Base.new.render_to_string(template: "entries/expense_statement_pdf", layout: "bill_pdf", locals: { entries: @entries })
   end
 end

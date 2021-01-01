@@ -10,7 +10,7 @@ class InvoiceStatementPdf
 
   def to_pdf
     kit = PDFKit.new(as_html, page_size: 'A3')
-    kit.stylesheets << 'app/assets/stylesheets/application.scss'
+    kit.stylesheets << '/Users/renuahla/jmr_logistics/app/assets/stylesheets/application.scss'
     kit.to_file("#{Rails.root}/public/invoice_statement.pdf")
   end
 
@@ -23,6 +23,6 @@ class InvoiceStatementPdf
   attr_reader :party_invoices
 
   def as_html
-    render template: "party_invoices/invoice_statement_pdf", layout: "bill_pdf", locals: { party_invoices: @party_invoices }
+    ActionController::Base.new.render_to_string(template: "party_invoices/invoice_statement_pdf", layout: "bill_pdf", locals: { party_invoices: @party_invoices })
   end
 end

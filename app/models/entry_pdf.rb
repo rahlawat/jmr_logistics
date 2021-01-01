@@ -22,6 +22,6 @@ class EntryPdf
   attr_reader :entry, :truck_details
 
   def as_html
-    render template: "entries/pdf", layout: "bill_pdf", locals: { entry: @entry, truck_details: @truck_details }
+    ActionController::Base.new.render_to_string(template: "entries/pdf", layout: "bill_pdf", locals: { entry: @entry, truck_details: @truck_details })
   end
 end

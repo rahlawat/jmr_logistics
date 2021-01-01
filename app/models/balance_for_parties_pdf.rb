@@ -24,6 +24,6 @@ class BalanceForPartiesPdf
   attr_reader :parties, :from_date, :to_date
 
   def as_html
-    render template: "parties/balance_for_parties_pdf", layout: "bill_pdf", locals: { parties: @parties, from_date: @from_date, to_date: @to_date  }
+    ActionController::Base.new.render_to_string(template: "parties/balance_for_parties_pdf", layout: "bill_pdf", locals: { parties: @parties, from_date: @from_date, to_date: @to_date  })
   end
 end

@@ -29,6 +29,6 @@ class LedgerPdf
   attr_reader :party_invoices, :payment_receipts, :sorted_payments, :party
 
   def as_html
-    render template: "parties/ledger_pdf", layout: "bill_pdf", locals: { payments: @sorted_payments, balance: @balance, party: @party }
+    ActionController::Base.new.render_to_string(template: "parties/ledger_pdf", layout: "bill_pdf", locals: { payments: @sorted_payments, balance: @balance, party: @party })
   end
 end

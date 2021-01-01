@@ -23,6 +23,6 @@ class PartyInvoicePdf
   attr_reader :party_invoice
 
   def as_html
-    render template: "party_invoices/pdf", layout: "bill_pdf", locals: { party_invoice: @party_invoice }
+    ActionController::Base.new.render_to_string("party_invoices/pdf", layout: "bill_pdf", locals: { party_invoice: @party_invoice })
   end
 end
