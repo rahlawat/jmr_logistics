@@ -245,7 +245,7 @@ DEPENDENCIES
   pg
   pry
   puma (~> 3.0)
-  rails (~> 6.0)
+  rails (~> 6.1)
   render_anywhere
   sass-rails
   spring
