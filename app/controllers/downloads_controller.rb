@@ -4,7 +4,7 @@ class DownloadsController < ApplicationController
   def show
     respond_to do |format|
       format.pdf { send_invoice_pdf }
-      format.html { render_sample_html }
+      # format.html { render_sample_html }
     end
   end
 
