@@ -91,8 +91,8 @@ body {
 }
 
 .total-div {
-  position: relative;
-  bottom: 16px;
+  position: fixed;
+  bottom: 10px;
   width: 100%;
   text-align: right;
   border-top: 1px solid #000;;
@@ -132,7 +132,7 @@ body {
 .party-invoice-details {
   font-size: 20px;
   margin-bottom: 50px;
-  height: auto;
+  height: 117px;
   border-top: solid thin #000000;
   border-bottom: solid thin #000000;
 }
@@ -156,16 +156,12 @@ body {
   margin-top: 30px;
 }
 .border {
-  border-top: solid thin #000000 !important;
-  border-bottom: solid thin #000000 !important;
-}
-
-.invoice .table thead tr th, .invoice .table tbody tr td {
-  border: none;
+  border-top: solid thin #000000;
+  border-bottom: solid thin #000000;
 }
 
 .bill-split {
-  margin-top: 500px;
+  margin-top: 300px;
 }
 #error_explanation {
     color: red;

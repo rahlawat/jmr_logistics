@@ -1,4 +1,4 @@
-<div class="invoice container" style="width:100%">
+<div class="invoice">
   <% if entry.company.eql?("jmr") %>
     <h1 class="text-center">JMR Logistics</h1>
     <h3 class="text-center">Shop No 15, Palla More, Alipur, Delhi-110036</h3>
@@ -16,9 +16,9 @@
       </div>
     </div>
     <% if truck_details.nil? %>
-      <p class="space">Paid to Mr ____________________________&nbsp;&nbsp;&nbsp;Truck No&nbsp;&nbsp;<%= entry.truck_number %>&nbsp;&nbsp;&nbsp;Loading Date&nbsp;&nbsp;<%= entry.entry_date %></p>
+      <p class="space">Paid to Mr ____________________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Truck No&nbsp;&nbsp;&nbsp;<%= entry.truck_number %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Loading Date&nbsp;&nbsp;&nbsp;<%= entry.entry_date %></p>
     <% else %>
-      <p class="space">Paid to Mr&nbsp;<%= truck_details.truck_owner %>&nbsp;&nbsp;&nbsp;Truck No&nbsp;<%= entry.truck_number %>&nbsp;&nbsp;&nbsp;Loading Date&nbsp;&nbsp;<%= entry.entry_date %></p>
+      <p class="space">Paid to Mr&nbsp;&nbsp;<%= truck_details.truck_owner %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Truck No&nbsp;&nbsp;&nbsp;<%= entry.truck_number %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Loading Date&nbsp;&nbsp;&nbsp;<%= entry.entry_date %></p>
     <% end %>
     <div class="space">
       Payment Mode:&nbsp;&nbsp;&nbsp;&nbsp;<img src="..." height="25" width="25" class="squared">&nbsp;&nbsp;Cash
@@ -89,9 +89,9 @@
     </div>
 
     <% if truck_details.nil? %>
-      <p class="space">Paid to Mr ____________________________&nbsp;&nbsp;&nbsp;Truck No&nbsp;&nbsp;<%= entry.truck_number %>&nbsp;&nbsp;&nbsp;Loading Date&nbsp;&nbsp;<%= entry.entry_date %></p>
+      <p class="space">Paid to Mr ____________________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Truck No&nbsp;&nbsp;&nbsp;<%= entry.truck_number %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Loading Date&nbsp;&nbsp;&nbsp;<%= entry.entry_date %></p>
     <% else %>
-      <p class="space">Paid to Mr&nbsp;<%= truck_details.truck_owner %>&nbsp;&nbsp;&nbsp;Truck No&nbsp;<%= entry.truck_number %>&nbsp;&nbsp;&nbsp;Loading Date&nbsp;&nbsp;<%= entry.entry_date %></p>
+      <p class="space">Paid to Mr&nbsp;&nbsp;<%= truck_details.truck_owner %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Truck No&nbsp;&nbsp;&nbsp;<%= entry.truck_number %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Loading Date&nbsp;&nbsp;&nbsp;<%= entry.entry_date %></p>
     <% end %>
 
     <div class="space">

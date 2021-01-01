@@ -4,35 +4,45 @@ class DownloadsController < ApplicationController
   def show
     respond_to do |format|
       format.pdf { send_invoice_pdf }
-      # format.html { render_sample_html }
+      if Rails.env.development?
+        format.html { render_sample_html }
+      end
     end
   end
 
   def party_invoice_show
     respond_to do |format|
       format.pdf { send_party_invoice_pdf }
-      format.html { render_sample_party_invoice_html }
+      if Rails.env.development?
+        format.html { render_sample_party_invoice_html }
+      end       
     end
   end
 
   def ledger_show
     respond_to do |format|
       format.pdf { send_ledger_pdf }
-      format.html { render_sample_ledger_html }
+      if Rails.env.development?
+        format.html { render_sample_ledger_html }
+      end  
     end
   end
 
   def invoice_statement_show
     respond_to do |format|
       format.pdf { send_invoice_statement_pdf }
-      format.html { render_sample_invoice_statement_html }
+      if Rails.env.development?
+        format.html { render_sample_invoice_statement_html }
+      end  
     end
   end
 
   def expenses_show
     respond_to do |format|
       format.pdf { send_expenses_pdf }
-      format.html { render_sample_expenses_html }
+      if Rails.env.development?
+        format.html { render_sample_expenses_html }
+      end  
     end
   end
 
@@ -40,7 +50,9 @@ class DownloadsController < ApplicationController
   def balance_for_parties
     respond_to do |format|
       format.pdf { send_balance_for_parties_pdf }
-      format.html { render_sample_balance_html }
+      if Rails.env.development?
+        format.html { render_sample_balance_html }
+      end  
     end
   end
 

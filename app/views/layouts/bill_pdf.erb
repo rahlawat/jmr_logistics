@@ -3,7 +3,7 @@
   <head>
     <title>Invoices</title>
     <style>
-      <%= Rails.application.assets.find_asset('application.scss').to_s %>
+      <%= Rails.application.assets_manifest.assets["application.css"] %>
     </style>
   </head>
   <body>
