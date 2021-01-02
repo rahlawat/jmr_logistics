@@ -1,140 +1,53 @@
-<nav class="navbar navbar-inverse">
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/">JMR Logistics</a>
-    </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <li> <%= link_to 'New Entry', new_entry_path %></li>
-        <li> <%= link_to 'Add Truck Detail', new_truck_detail_path %></li>
-        <li> <%= link_to 'Truck List', truck_details_path %></li>
-        <li> <%= link_to 'New Party', new_party_path %></li>
-        <li> <%= link_to 'Party List', parties_path %></li>
-        <li> <%= link_to 'Party Invoices', party_invoices_path %></li>
-        <li> <%= link_to 'Payment Receipts List', payment_receipts_path %></li>
-        <li><%= link_to 'Invoice Statement', "#", "data-toggle": "modal", "data-target": "#invoiceStatementModal" %></li>
-        <li><%= link_to 'Expense Statement', "#", "data-toggle": "modal", "data-target": "#expenseStatementModal" %></li>
-        <li><%= link_to 'Ledger', "#", "data-toggle": "modal", "data-target": "#ledgerModal" %></li>
-        <li><%= link_to 'Balance for Parties', "#", "data-toggle": "modal", "data-target": "#balanceForPartyModal" %></li>
-        <li> <%= link_to 'Search', search_entries_path %></li>
-        <% if user_signed_in? %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">JMR Logistics</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <%= link_to 'New Entry', new_entry_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Truck List', truck_details_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'New Party', new_party_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Party List', parties_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Party Invoices', party_invoices_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Payment Receipts List', payment_receipts_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Invoice Statement', "#", "data-toggle": "modal", "data-target": "#invoiceStatementModal", class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Expense Statement', "#", "data-toggle": "modal", "data-target": "#expenseStatementModal", class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Ledger', "#", "data-toggle": "modal", "data-target": "#ledgerModal", class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Balance for Parties', "#", "data-toggle": "modal", "data-target": "#balanceForPartyModal", class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Search', search_entries_path, class: 'nav-link' %>
+      </li>
+      <% if user_signed_in? %>
           <li>
-            <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+            <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'nav-link') %>
           </li>
         <% else %>
           <li>
-            <%= link_to('Login', new_user_session_path)  %>
+            <%= link_to('Login', new_user_session_path, class: 'nav-link')  %>
           </li>
         <% end %>
-      </ul>
-    </div>
-    <div id="invoiceStatementModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Enter the from and to date</h4>
-          </div>
-          <div class="modal-body">
-            <%= form_for :invoice_statement, url: download_statement_path(format: "pdf"), formtarget: :_blank, method: :get do |f| %>
-              <div class="shift mb-1">
-                <%= f.label :from_date, class: "required" %>
-                <%= f.text_field :from_date, "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
-              </div>
-              <div class="shift mb-1">
-                <%= f.label :to_date, class: "required" %>
-                <%= f.text_field :to_date, "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
-              </div>
-              <td><%= f.submit 'Download', class: "btn btn-lg btn-primary",  input_html: {"data-dismiss": "modal", "aria-hidden": "true" } %></td>
-            <% end %>
-          </div>
-        </div>
-
-      </div>
-    </div>
-    <div id="expenseStatementModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Enter the from and to date</h4>
-          </div>
-          <div class="modal-body">
-            <%= form_for :expense_statement, url: download_expenses_path(format: "pdf"), formtarget: :_blank, method: :get do |f| %>
-              <div class="shift mb-1">
-                <%= f.label :from_date, class: "required" %>
-                <%= f.text_field :from_date, "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
-              </div>
-              <div class="shift mb-1">
-                <%= f.label :to_date, class: "required" %>
-                <%= f.text_field :to_date, "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
-              </div>
-              <td><%= f.submit 'Download', class: "btn btn-lg btn-primary",  input_html: {"data-dismiss": "modal", "aria-hidden": "true" } %></td>
-            <% end %>
-          </div>
-        </div>
-
-      </div>
-    </div>
-    <div id="ledgerModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Enter the from date, to date and party code: </h4>
-          </div>
-          <div class="modal-body">
-            <%= form_for :ledger, url: download_ledger_path(format: "pdf"), formtarget: :_blank, method: :get do |f| %>
-              <div class="shift mb-1">
-                <%= f.label :party_code, class: "required" %>
-                <%= f.text_field :party_code, class: "form-control" %>
-              </div>
-              <div class="shift mb-1">
-                <%= f.label :from_date, class: "required" %>
-                <%= f.text_field :from_date, "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
-              </div>
-              <div class="shift mb-1">
-                <%= f.label :to_date, class: "required" %>
-                <%= f.text_field :to_date, "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
-              </div>
-              <td><%= f.submit 'Download', class: "btn btn-lg btn-primary",  input_html: {"data-dismiss": "modal", "aria-hidden": "true" } %></td>
-            <% end %>
-          </div>
-        </div>
-
-      </div>
-    </div>
-    <div id="balanceForPartyModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Enter the date range: </h4>
-          </div>
-          <div class="modal-body">
-            <%= form_for :parties_balance, url: download_parties_balance_path(format: "pdf"), formtarget: :_blank, method: :get do |f| %>
-              <div class="shift mb-1">
-                <%= f.label :from_date, class: "required" %>
-                <%= f.text_field :from_date, "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
-              </div>
-              <div class="shift mb-1">
-                <%= f.label :to_date, class: "required" %>
-                <%= f.text_field :to_date, "data-date-format" => "dd/mm/yyyy", class: "form-control datepicker", placeholder: "dd/mm/yyyy" %>
-              </div>
-              <td><%= f.submit 'Download', class: "btn btn-lg btn-primary",  input_html: {"data-dismiss": "modal", "aria-hidden": "true" } %></td>
-            <% end %>
-          </div>
-        </div>
-
-      </div>
-    </div>
+    </ul>
   </div>
 </nav>
