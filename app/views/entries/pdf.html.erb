@@ -1,19 +1,15 @@
 <div class="invoice container">
   <% if entry.company.eql?("jmr") %>
-    <h1 class="text-center">JMR Logistics</h1>
-    <h3 class="text-center">Shop No 15, Palla More, Alipur, Delhi-110036</h3>
+    <h1 class="float-right center-text">JMR Logistics</h1>
+    <h3 class="center-text">Shop No 15, Palla More, Alipur, Delhi-110036</h3>
   <% else %>
-    <h1 class="text-center">R.K. Gujarat Road Carrier</h1>
-    <h3 class="text-center">Narela Road Shop No. 84, Vill. Sanoth, Delhi-110040</h3>
+    <h1 class="center-text">R.K. Gujarat Road Carrier</h1>
+    <h3 class="center-text">Narela Road Shop No. 84, Vill. Sanoth, Delhi-110040</h3>
   <% end %>  
   <div class="big-font space-mx">
-    <div class="row">
-      <div class="col-xs-6">
-        <p>Invoice No: <%= entry.invoice_number %></p>
-      </div>
-      <div class="col-xs-6">
-        <p class="text-right">Date: <%= entry.invoice_date %></p>
-      </div>
+    <div class="big-font space-mx"> 
+      <span class="left-text">Invoice No: <%= entry.invoice_number %></span>
+      <span class="right-text">Date: <%= entry.invoice_date %></span>
     </div>
     <% if truck_details.nil? %>
       <p class="space">Paid to Mr ____________________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Truck No&nbsp;&nbsp;&nbsp;<%= entry.truck_number %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Loading Date&nbsp;&nbsp;&nbsp;<%= entry.entry_date %></p>
@@ -29,32 +25,32 @@
       <table class="table table-condensed table-borderless">
         <tbody>
           <tr class="table-space">
-            <td>Total Freight ( <%= entry.payment_summary.weight %> * <%= entry.rate1 %> + <%= entry.payment_summary.kanta %> )</td>
-            <td class="text-right"><%= entry.freight1 %></td>
+            <td class="left-text">Total Freight ( <%= entry.payment_summary.weight %> * <%= entry.rate1 %> + <%= entry.payment_summary.kanta %> )</td>
+            <td class="right-align-text"><%= entry.freight1 %></td>
           </tr>
           <tr class="table-space">
             <td>Advance</td>
-            <td class="text-right">- <%= number_to_indian_currency(entry.self_advance_1, text: '') %></td>
+            <td class="right-align-text">- <%= number_to_indian_currency(entry.self_advance_1, text: '') %></td>
           </tr>
           <tr class="table-space">
             <td>CD</td>
-            <td class="text-right">- <%= number_to_indian_currency(entry.cash_to_driver, text: '') %></td>
+            <td class="right-align-text">- <%= number_to_indian_currency(entry.cash_to_driver, text: '') %></td>
           </tr>
           <tr class="table-space">
             <td>Commission</td>
-            <td class="text-right">- <%= number_to_indian_currency(entry.commission, text: '') %></td>
+            <td class="right-align-text">- <%= number_to_indian_currency(entry.commission, text: '') %></td>
           </tr>
           <tr class="table-space">
             <td>Payment Charges</td>
-            <td class="text-right">- <%= number_to_indian_currency(entry.payment_summary.payment_charges, text: '') %></td>
+            <td class="right-align-text">- <%= number_to_indian_currency(entry.payment_summary.payment_charges, text: '') %></td>
           </tr>
           <tr class="table-space">
             <td>Shortage</td>
-            <td class="text-right">- <%= number_to_indian_currency(entry.payment_summary.shortage2, text: '') %></td>
+            <td class="right-align-text">- <%= number_to_indian_currency(entry.payment_summary.shortage2, text: '') %></td>
           </tr>
           <tr class="table-space">
             <td>Balance Amount Paid (Rupees)</td>
-            <td class="border text-right"> <%= number_to_indian_currency(entry.paid_to_truck_owner, text: '') %></td>
+            <td class="border right-align-text"> <%= number_to_indian_currency(entry.paid_to_truck_owner, text: '') %></td>
           </tr>
         </tbody>
       </table>
@@ -65,71 +61,65 @@
     </div>
 
     <div class="bottom">
-      <p class="pull-right">Signature _______________________</p>
+      <p class="right-align-text">Signature _______________________</p>
     </div>
   </div>
 </div>
 <div class="bill-split"></div>
-<div class="invoice">
+<div class="invoice container">
   <% if entry.company.eql?("jmr") %>
-      <h1 class="text-center">JMR Logistics</h1>
-      <h3 class="text-center">Shop No 15, Palla More, Alipur, Delhi-110036</h3>
+    <h1 class="float-right center-text">JMR Logistics</h1>
+    <h3 class="center-text">Shop No 15, Palla More, Alipur, Delhi-110036</h3>
   <% else %>
-      <h1 class="text-center">R.K. Gujarat Road Carrier</h1>
-      <h3 class="text-center">Narela Road Shop No. 84, Vill. Sanoth, Delhi-110040</h3>
-  <% end %>
+    <h1 class="center-text">R.K. Gujarat Road Carrier</h1>
+    <h3 class="center-text">Narela Road Shop No. 84, Vill. Sanoth, Delhi-110040</h3>
+  <% end %>  
   <div class="big-font space-mx">
-    <div class="row">
-      <div class="col-xs-6">
-        <p>Invoice No: <%= entry.invoice_number %></p>
-      </div>
-      <div class="col-xs-6">
-        <p class="text-right">Date: <%= Date.today.to_s %></p>
-      </div>
+    <div class="big-font space-mx"> 
+      <span class="left-text">Invoice No: <%= entry.invoice_number %></span>
+      <span class="right-text">Date: <%= entry.invoice_date %></span>
     </div>
-
     <% if truck_details.nil? %>
       <p class="space">Paid to Mr ____________________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Truck No&nbsp;&nbsp;&nbsp;<%= entry.truck_number %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Loading Date&nbsp;&nbsp;&nbsp;<%= entry.entry_date %></p>
     <% else %>
       <p class="space">Paid to Mr&nbsp;&nbsp;<%= truck_details.truck_owner %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Truck No&nbsp;&nbsp;&nbsp;<%= entry.truck_number %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Loading Date&nbsp;&nbsp;&nbsp;<%= entry.entry_date %></p>
     <% end %>
-
     <div class="space">
       Payment Mode:&nbsp;&nbsp;&nbsp;&nbsp;<img src="..." height="25" width="25" class="squared">&nbsp;&nbsp;Cash
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="..." height="25" width="25" class="squared">&nbsp;&nbsp;NEFT
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="..." height="25" width="25" class="squared">&nbsp;&nbsp;Cheque (CH.No. ______________________)
     </div>
     <div class="space-mx">
-      <table class="table table-borderless table-condensed">
+      <table class="table table-condensed table-borderless">
         <tbody>
-        <tr class="table-space">
-          <td>Total Freight ( <%= entry.payment_summary.weight %> * <%= entry.rate1 %> + <%= entry.payment_summary.kanta %> )</td>
-          <td class="text-right"><%= entry.freight1 %></td>
-        </tr>
-        <tr class="table-space">
-          <td>Advance</td>
-          <td class="text-right">- <%= number_to_indian_currency(entry.self_advance_1, text: '') %></td>
-        </tr>
-        <tr class="table-space">
-          <td>CD</td>
-          <td class="text-right">- <%= number_to_indian_currency(entry.cash_to_driver, text: '') %></td>
-        </tr>
-        <tr class="table-space">
-          <td>Commission</td>
-          <td class="text-right">- <%= number_to_indian_currency(entry.commission, text: '') %></td>
-        </tr>
-        <tr class="table-space">
-          <td>Payment Charges</td>
-          <td class="text-right">- <%= number_to_indian_currency(entry.payment_summary.payment_charges, text: '') %></td>
-        </tr>
-        <tr class="table-space">
-          <td>Shortage</td>
-          <td class="text-right">- <%= number_to_indian_currency(entry.payment_summary.shortage2, text: '') %></td>
-        </tr>
-        <tr class="table-space">
-          <td>Balance Amount Paid (Rupees)</td>
-          <td class="border text-right"> <%= number_to_indian_currency(entry.paid_to_truck_owner, text: '') %></td>
-        </tr>
+          <tr class="table-space">
+            <td class="left-text">Total Freight ( <%= entry.payment_summary.weight %> * <%= entry.rate1 %> + <%= entry.payment_summary.kanta %> )</td>
+            <td class="right-align-text"><%= entry.freight1 %></td>
+          </tr>
+          <tr class="table-space">
+            <td>Advance</td>
+            <td class="right-align-text">- <%= number_to_indian_currency(entry.self_advance_1, text: '') %></td>
+          </tr>
+          <tr class="table-space">
+            <td>CD</td>
+            <td class="right-align-text">- <%= number_to_indian_currency(entry.cash_to_driver, text: '') %></td>
+          </tr>
+          <tr class="table-space">
+            <td>Commission</td>
+            <td class="right-align-text">- <%= number_to_indian_currency(entry.commission, text: '') %></td>
+          </tr>
+          <tr class="table-space">
+            <td>Payment Charges</td>
+            <td class="right-align-text">- <%= number_to_indian_currency(entry.payment_summary.payment_charges, text: '') %></td>
+          </tr>
+          <tr class="table-space">
+            <td>Shortage</td>
+            <td class="right-align-text">- <%= number_to_indian_currency(entry.payment_summary.shortage2, text: '') %></td>
+          </tr>
+          <tr class="table-space">
+            <td>Balance Amount Paid (Rupees)</td>
+            <td class="border right-align-text"> <%= number_to_indian_currency(entry.paid_to_truck_owner, text: '') %></td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -139,7 +129,7 @@
     </div>
 
     <div class="bottom">
-      <p class="pull-right">Signature _______________________</p>
+      <p class="right-align-text">Signature _______________________</p>
     </div>
   </div>
 </div>
