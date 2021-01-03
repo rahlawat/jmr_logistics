@@ -11,3 +11,7 @@ $(document).ready ->
       $('.truck-number').addClass('hidden')
       $('.search-by-range').removeClass('hidden')
     return
+  $('.nav-link').click -> 
+    $('.nav-link').removeClass('active');
+    $(this).addClass('active');
+
