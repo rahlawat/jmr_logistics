@@ -9,7 +9,8 @@ class EntryPdf
 
   def to_pdf
     kit = PDFKit.new(as_html, page_size: 'A3')
-    # kit.stylesheets << "#{Rails.root}/packs/css/application-f50bd310.css"
+    helpers = ActionController::Base.helpers
+    kit.stylesheets << helpers.asset_path("application", type: :stylesheet)
     kit.to_file("#{Rails.root}/public/invoice.pdf")
   end
 
