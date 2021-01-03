@@ -2,6 +2,7 @@
   "dependencies": {
     "@rails/webpacker": "5.2.1",
     "bootstrap": "^4.5.3",
+    "flatpickr": "^4.6.9",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
     "webpack-cli": "^4.3.1"
