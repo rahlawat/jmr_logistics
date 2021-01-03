@@ -12,10 +12,6 @@ body {
   .table-space {
     margin-top: 10px;
   }
-  
-  .center-text {
-    text-align: center;
-  }
 
   .top-margin {
       margin-top: 10px;
@@ -25,18 +21,23 @@ body {
     float: right;
   }
 
+  .center-text {
+    text-align: center;
+  }
+
   .right-align-text {
     text-align: right;
   }
 
   .left-text {
-    text-align: left;
+    float: left;
   }
 
   .top-row {
     font-size: 18px;
     margin-left: 5px;
     margin-right: 5px;
+    text-align: center;
   }
   
   .company-name {
@@ -52,16 +53,21 @@ body {
   
   .payment-details, .invoice-statement {
     margin-top: 60px;
-    font-size: 20px;
+    font-size: 25px;
     border-top: solid thin #000000;
     padding-bottom: 0;
+  }
+
+  .party-invoice-table {
+    table-layout: fixed;
+    width: 100%;
   }
   
   .payment-details td, .payment-details th {
     text-align: right;
     line-height: 30px;
     border-left: 1px solid #000;
-    border-right: 1px solid #000;
+    // border-right: 1px solid #000;
     padding-right: 5px;
   }
   
@@ -90,13 +96,13 @@ body {
   .total-div {
     position: fixed;
     bottom: 10px;
-    width: 100%;
+    width: 98.5%;
     text-align: right;
     border-top: 1px solid #000;;
   }
   .total-div td {
     padding-top:15px;
-    padding-right: 5px;
+    padding-right: 20px;
     width: 650px;
   }
   
@@ -121,12 +127,17 @@ body {
   .payment-details thead, .invoice-statement thead {
     border-bottom: solid thin #000000;
   }
+
+  .payment-details table {
+    border-collapse: collapse;
+  }
   
   .party-address {
     padding-left: 10px;
   }
   
   .party-details {
+    width: 70%;
     border-right: solid thin #000000;
   }
   
@@ -134,12 +145,23 @@ body {
     font-size: 20px;
     margin-bottom: 50px;
     height: 117px;
+    width: 100%;
     border-top: solid thin #000000;
+    border-bottom: solid thin #000000;
+  }
+
+  .office-details {
+    margin-top: -20px;
+    font-weight: lighter;  
+  }
+
+  .heading {
     border-bottom: solid thin #000000;
   }
   
   .head-office {
     font-weight: bold;
+    margin-top: -20px;
   }
   
   .bottom {
