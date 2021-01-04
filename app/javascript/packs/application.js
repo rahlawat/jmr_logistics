@@ -14,23 +14,22 @@
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
-
-//= require jquery
-//= require jquery.turbolinks
-//= require jquery_ujs
-//= require turbolinks
-//= require flatpickr
+require("@rails/ujs").start()
+require("turbolinks").start()
+require("@rails/activestorage").start() 
+require("flatpickr")
+require("bootstrap")
 //= require_tree .
 import "bootstrap"
 import '../stylesheets/application'
 import flatpickr from "flatpickr"
-
-+require("flatpickr/dist/flatpickr.css")
-+flatpickr(".datepicker", {})
+flatpickr(".datepicker", {})
 
 
 $(document).on('turbolinks:load',function(){
   $('[data-tooltip-display="true"]').tooltip(),
   flatpickr("[class='flatpickr']", {})
 });
+
+require("flatpickr/dist/flatpickr.css")
 

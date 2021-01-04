@@ -15,7 +15,7 @@
       <% end %>
       <div class="row shift">
         <%= f.label :date %>
-        <%= f.text_field :entry_date, data: { behavior: "flatpickr" }, placeholder: "dd/mm/yyyy" %>
+        <%= f.text_field :entry_date, placeholder: "dd/mm/yyyy", class: 'flatpickr' %>
       </div>
       <div class="row shift">
         <%= f.label :truck_number %>
@@ -57,8 +57,8 @@
         <%= f.text_field :commission, class: "form-control" %>
       </div>
 
-      <%= link_to 'Back', entries_path, class: 'btn btn-lg btn-primary' %>
-      <%= f.submit class: "btn btn-lg btn-primary"%>
+      <%= link_to 'Back', entries_path, class: 'btn btn-lg btn-primary', data: {tooltip_display: :true, placement: :bottom}  %>
+      <%= f.submit class: "btn btn-lg btn-primary", data: {tooltip_display: :true, placement: :bottom} %>
   <% end %>
 
 </div>
