@@ -14,23 +14,18 @@
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require turbolinks
-//= require flatpickr
+//= require bootstrap-datepicker
 //= require_tree .
-
 import "bootstrap"
 import '../stylesheets/application'
 
-import flatpickr from "flatpickr"
-require("flatpickr/dist/flatpickr.css")
-flatpickr(".datepicker", {})
-
 
 $(document).on('turbolinks:load',function(){
-  $('[data-tooltip-display="true"]').tooltip(),
-  flatpickr("[class='flatpickr']", {})
+    $('.datepicker').datepicker();
 });
 
